@@ -1,0 +1,80 @@
+{
+  "title": "Nhập Xuất Với scanf Và printf",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "In ra màn hình với printf",
+      "bullets": [
+        "`printf` nằm trong thư viện `stdio.h`",
+        "Chuỗi định dạng in y nguyên, trừ các **đặc tả** bắt đầu bằng `%`",
+        "Mỗi đặc tả được thay lần lượt bằng giá trị phía sau",
+        "`\\n` xuống dòng, `\\t` tab, `%%` in dấu `%`"
+      ],
+      "code": "printf(\"codelab blog\\n\");\nprintf(\"%s %s\\n\", \"codelab.dev\", \"C programming !\");\nprintf(\"%d %d %d\\n\", 100, 200, 300);\nint n = 282828;\nprintf(\"Gia tri cua bien n : %d\\n\", n);"
+    },
+    {
+      "title": "Đặc tả định dạng",
+      "bullets": [
+        "printf **không tự biết kiểu**, sai đặc tả sẽ in ra rác",
+        "`%d` int, `%lld` long long, `%u` unsigned, `%zu` size_t",
+        "`%f` float/double (mặc định 6 chữ số), `%e` dạng khoa học",
+        "`%c` một ký tự, `%s` chuỗi ký tự"
+      ],
+      "code": "char c = 'A';\nprintf(\"%c %d\\n\", c, c);             // A 65\nprintf(\"%lld\\n\", 1000000000000LL);   // 1000000000000\nprintf(\"%zu\\n\", sizeof(int));         // 4"
+    },
+    {
+      "title": "In giá trị bool",
+      "bullets": [
+        "`bool` (thư viện `stdbool.h`) in bằng `%d`: true là `1`, false là `0`",
+        "Không có đặc tả in chữ, dùng `? :` để chọn chuỗi **true/false**"
+      ],
+      "code": "bool check = true, used = false;\nprintf(\"%d %d\\n\", check, used);            // 1 0\nprintf(\"%s\\n\", check ? \"true\" : \"false\");  // true"
+    },
+    {
+      "title": "Độ chính xác số thực: %.kf",
+      "bullets": [
+        "`%.kf` in đúng `k` chữ số thập phân, có **làm tròn**",
+        "Mỗi lệnh printf độc lập, `%f` lại về mặc định 6 chữ số"
+      ],
+      "code": "float a = 30.192387f;\ndouble b = 9.18293;\nprintf(\"%.2f\\n\", a);    // 30.19\nprintf(\"%.10f\\n\", b);   // 9.1829300000\nprintf(\"%f\\n\", b);      // 9.182930"
+    },
+    {
+      "title": "Độ rộng khi in",
+      "bullets": [
+        "`%10d`: rộng 10 ký tự, **căn phải**, đệm dấu cách bên trái",
+        "`%-10d` căn trái, `%010d` đệm bằng số `0`",
+        "`%8.2f` kết hợp độ rộng và độ chính xác"
+      ],
+      "code": "int n = 12345;\nprintf(\"%10d|\\n\", n);           //      12345|\nprintf(\"%010d|\\n\", n);          // 0000012345|\nprintf(\"%-10d|\\n\", n);          // 12345     |\nprintf(\"%10s|\\n\", \"codelab\");   //    codelab|\nprintf(\"%8.2f|\\n\", 3.14159);    //     3.14|"
+    },
+    {
+      "title": "Nhập dữ liệu với scanf",
+      "bullets": [
+        "`scanf` cũng trong `stdio.h`, dùng đặc tả giống printf",
+        "**Bắt buộc `&`** trước tên biến: truyền địa chỉ để ghi giá trị",
+        "Nhập nhiều số: cách nhau dấu cách hoặc Enter đều được"
+      ],
+      "code": "int n, a, b, c;\nprintf(\"Nhap gia tri cho n : \");\nscanf(\"%d\", &n);\nprintf(\"Nhap gia tri cho a, b, c : \");\nscanf(\"%d%d%d\", &a, &b, &c);"
+    },
+    {
+      "title": "scanf với double, char, chuỗi",
+      "bullets": [
+        "**double nhập bằng `%lf`**, in bằng `%f`",
+        "`\" %c\"`: dấu cách phía trước để bỏ qua Enter còn sót",
+        "Chuỗi `char s[]` **không có `&`**, `%49s` giới hạn độ dài",
+        "`%s` chỉ đọc tới khoảng trắng đầu tiên"
+      ],
+      "code": "double diem; char xepLoai; char ten[50];\nscanf(\"%49s\", ten);\nscanf(\"%lf\", &diem);\nscanf(\" %c\", &xepLoai);\nprintf(\"%s - %.2f - %c\\n\", ten, diem, xepLoai);\n// codelab - 8.76 - A"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`printf` để xuất, `scanf` để nhập, đều cần `stdio.h`",
+        "Chọn **đúng đặc tả** theo kiểu: `%d`, `%lld`, `%f`, `%c`, `%s`",
+        "scanf: quên `&` hoặc dùng `%f` cho double là lỗi hay gặp",
+        "`%.kf` chỉnh số chữ số thập phân, `%10d`/`%-10d`/`%010d` căn độ rộng"
+      ]
+    }
+  ]
+}

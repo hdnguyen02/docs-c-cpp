@@ -1,0 +1,66 @@
+{
+  "title": "Vì Sao Nên Học Lập Trình C",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vì sao chọn C để bắt đầu?",
+      "bullets": [
+        "Rất nhiều ngôn ngữ: C/C++, Python, PHP, Java, JavaScript, Go...",
+        "Ngôn ngữ chỉ là công cụ, kiến thức mới quan trọng",
+        "C là lựa chọn nền tảng phù hợp để học lập trình đầu tiên"
+      ]
+    },
+    {
+      "title": "C là ngôn ngữ nền tảng",
+      "bullets": [
+        "**C** và **C++** là 2 ngôn ngữ khác nhau nhưng hay đi cùng nhau",
+        "C++, Java, C#, JavaScript, Go đều mượn cú pháp của C",
+        "Thành thạo C giúp học ngôn ngữ khác nhanh hơn",
+        "Học C là bước đệm tốt trước khi học **C++**"
+      ]
+    },
+    {
+      "title": "Nhỏ gọn, dễ tiếp cận",
+      "bullets": [
+        "Chỉ khoảng 40+ **từ khoá**, cú pháp ngắn gọn",
+        "Dễ học hơn lời đồn, dễ hơn cả Assembly, Prolog",
+        "Thấy khó là bình thường, học lập trình nào cũng khó"
+      ]
+    },
+    {
+      "title": "Hiểu máy tính và bộ nhớ",
+      "bullets": [
+        "Tự làm việc với kiểu dữ liệu, **địa chỉ**, **con trỏ**",
+        "Tự cấp phát, giải phóng bộ nhớ bằng `malloc` / `free`",
+        "Hiểu biến, mảng nằm ở đâu, vì sao chương trình lỗi bộ nhớ"
+      ]
+    },
+    {
+      "title": "Lập trình hệ thống và nhúng",
+      "bullets": [
+        "Viết nhân Linux, CPython, SQLite, PostgreSQL, Git, Redis, Nginx",
+        "Ngôn ngữ mặc định cho vi điều khiển, Arduino, STM32, IoT",
+        "Nhanh, tốn ít bộ nhớ, thao tác trực tiếp với phần cứng"
+      ]
+    },
+    {
+      "title": "Cộng đồng, trường học, tốc độ",
+      "bullets": [
+        "Tài liệu, video dồi dào, cộng đồng hỏi đáp đông đảo",
+        "Dạy ở nhiều đại học: UET, PTIT, UIT, HUST...",
+        "Biên dịch ra mã máy, thuộc nhóm chạy **nhanh nhất**",
+        "Không có sẵn `vector`, `sort`: tự cài đặt, hiểu sâu thuật toán"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "**C** là ngôn ngữ nền tảng, học xong dễ chuyển ngôn ngữ khác",
+        "Học C là học cách máy tính và bộ nhớ hoạt động",
+        "C là ngôn ngữ chính của lập trình hệ thống và nhúng",
+        "Nhỏ gọn, chạy nhanh, tài liệu và cộng đồng rất lớn"
+      ]
+    }
+  ]
+}

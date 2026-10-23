@@ -1,0 +1,70 @@
+{
+  "title": "Xóa Node Giữa Trong DSLK",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vấn đề: xóa node ở vị trí K",
+      "bullets": [
+        "Xóa node thứ K cần nối node **K-1** với node **K+1**",
+        "Phải duyệt từ đầu tới K-1 vì DSLK đơn không lùi được",
+        "K = 1 là trường hợp đặc biệt: **không có node thứ 0**"
+      ]
+    },
+    {
+      "title": "Các bước xóa node giữa (quản lý bằng head)",
+      "bullets": [
+        "Duyệt tới node **K-1** (`tmp`)",
+        "Lưu lại node K: `delNode = tmp->next`",
+        "Nối K-1 với K+1: `tmp->next = delNode->next`",
+        "Giải phóng `delNode`"
+      ],
+      "code": "Truoc:  1 -> 2 -> 3 -> 4 -> NULL   (xoa vi tri k=3)\nSau:    1 -> 2 -> 4 -> NULL        // tmp=2, delNode=3"
+    },
+    {
+      "title": "Cài đặt hàm `xoagiua`",
+      "code": "void xoagiua(node **head, int k){\n    if(k < 1 || k > len(*head)) return;  // vi tri khong hop le\n    if(k == 1){ xoadau(head); return; }  // k=1: khong co node k-1\n    node *tmp = *head;\n    for(int i = 1; i <= k - 2; i++)\n        tmp = tmp->next;                 // toi node k-1\n    node *delNode = tmp->next;\n    tmp->next = delNode->next;\n    free(delNode);\n}"
+    },
+    {
+      "title": "Vì sao k=1 phải tách riêng?",
+      "bullets": [
+        "Xóa node K cần có node **K-1** để nối lại",
+        "K=1 là node đầu tiên, không tồn tại node thứ 0",
+        "Xử lý bằng cách gọi lại `xoadau(head)`"
+      ]
+    },
+    {
+      "title": "Quản lý bằng head và tail: điểm khác biệt",
+      "bullets": [
+        "Kiểm tra vị trí hợp lệ qua `len(LIST)` thay vì `len(node*)`",
+        "Nếu node K là **node cuối** thì phải **cập nhật `tail = tmp`**",
+        "Xóa ở đầu (`k==1`) gọi `xoadau(l)`, hàm tự cập nhật `tail`"
+      ]
+    },
+    {
+      "title": "Trường hợp đặc biệt",
+      "bullets": [
+        "Vị trí không hợp lệ (`k < 1` hoặc `k > len`): return, không xóa",
+        "DSLK chỉ có 1 node: chỉ hợp lệ `k = 1`, tương đương xóa đầu",
+        "Xóa đúng vị trí cuối: cần cập nhật `tail` nếu dùng head+tail"
+      ]
+    },
+    {
+      "title": "Giải phóng bộ nhớ",
+      "bullets": [
+        "Node K bị tách khỏi danh sách sau khi nối K-1 với K+1",
+        "Phải `free`/`delete` `delNode` để tránh rò rỉ bộ nhớ",
+        "Giải phóng **sau khi** đã nối lại liên kết"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Xóa giữa = nối K-1 với K+1, rồi giải phóng node K",
+        "`k == 1` không có node K-1 → xử lý như xóa đầu",
+        "Luôn kiểm tra vị trí hợp lệ bằng `len()` trước khi xóa",
+        "Dùng `tail`: cập nhật khi node xóa là node cuối cùng"
+      ]
+    }
+  ]
+}

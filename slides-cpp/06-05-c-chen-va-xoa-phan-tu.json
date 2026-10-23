@@ -1,0 +1,59 @@
+{
+  "title": "Chèn Và Xóa Phần Tử",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vấn đề: mảng 1 chiều có kích thước cố định",
+      "bullets": [
+        "Không thể thật sự thêm/bớt ô nhớ của mảng tĩnh",
+        "**Xóa**: coi như chỉ còn quản lý N - 1 phần tử",
+        "**Chèn**: cần khai báo dư chỗ trống từ đầu"
+      ]
+    },
+    {
+      "title": "Xóa phần tử tại chỉ số K",
+      "bullets": [
+        "Dịch các phần tử từ **K+1 → N-1** sang trái 1 ô",
+        "Duyệt dịch theo chiều **trái sang phải**",
+        "Sau đó giảm `n` đi 1 đơn vị"
+      ],
+      "code": "int n = 7, k = 3;\nint a[7] = {2, 3, 1, 5, 8, 9, 4};\nfor (int i = k; i < n - 1; i++) {\n    a[i] = a[i + 1];\n}\n--n;\n// Mang sau khi xoa: 2 3 1 8 9 4"
+    },
+    {
+      "title": "Vì sao phải dịch từ trái sang phải khi xóa",
+      "bullets": [
+        "Đi từ K lên N-1: mỗi bước lấy giá trị ô liền sau đè lên",
+        "Ô cuối N-1 không cần xử lý riêng, tự bị bỏ khi giảm `n`",
+        "Đảm bảo không mất giá trị nào chưa kịp dịch"
+      ]
+    },
+    {
+      "title": "Chèn giá trị X vào chỉ số K",
+      "bullets": [
+        "Cần khai báo mảng **dư ít nhất 1 ô** so với N",
+        "Dịch phần tử từ **K → N-1** sang phải 1 ô",
+        "Duyệt dịch theo chiều **phải sang trái**",
+        "Gán `a[K] = X` rồi tăng `n` lên 1"
+      ],
+      "code": "int n = 7, k = 3, x = 100;\nint a[10] = {2, 3, 1, 5, 8, 9, 4};\nfor (int i = n - 1; i >= k; i--) {\n    a[i + 1] = a[i];\n}\na[k] = x;\n++n;\n// Mang sau khi chen: 2 3 1 100 5 8 9 4"
+    },
+    {
+      "title": "Vì sao phải dịch từ phải sang trái khi chèn",
+      "bullets": [
+        "Đi từ N-1 xuống K: dịch phần tử cuối ra ô trống trước",
+        "Nếu dịch theo chiều ngược lại sẽ **ghi đè mất dữ liệu**",
+        "Sau khi dịch xong, ô tại K mới trống để gán X"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "**Xóa**: dịch trái, đi từ K+1 đến N-1, giảm `n`",
+        "**Chèn**: dịch phải, đi từ N-1 về K, tăng `n`, cần dư chỗ",
+        "Sai chiều dịch chuyển sẽ **ghi đè và mất dữ liệu**",
+        "Đây là bản chất khi các cấu trúc dữ liệu bên trong dùng mảng tĩnh"
+      ]
+    }
+  ]
+}

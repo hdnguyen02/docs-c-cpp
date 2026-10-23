@@ -1,0 +1,62 @@
+{
+  "title": "Xóa Node Đầu Trong DSLK Đôi",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vấn đề: xóa node đầu trong DSLK đôi",
+      "bullets": [
+        "Giống DSLK đơn: cập nhật `head` sang node thứ 2",
+        "Khác biệt: node thứ 2 phải **trỏ `prev` ngược về NULL**",
+        "Bỏ bước này thì node đứng đầu mới vẫn trỏ về node đã xóa"
+      ]
+    },
+    {
+      "title": "Các bước xóa node đầu",
+      "bullets": [
+        "Lưu lại node đầu để giải phóng: `deleteNode = *head`",
+        "Cho `head` trỏ sang node thứ 2: `*head = (*head)->next`",
+        "Nếu `head != NULL`: cho `head->prev = NULL`",
+        "Giải phóng `deleteNode`"
+      ],
+      "code": "Truoc:  10 <-> 9 <-> 8 <-> NULL\nSau:    9 <-> 8 <-> NULL   // xoa 10, head=9, 9->prev=NULL"
+    },
+    {
+      "title": "Cài đặt hàm `xoadau`",
+      "code": "void xoadau(node **head){\n    if(*head == NULL) return;          // DSLK rong\n    node *deleteNode = *head;\n    (*head) = (*head)->next;\n    if(*head != NULL)\n        (*head)->prev = NULL;          // khac DSLK don\n    free(deleteNode);\n}"
+    },
+    {
+      "title": "Quản lý bằng head và tail: điểm khác biệt",
+      "bullets": [
+        "Vẫn cập nhật `head->prev = NULL` như cách 1",
+        "DSLK còn node: chỉ `head` và `head->prev` đổi, `tail` giữ nguyên",
+        "DSLK hết node (`head == NULL`): phải cho `tail = NULL`"
+      ]
+    },
+    {
+      "title": "Trường hợp đặc biệt",
+      "bullets": [
+        "DSLK rỗng (`head == NULL`): return ngay, không xóa",
+        "DSLK 1 node: sau khi xóa `head` và `tail` đều thành `NULL`",
+        "DSLK ≥2 node: node mới đứng đầu phải có `prev = NULL`"
+      ]
+    },
+    {
+      "title": "Giải phóng bộ nhớ",
+      "bullets": [
+        "Node đầu cũ bị tách khỏi danh sách sau khi đổi `head`",
+        "Phải `free`/`delete` `deleteNode` để tránh rò rỉ bộ nhớ",
+        "Lưu địa chỉ node cũ **trước**, giải phóng **sau** khi cập nhật `prev`"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Xóa đầu DSLK đôi thêm 1 bước so với DSLK đơn: set `prev = NULL`",
+        "Luôn kiểm tra DSLK rỗng trước khi xóa",
+        "Dùng `tail`: set `tail = NULL` khi xóa hết node cuối cùng",
+        "Giải phóng node cũ sau khi đã cập nhật xong `head`/`prev`"
+      ]
+    }
+  ]
+}

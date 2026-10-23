@@ -1,0 +1,78 @@
+{
+  "title": "Thư Viện math.h Và stdlib.h",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Các hàm toán học phổ biến",
+      "bullets": [
+        "Thư viện `math.h` chứa các hàm nhận tham số **double**, trả về **double**",
+        "Không cần nhớ hết, chỉ cần vài hàm dùng thường xuyên",
+        "Biên dịch với gcc trên Linux cần thêm **-lm**: `gcc main.c -o main -lm`"
+      ],
+      "code": "pow(x, y)   // x^y\nsqrt(x)     // can bac 2\ncbrt(x)     // can bac 3\nceil(x)     // lam tron len\nfloor(x)    // lam tron xuong\nround(x)    // lam tron gan nhat\nfabs(x)     // tri tuyet doi so thuc\nfmod(x, y)  // so du khi chia x cho y\nlog(x)      // logarit tu nhien\nlog10(x)    // logarit thap phan\nsin/cos/tan(x)  // ham luong giac, x tinh bang radian"
+    },
+    {
+      "title": "pow và sqrt",
+      "bullets": [
+        "`pow(x, y)` trả `double`, cần ép kiểu nếu muốn số nguyên",
+        "`sqrt(x)` tính căn bậc 2, in số thực bằng `%.2f`"
+      ],
+      "code": "int a = 2, b = 10;\nprintf(\"%d\\n\", (int)pow(a, b));   // 1024\ndouble res = pow(100, 1.0 / 5);    // can bac 5 cua 100\nprintf(\"%.3f\\n\", res);             // 2.512\n\nint n = 100;\nprintf(\"%d\\n\", (int)sqrt(n));      // 10\nprintf(\"%.2f\\n\", sqrt(1000));      // 31.62"
+    },
+    {
+      "title": "ceil, floor, round, fabs",
+      "bullets": [
+        "`ceil(x)`: làm tròn **lên**, số nguyên nhỏ nhất ≥ x",
+        "`floor(x)`: làm tròn **xuống**, số nguyên lớn nhất ≤ x",
+        "`round(x)`: làm tròn theo quy tắc **≥ 0.5 thì lên**",
+        "`fabs(x)`: trị tuyệt đối của **số thực**"
+      ],
+      "code": "double a = 3.14, b = 3.8;\nprintf(\"%d %d\\n\", (int)ceil(a), (int)ceil(b));   // 4 4\nprintf(\"%d %d\\n\", (int)floor(a), (int)floor(b)); // 3 3\nprintf(\"%d %d\\n\", (int)round(a), (int)round(b)); // 3 4\nprintf(\"%.2f\\n\", fabs(-2.75));                   // 2.75"
+    },
+    {
+      "title": "stdlib.h: abs, labs, llabs",
+      "bullets": [
+        "C **không có overload**: mỗi kiểu số nguyên một hàm riêng",
+        "`abs` cho `int`, `labs` cho `long`, `llabs` cho `long long`",
+        "Không dùng `abs` cho số thực: `abs(-3.9)` ra **3**"
+      ],
+      "code": "#include <stdlib.h>\n\nprintf(\"%d %d\\n\", abs(10), abs(-100));  // 10 100\nlong long x = -9876543210LL;\nprintf(\"%lld\\n\", llabs(x));             // 9876543210"
+    },
+    {
+      "title": "stdlib.h: rand và srand",
+      "bullets": [
+        "`rand()` trả số ngẫu nhiên từ 0 tới `RAND_MAX`",
+        "Gọi `srand(time(NULL))` một lần để mỗi lần chạy ra dãy khác",
+        "Số ngẫu nhiên trong đoạn [a, b]: `a + rand() % (b - a + 1)`"
+      ],
+      "code": "#include <stdlib.h>\n#include <time.h>\n\nsrand(time(NULL));\nfor (int i = 0; i < 5; i++) {\n    int x = 1 + rand() % 100;   // doan [1, 100]\n    printf(\"%d \", x);\n}"
+    },
+    {
+      "title": "Tự viết swap",
+      "bullets": [
+        "C không có sẵn `swap`, dùng **biến tạm** để hoán đổi",
+        "Viết thành hàm thì phải truyền **địa chỉ** (con trỏ)"
+      ],
+      "code": "int a = 100, b = 200;\nint temp = a;\na = b;\nb = temp;          // a = 200, b = 100\n\nvoid swap(int *a, int *b) {\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n}\n// Goi ham: swap(&a, &b);"
+    },
+    {
+      "title": "Tự viết min, max",
+      "bullets": [
+        "Viết hàm dùng toán tử 3 ngôi, nhiều số thì **gọi lồng nhau**",
+        "Macro `#define` dùng được cho nhiều kiểu: `int`, `double`, `char`"
+      ],
+      "code": "int min(int a, int b) { return a < b ? a : b; }\nint max(int a, int b) { return a > b ? a : b; }\n\nmin(100, 200);                     // 100\nmin(min(10, 20), min(15, 4));      // 4\n\n#define MAX(a, b) ((a) > (b) ? (a) : (b))\nMAX(2.5, 1.5);                     // 2.5\nMAX('d', MAX('b', 'z'));           // 'z'"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`math.h` cung cấp `pow`, `sqrt`, `ceil`, `floor`, `round`, `fabs`...",
+        "Các hàm này nhận/trả **double**, cần ép kiểu khi muốn số nguyên",
+        "Nhớ thêm **-lm** khi biên dịch chương trình dùng `math.h` bằng gcc",
+        "`stdlib.h`: `abs`/`labs`/`llabs` cho số nguyên, `rand`/`srand` sinh số ngẫu nhiên",
+        "`min`, `max`, `swap` phải **tự viết** bằng hàm hoặc macro"
+      ]
+    }
+  ]
+}

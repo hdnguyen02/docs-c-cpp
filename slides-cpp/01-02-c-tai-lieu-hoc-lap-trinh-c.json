@@ -1,0 +1,60 @@
+{
+  "title": "Tài Liệu Học Lập Trình C",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vấn đề của sách C hiện nay",
+      "bullets": [
+        "Nội dung cũ: vẫn dùng `void main()`, `conio.h`, `gets`",
+        "Ít hoặc không có bài tập đi kèm",
+        "Không trực quan, thiếu ví dụ minh hoạ",
+        "Ít hướng dẫn tự cài cấu trúc dữ liệu, thuật toán bằng C"
+      ]
+    },
+    {
+      "title": "Sách C kinh điển",
+      "bullets": [
+        "**K&R** - The C Programming Language: chuẩn mực, nhưng theo C89",
+        "**C Programming: A Modern Approach** (K. N. King): kỹ, nhiều bài tập",
+        "**Modern C** (Jens Gustedt): theo chuẩn mới, học sau phần cơ bản"
+      ]
+    },
+    {
+      "title": "Bài giảng, video và website",
+      "bullets": [
+        "Học qua **video Youtube** để tiếp cận code trực quan",
+        "Website uy tín: Geeksforgeeks, Programiz",
+        "**cppreference phần C** để tra cứu chính xác hàm thư viện",
+        "Kết hợp nhiều nguồn thay vì chỉ đọc một cuốn sách"
+      ]
+    },
+    {
+      "title": "Bài tập và website chấm bài",
+      "bullets": [
+        "Luyện tập bài tập từ dễ tới khó để code giỏi, code nhanh",
+        "Ebook đi kèm bài tập giúp học lý thuyết hiệu quả hơn",
+        "Website chấm tự động: Hackerrank, Codeforces, VNOI (nộp được bằng C)",
+        "Newbie nên luyện code một thời gian rồi mới dùng các site này"
+      ]
+    },
+    {
+      "title": "Cách học lập trình hiệu quả",
+      "bullets": [
+        "**Kiên trì**: kết quả lập trình không đến ngay lập tức",
+        "**Chăm chỉ**: dành thời gian cố định mỗi ngày để học",
+        "**Chủ động**: tự tìm tài liệu, hỏi đáp thay vì chờ người khác",
+        "**Thực hành thật nhiều**: làm nhiều bài tập, tăng dần độ khó"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Không có một tài liệu duy nhất là đủ, cần kết hợp nhiều nguồn",
+        "Sách, video, blog, bài tập bổ trợ lẫn nhau",
+        "Cẩn thận sách cũ: `void main()`, `gets` đã lỗi thời",
+        "4 yếu tố quyết định: **Kiên Trì, Chăm Chỉ, Chủ Động, Thực Hành**"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "title": "Bài Tập Mảng 1 Chiều P1",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Tổng quan 4 dạng bài trên mảng",
+      "bullets": [
+        "**Liệt kê / đếm** phần tử thỏa tính chất",
+        "**Tìm max, min** trong mảng",
+        "**Mảng đối xứng** và lật ngược mảng",
+        "**Đếm cặp phần tử** thỏa điều kiện"
+      ]
+    },
+    {
+      "title": "Liệt kê & đếm phần tử thỏa tính chất",
+      "caption": "Bài: liệt kê các số nguyên tố trong mảng",
+      "bullets": [
+        "Bước 1: chuẩn bị hàm kiểm tra tính chất (vd `nt()` kiểm tra nguyên tố)",
+        "Bước 2: duyệt từng phần tử, thỏa thì đếm hoặc in ra",
+        "Áp dụng tương tự cho các tính chất khác: chẵn, lẻ, thuận nghịch...",
+        "Cần `<stdbool.h>` cho `bool`, `<math.h>` cho `sqrt` (gcc thêm `-lm`)"
+      ],
+      "code": "bool nt(int n){\n    if(n < 2) return false;\n    for(int i = 2; i <= sqrt(n); i++)\n        if(n % i == 0) return false;\n    return true;\n}\n\nfor(int i = 0; i < n; i++)\n    if(nt(a[i])) printf(\"%d \", a[i]);"
+    },
+    {
+      "title": "Tìm Max, Min trong mảng",
+      "bullets": [
+        "Cách 1: giả sử `a[0]` là max/min, duyệt từ `i=1` để so sánh và cập nhật",
+        "Cách 2: khởi tạo `max_val` = **rất nhỏ**, `min_val` = **rất lớn**, duyệt từ `i=0`",
+        "Giá trị khởi tạo phải nằm **ngoài phạm vi** giá trị mà đề bài cho"
+      ],
+      "code": "int max_val = a[0], min_val = a[0];\nfor(int i = 1; i < n; i++){\n    if(a[i] < min_val) min_val = a[i];\n    if(a[i] > max_val) max_val = a[i];\n}"
+    },
+    {
+      "title": "Mảng đối xứng & lật ngược mảng",
+      "bullets": [
+        "Phần tử chỉ số `i` đối xứng với phần tử chỉ số `n-i-1`",
+        "Chỉ cần xét **N/2 cặp** đầu-cuối là đủ kết luận",
+        "Lật ngược mảng: dùng đúng các cặp đó nhưng **hoán đổi giá trị** thay vì so sánh"
+      ],
+      "code": "bool doixung(int a[], int n){\n    for(int i = 0; i < n/2; i++)\n        if(a[i] != a[n-i-1]) return false;\n    return true;\n}\n\nvoid reverse(int a[], int n){\n    for(int i = 0; i < n/2; i++){\n        int tmp = a[i]; a[i] = a[n-i-1]; a[n-i-1] = tmp;\n    }\n}"
+    },
+    {
+      "title": "Đếm cặp phần tử thỏa điều kiện",
+      "bullets": [
+        "`i` chạy 0 → N-2, `j` chạy `i+1` → N-1 ⇒ mỗi cặp xét 1 lần",
+        "Ví dụ 1: đếm/liệt kê cặp có tổng bằng K",
+        "Ví dụ 2: đếm cặp nguyên tố cùng nhau (UCLN(a[i], a[j]) == 1)"
+      ],
+      "code": "for(int i = 0; i < n-1; i++)\n    for(int j = i+1; j < n; j++)\n        if(a[i] + a[j] == k)\n            printf(\"(%d, %d)\\n\", a[i], a[j]);"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Liệt kê/đếm: cần hàm kiểm tra tính chất + 1 vòng lặp duyệt mảng",
+        "Tìm max/min: khởi tạo hợp lý rồi so sánh, cập nhật dần",
+        "Đối xứng/lật mảng: chỉ cần xét N/2 cặp đầu-cuối",
+        "Đếm cặp: 2 vòng lặp lồng, `j` luôn bắt đầu từ `i+1` để không đếm trùng"
+      ]
+    }
+  ]
+}

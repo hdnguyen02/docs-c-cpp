@@ -1,0 +1,75 @@
+{
+  "title": "So Sánh Chuỗi Theo Thứ Tự Từ Điển",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Thứ tự từ điển là gì?",
+      "bullets": [
+        "Hiểu đơn giản là **thứ tự abc** trong bảng chữ cái",
+        "Hai xâu được phân định bởi **ký tự khác nhau đầu tiên**",
+        "Thứ tự của từng ký tự quy định bởi **mã ASCII**"
+      ]
+    },
+    {
+      "title": "Quy tắc so sánh 2 xâu",
+      "bullets": [
+        "Cùng độ dài, giống mọi ký tự → **bằng nhau**",
+        "Ký tự khác nhau đầu tiên quyết định xâu nào lớn hơn",
+        "Không có ký tự khác nhau → xâu **dài hơn** thì lớn hơn",
+        "Chữ **in hoa** và **in thường** có thứ tự khác nhau"
+      ],
+      "code": "// \"codelabzabc\" > \"codelabaz\"   (chi so 7: 'z' > 'a')\n// \"codelab\"     < \"codelabblog\" (xau ngan hon)"
+    },
+    {
+      "title": "Ví dụ thứ tự từ điển",
+      "bullets": [
+        "Dấu cách (32) < chữ số (48–57) < chữ hoa (65–90) < chữ thường (97–122)"
+      ],
+      "code": "\"codelab\"      < \"codelabzzz\"\n\"1234\"         < \"zzz\"          // '1' (49) < 'z' (122)\n\"lan\"          < \"lan di hoc lap trinh\"\n\"codelab\"      > \"27tech\"       // 'c' > '2'\n\"codelab java\" < \"codelab@\"     // ' ' (32) < '@' (64)"
+    },
+    {
+      "title": "Không dùng toán tử so sánh với xâu",
+      "bullets": [
+        "Xâu là mảng char: `a == b`, `a < b` so sánh **địa chỉ**",
+        "Kết quả không có ý nghĩa về mặt từ điển",
+        "Dùng `strcmp()` trong thư viện `<string.h>`"
+      ]
+    },
+    {
+      "title": "Hàm strcmp()",
+      "bullets": [
+        "`strcmp(a, b)` **< 0**: a nhỏ hơn; **= 0**: bằng; **> 0**: a lớn hơn",
+        "Chuẩn chỉ quy định **dấu**: so với 0, đừng so với -1 hay 1",
+        "Mẹo: `a op b` ⇔ `strcmp(a, b) op 0`"
+      ],
+      "code": "strcmp(\"codelab\", \"codelab\") == 0      // true\nstrcmp(\"codelababc\", \"codelabza\") < 0  // true\nstrcmp(\"codelab\", \"codelab\") < 0       // false\nstrcmp(\"codelab\", \"28@tech\") < 0       // false: 'c' > '2'"
+    },
+    {
+      "title": "Hàm strncmp()",
+      "bullets": [
+        "`strncmp(a, b, n)` chỉ so sánh **tối đa n ký tự đầu**",
+        "Thường dùng kiểm tra xâu có **bắt đầu bằng** xâu khác"
+      ],
+      "code": "strncmp(\"codelab.dev\", \"codelab.vn\", 7) == 0  // 1\nstrncmp(\"codelab.dev\", \"codelab.vn\", 9) == 0  // 0"
+    },
+    {
+      "title": "Không phân biệt hoa thường",
+      "bullets": [
+        "`strcmp` phân biệt hoa thường vì so theo mã ASCII",
+        "Chuẩn C **không có** hàm so sánh bỏ qua hoa thường",
+        "`strcasecmp()` chỉ có trên Linux/macOS, Windows dùng `_stricmp()`",
+        "Tự cài đặt: so sánh `tolower()` của từng ký tự"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "So sánh theo **ký tự khác nhau đầu tiên**, dựa trên mã ASCII",
+        "Xâu là tiền tố của xâu kia → xâu **ngắn hơn** nhỏ hơn",
+        "Lỗi thường gặp: dùng `==`, `<` với xâu → so sánh địa chỉ",
+        "Dùng `strcmp`/`strncmp` và so sánh kết quả với **0**"
+      ]
+    }
+  ]
+}

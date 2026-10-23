@@ -1,0 +1,59 @@
+{
+  "title": "IDE Học Lập Trình C",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "IDE là gì?",
+      "bullets": [
+        "**IDE** = Integrated Development Environment (môi trường phát triển tích hợp)",
+        "Gồm soạn thảo code, biên dịch, gỡ lỗi, kiểm thử",
+        "2 phần chính: **Text Editor** (soạn thảo) và **Compiler** (biên dịch)"
+      ]
+    },
+    {
+      "title": "Vì sao cần biên dịch?",
+      "bullets": [
+        "C là ngôn ngữ bậc cao, máy tính không chạy trực tiếp được",
+        "**Compiler** dịch mã nguồn sang mã máy (file .exe) để thực thi",
+        "Mã nguồn C lưu trong file đuôi **`.c`**, khác file `.cpp` của C++"
+      ],
+      "code": "printf(\"codelab\\n\");  --->  Compiler (gcc)  --->  0101010101\n(mã nguồn .c)                                  (mã máy)"
+    },
+    {
+      "title": "Các IDE và Text Editor phổ biến",
+      "bullets": [
+        "DevC++, Codeblock, Visual Studio Code, XCode (MacOS), Sublime Text, VIM",
+        "Newbie nên chọn công cụ dễ cài, dễ làm quen trước",
+        "Kỹ năng code quan trọng hơn IDE đang dùng"
+      ]
+    },
+    {
+      "title": "Lựa chọn cho người mới",
+      "bullets": [
+        "**DevC++** phù hợp newbie: miễn phí, dễ cài, gọn nhẹ",
+        "Tích hợp sẵn Text Editor và Compiler (MinGW có `gcc`)",
+        "Lưu file chọn kiểu **C source files (*.c)**",
+        "Máy Mac: dùng **XCode** hoặc VSCode/Sublime (DevC++ chỉ có Windows)"
+      ]
+    },
+    {
+      "title": "Biên dịch file .c bằng gcc",
+      "bullets": [
+        "**gcc** là trình biên dịch C phổ biến nhất, macOS dùng **clang**",
+        "`-std=c11`: chuẩn C11; `-Wall -Wextra`: bật cảnh báo",
+        "`-o hello`: tên file thực thi, bỏ đi thì ra `a.out`"
+      ],
+      "code": "gcc hello.c -o hello      // biên dịch\n./hello                   // chạy (Windows: hello.exe)\n\n// lệnh nên dùng khi học:\ngcc -std=c11 -Wall -Wextra hello.c -o hello"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "IDE chỉ là công cụ hỗ trợ, không quyết định trình độ lập trình",
+        "Chọn công cụ dễ cài đặt, đủ dùng là được",
+        "Mã nguồn C có đuôi `.c`, biên dịch bằng `gcc`",
+        "Bật `-Wall -Wextra` để trình biên dịch giúp tìm lỗi sớm"
+      ]
+    }
+  ]
+}

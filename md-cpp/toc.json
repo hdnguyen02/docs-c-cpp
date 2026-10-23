@@ -1,0 +1,288 @@
+[
+  {
+    "chapter": "Làm Quen Với Ngôn Ngữ C",
+    "items": [
+      [
+        "c-vi-sao-nen-hoc-lap-trinh-c",
+        "[C]. Vì Sao Nên Học Lập Trình C"
+      ],
+      [
+        "c-tai-lieu-hoc-lap-trinh-c",
+        "[C]. Tài Liệu Học Lập Trình C"
+      ],
+      [
+        "c-ide-hoc-lap-trinh-c",
+        "[C]. IDE Học Lập Trình C"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C]. Kiểu Dữ Liệu - Toán Tử - Nhập Xuất",
+    "items": [
+      [
+        "c-chuong-trinh-hello-world",
+        "[C]. Chương Trình Hello World"
+      ],
+      [
+        "c-kieu-du-lieu",
+        "[C]. Kiểu Dữ Liệu"
+      ],
+      [
+        "c-bien-va-tu-khoa",
+        "[C]. Biến Và Từ Khóa"
+      ],
+      [
+        "c-chu-thich-comment",
+        "[C]. Chú Thích - Comment"
+      ],
+      [
+        "c-nhap-xuat-voi-scanf-va-printf",
+        "[C]. Nhập Xuất Với scanf Và printf"
+      ],
+      [
+        "c-kieu-cau-truc-struct",
+        "[C]. Kiểu Cấu Trúc Struct"
+      ],
+      [
+        "c-toan-tu-operator",
+        "[C]. Toán Tử - Operator"
+      ],
+      [
+        "c-thu-vien-mathh-va-stdlibh",
+        "[C]. Thư Viện math.h Và stdlib.h"
+      ],
+      [
+        "c-define-typedef-va-enum",
+        "[C]. Define, Typedef Và Enum"
+      ],
+      [
+        "c-hang-so-const-va-kieu-bool",
+        "[C]. Hằng Số const Và Kiểu bool"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C]. Cấu Trúc Rẽ Nhánh",
+    "items": [
+      [
+        "c-if-else",
+        "[C]. If Else"
+      ],
+      [
+        "c-if-va-else-if",
+        "[C]. If Và Else If"
+      ],
+      [
+        "c-switch-case",
+        "[C]. Switch Case"
+      ],
+      [
+        "c-bang-ma-ascii-va-thu-vien-ctypeh",
+        "[C]. Bảng Mã ASCII Và Thư Viện ctype.h"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C]. Vòng Lặp",
+    "items": [
+      [
+        "c-vong-lap-for",
+        "[C]. Vòng Lặp For"
+      ],
+      [
+        "c-vong-lap-while",
+        "[C]. Vòng Lặp While"
+      ],
+      [
+        "c-vong-lap-do-while",
+        "[C]. Vòng Lặp Do-While"
+      ],
+      [
+        "c-cau-lenh-break-va-continue",
+        "[C]. Câu Lệnh Break Và Continue"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C]. Hàm Và Đệ Quy",
+    "items": [
+      [
+        "c-ham-function",
+        "[C]. Hàm - Function"
+      ],
+      [
+        "c-khai-bao-nguyen-mau-ham",
+        "[C]. Khai Báo Nguyên Mẫu Hàm"
+      ],
+      [
+        "c-truyen-tham-tri-va-truyen-con-tro",
+        "[C]. Truyền Tham Trị Và Truyền Con Trỏ"
+      ],
+      [
+        "c-pham-vi-bien-va-lop-luu-tru",
+        "[C]. Phạm Vi Biến Và Lớp Lưu Trữ"
+      ],
+      [
+        "c-ly-thuyet-so-va-toan-hoc",
+        "[C]. Lý Thuyết Số Và Toán Học"
+      ],
+      [
+        "c-ham-de-quy",
+        "[C]. Hàm Đệ Quy"
+      ],
+      [
+        "c-bai-tap-de-quy",
+        "[C]. Bài Tập Đệ Quy"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C]. Mảng 1 Chiều",
+    "items": [
+      [
+        "c-mang-1-chieu",
+        "[C]. Mảng 1 Chiều"
+      ],
+      [
+        "c-bai-tap-mang-1-chieu-p1",
+        "[C]. Bài Tập Mảng 1 Chiều P1"
+      ],
+      [
+        "c-bai-tap-mang-1-chieu-p2",
+        "[C]. Bài Tập Mảng 1 Chiều P2"
+      ],
+      [
+        "c-bai-tap-ve-day-so",
+        "[C]. Bài Tập Về Dãy Số"
+      ],
+      [
+        "c-chen-va-xoa-phan-tu",
+        "[C]. Chèn Và Xóa Phần Tử"
+      ],
+      [
+        "c-mang-danh-dau",
+        "[C]. Mảng Đánh Dấu"
+      ],
+      [
+        "c-truyen-mang-vao-ham",
+        "[C]. Truyền Mảng Vào Hàm"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C]. Lý Thuyết Con Trỏ",
+    "items": [
+      [
+        "c-ly-thuyet-con-tro",
+        "[C]. Lý Thuyết Con Trỏ"
+      ],
+      [
+        "c-con-tro-cap-2",
+        "[C]. Con Trỏ Cấp 2"
+      ],
+      [
+        "c-con-tro-va-mang-1-chieu",
+        "[C]. Con Trỏ Và Mảng 1 Chiều"
+      ],
+      [
+        "c-cap-phat-mang-dong",
+        "[C]. Cấp Phát Mảng Động"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C]. Mảng 2 Chiều",
+    "items": [
+      [
+        "c-ly-thuyet-mang-2-chieu",
+        "[C]. Lý Thuyết Mảng 2 Chiều"
+      ],
+      [
+        "c-bai-tap-mang-2-chieu",
+        "[C]. Bài Tập Mảng 2 Chiều"
+      ],
+      [
+        "c-ma-tran-va-mang-2-chieu",
+        "[C]. Ma Trận Và Mảng 2 Chiều"
+      ],
+      [
+        "c-cong-tru-nhan-2-ma-tran",
+        "[C]. Cộng, Trừ, Nhân 2 Ma Trận"
+      ],
+      [
+        "c-ma-tran-xoan-oc",
+        "[C]. Ma Trận Xoắn Ốc"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C]. Chuỗi Ký Tự",
+    "items": [
+      [
+        "c-chuoi-ky-tu-trong-c",
+        "[C]. Chuỗi Ký Tự Trong C"
+      ],
+      [
+        "c-xu-ly-troi-lenh-khi-nhap-chuoi",
+        "[C]. Xử Lý Trôi Lệnh Khi Nhập Chuỗi"
+      ],
+      [
+        "c-cac-ham-xu-ly-chuoi-trong-stringh",
+        "[C]. Các Hàm Xử Lý Chuỗi Trong string.h"
+      ],
+      [
+        "c-chuyen-doi-giua-so-va-chuoi",
+        "[C]. Chuyển Đổi Giữa Số Và Chuỗi"
+      ],
+      [
+        "c-so-sanh-chuoi-theo-thu-tu-tu-dien",
+        "[C]. So Sánh Chuỗi Theo Thứ Tự Từ Điển"
+      ],
+      [
+        "c-chuyen-doi-chuoi-in-hoa-in-thuong",
+        "[C]. Chuyển Đổi Chuỗi In Hoa, In Thường"
+      ],
+      [
+        "c-tach-chuoi-voi-strtok-va-sscanf",
+        "[C]. Tách Chuỗi Với strtok Và sscanf"
+      ],
+      [
+        "c-bai-toan-tan-suat-ky-tu-trong-chuoi",
+        "[C]. Bài Toán Tần Suất Ký Tự Trong Chuỗi"
+      ],
+      [
+        "c-chuan-hoa-ten-va-email",
+        "[C]. Chuẩn Hóa Tên Và Email"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C]. Sắp Xếp Và Tìm Kiếm",
+    "items": [
+      [
+        "c-thuat-toan-tim-kiem-nhi-phan",
+        "[C]. Thuật Toán Tìm Kiếm Nhị Phân"
+      ],
+      [
+        "c-ham-qsort-trong-c",
+        "[C]. Hàm qsort Trong C"
+      ],
+      [
+        "c-xay-dung-ham-so-sanh-cho-qsort",
+        "[C]. Xây Dựng Hàm So Sánh Cho qsort"
+      ],
+      [
+        "c-sap-xep-on-dinh-va-merge-sort",
+        "[C]. Sắp Xếp Ổn Định Và Merge Sort"
+      ],
+      [
+        "c-thuat-toan-tim-kiem-tuyen-tinh",
+        "[C]. Thuật Toán Tìm Kiếm Tuyến Tính"
+      ],
+      [
+        "c-ham-bsearch-va-lower-bound-upper-bound",
+        "[C]. Hàm bsearch Và Tự Cài lower_bound, upper_bound"
+      ]
+    ]
+  }
+]

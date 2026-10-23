@@ -1,0 +1,60 @@
+old_stem	new_stem	new_title	ghi_chu
+01-01-c-vi-sao-nen-hoc-lap-trinh-c	01-01-c-vi-sao-nen-hoc-lap-trinh-c	[C]. Vì Sao Nên Học Lập Trình C	viết lại lý do học C (nền tảng, hệ thống, nhúng, hiểu bộ nhớ)
+01-02-c-tai-lieu-hoc-lap-trinh-c	01-02-c-tai-lieu-hoc-lap-trinh-c	[C]. Tài Liệu Học Lập Trình C	tài liệu C (K&R, cppreference phần C, ...)
+01-03-c-ide-hoc-lap-trinh-c	01-03-c-ide-hoc-lap-trinh-c	[C]. IDE Học Lập Trình C	file .c, gcc, cách biên dịch
+02-01-c-chuong-trinh-hello-world	02-01-c-chuong-trinh-hello-world	[C]. Chương Trình Hello World	stdio.h, printf
+02-02-cpp-kieu-du-lieu	02-02-c-kieu-du-lieu	[C]. Kiểu Dữ Liệu	bool qua stdbool.h; không có string
+02-03-cpp-bien-va-tu-khoa	02-03-c-bien-va-tu-khoa	[C]. Biến Và Từ Khóa	danh sách từ khoá C
+02-04-cpp-chu-thich-comment	02-04-c-chu-thich-comment	[C]. Chú Thích - Comment
+02-05-cpp-nhap-xuat-voi-cin-va-cout	02-05-c-nhap-xuat-voi-scanf-va-printf	[C]. Nhập Xuất Với scanf Và printf	thay hẳn cin/cout: đặc tả %d %lld %f %lf %c %s, độ rộng, độ chính xác, &
+02-06-cpp-kieu-pair	02-06-c-kieu-cau-truc-struct	[C]. Kiểu Cấu Trúc Struct	THAY pair bằng struct: khai báo, truy cập ., mảng struct, typedef struct, struct 2 trường thay pair
+02-07-cpp-toan-tu-operator	02-07-c-toan-tu-operator	[C]. Toán Tử - Operator
+02-08-cpp-thu-vien-mathh-va-thu-vien-algorithm	02-08-c-thu-vien-mathh-va-stdlibh	[C]. Thư Viện math.h Và stdlib.h	algorithm -> stdlib.h (abs, llabs, rand, srand...); min/max/swap tự viết hoặc macro; nhắc -lm khi link
+02-09-cpp-define-typedef-va-using	02-09-c-define-typedef-va-enum	[C]. Define, Typedef Và Enum	using -> enum
+02-10-c-kieu-du-lieu-suy-luan-auto-trong-c	02-10-c-hang-so-const-va-kieu-bool	[C]. Hằng Số const Và Kiểu bool	THAY auto: const, hằng literal, #define vs const, stdbool.h
+03-01-cpp-if-else	03-01-c-if-else	[C]. If Else
+03-02-cpp-if-va-else-if	03-02-c-if-va-else-if	[C]. If Và Else If
+03-03-cpp-switch-case	03-03-c-switch-case	[C]. Switch Case
+03-04-cpp-bang-ma-ascii-va-thu-vien-ctype	03-04-c-bang-ma-ascii-va-thu-vien-ctypeh	[C]. Bảng Mã ASCII Và Thư Viện ctype.h
+04-01-cpp-vong-lap-for	04-01-c-vong-lap-for	[C]. Vòng Lặp For
+04-02-cpp-vong-lap-while	04-02-c-vong-lap-while	[C]. Vòng Lặp While
+04-03-cpp-vong-lap-do-while	04-03-c-vong-lap-do-while	[C]. Vòng Lặp Do-While
+04-04-cpp-cau-lenh-break-va-continue	04-04-c-cau-lenh-break-va-continue	[C]. Câu Lệnh Break Và Continue
+05-01-cpp-ham-function	05-01-c-ham-function	[C]. Hàm - Function
+05-02-cpp-khai-bao-nguyen-mau-ham	05-02-c-khai-bao-nguyen-mau-ham	[C]. Khai Báo Nguyên Mẫu Hàm	C không có nạp chồng hàm (overload)
+05-03-c-tham-chieu-va-tham-tri	05-03-c-truyen-tham-tri-va-truyen-con-tro	[C]. Truyền Tham Trị Và Truyền Con Trỏ	THAY tham chiếu: C không có &ref; giới thiệu nhanh & và * đủ để viết swap(int *a, int *b), trả nhiều giá trị qua con trỏ (chi tiết con trỏ ở chương 7)
+05-04-cpp-doi-so-mac-dinh-cua-ham	05-04-c-pham-vi-bien-va-lop-luu-tru	[C]. Phạm Vi Biến Và Lớp Lưu Trữ	THAY đối số mặc định (C không có): biến cục bộ/toàn cục, khối lệnh, auto/static/extern/register, biến static trong hàm
+05-05-cpp-ly-thuyet-so-va-toan-hoc	05-05-c-ly-thuyet-so-va-toan-hoc	[C]. Lý Thuyết Số Và Toán Học	__gcd -> tự viết gcd
+05-06-cpp-ham-de-quy	05-06-c-ham-de-quy	[C]. Hàm Đệ Quy
+05-07-cpp-bai-tap-de-quy-c	05-07-c-bai-tap-de-quy	[C]. Bài Tập Đệ Quy
+06-01-cpp-mang-1-chieu	06-01-c-mang-1-chieu	[C]. Mảng 1 Chiều
+06-02-cpp-bai-tap-mang-1-chieu-p1	06-02-c-bai-tap-mang-1-chieu-p1	[C]. Bài Tập Mảng 1 Chiều P1
+06-03-cpp-bai-tap-mang-1-chieu-p2	06-03-c-bai-tap-mang-1-chieu-p2	[C]. Bài Tập Mảng 1 Chiều P2
+06-04-cpp-bai-tap-ve-day-so	06-04-c-bai-tap-ve-day-so	[C]. Bài Tập Về Dãy Số
+06-05-cpp-chen-va-xoa-phan-tu	06-05-c-chen-va-xoa-phan-tu	[C]. Chèn Và Xóa Phần Tử
+06-06-cpp-mang-danh-dau	06-06-c-mang-danh-dau	[C]. Mảng Đánh Dấu
+06-07-c-range-based-for-loop-trong-c	06-07-c-truyen-mang-vao-ham	[C]. Truyền Mảng Vào Hàm	THAY range-based for (C không có): truyền mảng + kích thước, mảng suy biến thành con trỏ, bẫy sizeof trong hàm, const int a[], hàm nhập/xuất mảng
+07-01-cpp-ly-thuyet-con-tro-sub	07-01-c-ly-thuyet-con-tro	[C]. Lý Thuyết Con Trỏ	nullptr -> NULL
+07-02-cpp-con-tro-cap-2	07-02-c-con-tro-cap-2	[C]. Con Trỏ Cấp 2
+07-03-cpp-con-tro-va-mang-1-chieu	07-03-c-con-tro-va-mang-1-chieu	[C]. Con Trỏ Và Mảng 1 Chiều
+07-04-c-cap-phat-mang-dong	07-04-c-cap-phat-mang-dong	[C]. Cấp Phát Mảng Động	new/delete -> malloc, calloc, realloc, free (stdlib.h), kiểm tra NULL
+08-01-c-ly-thuyet-mang-2-chieu-c	08-01-c-ly-thuyet-mang-2-chieu	[C]. Lý Thuyết Mảng 2 Chiều
+08-02-cpp-bai-tap-mang-2-chieu-c	08-02-c-bai-tap-mang-2-chieu	[C]. Bài Tập Mảng 2 Chiều
+08-03-c-ma-tran-va-mang-2-chieu-c	08-03-c-ma-tran-va-mang-2-chieu	[C]. Ma Trận Và Mảng 2 Chiều
+08-04-c-cong-tru-nhan-2-ma-tran-c	08-04-c-cong-tru-nhan-2-ma-tran	[C]. Cộng, Trừ, Nhân 2 Ma Trận
+08-05-c-ma-tran-xoan-oc-c	08-05-c-ma-tran-xoan-oc	[C]. Ma Trận Xoắn Ốc
+09-01-c-string-trong-c	09-01-c-chuoi-ky-tu-trong-c	[C]. Chuỗi Ký Tự Trong C	THAY std::string: mảng char kết thúc '\0', khai báo/khởi tạo, %s, duyệt tới '\0', strlen
+09-02-c-xu-ly-troi-lenh-khi-nhap-chuoi-ky-tu-c	09-02-c-xu-ly-troi-lenh-khi-nhap-chuoi	[C]. Xử Lý Trôi Lệnh Khi Nhập Chuỗi	getline/cin.ignore -> fgets, xoá '\n' cuối, getchar(), scanf(" %[^\n]"), không dùng gets
+09-03-c-cac-ham-string-xu-ly-xau-trong-c	09-03-c-cac-ham-xu-ly-chuoi-trong-stringh	[C]. Các Hàm Xử Lý Chuỗi Trong string.h	strlen, strcpy, strncpy, strcat, strcmp, strchr, strstr, memset...
+09-04-c-chuyen-doi-giua-so-va-string-trong-c	09-04-c-chuyen-doi-giua-so-va-chuoi	[C]. Chuyển Đổi Giữa Số Và Chuỗi	to_string/stoi -> sprintf/snprintf, atoi, atoll, strtol, strtod, sscanf
+09-05-c-so-sanh-xau-ky-tu-theo-thu-tu-tu-dien	09-05-c-so-sanh-chuoi-theo-thu-tu-tu-dien	[C]. So Sánh Chuỗi Theo Thứ Tự Từ Điển	strcmp/strncmp thay toán tử < ==
+09-06-c-chuyen-doi-xau-ky-tu-in-hoa-in-thuong	09-06-c-chuyen-doi-chuoi-in-hoa-in-thuong	[C]. Chuyển Đổi Chuỗi In Hoa, In Thường	toupper/tolower từng ký tự
+09-07-c-stringstream-trong-c-va-ung-dung	09-07-c-tach-chuoi-voi-strtok-va-sscanf	[C]. Tách Chuỗi Với strtok Và sscanf	THAY stringstream: strtok (tách từ), sscanf (đọc số từ chuỗi, %n), ứng dụng đếm từ, tổng các số trong chuỗi
+09-08-c-bai-toan-tan-suat-ky-tu-trong-xau	09-08-c-bai-toan-tan-suat-ky-tu-trong-chuoi	[C]. Bài Toán Tần Suất Ký Tự Trong Chuỗi	map -> mảng đếm 256
+09-09-cpp-chuan-hoa-ten-va-email	09-09-c-chuan-hoa-ten-va-email	[C]. Chuẩn Hóa Tên Và Email
+10-01-c-thuat-toan-tim-kiem-nhi-phan	10-01-c-thuat-toan-tim-kiem-nhi-phan	[C]. Thuật Toán Tìm Kiếm Nhị Phân
+10-02-c-ham-sort-trong-c	10-02-c-ham-qsort-trong-c	[C]. Hàm qsort Trong C	THAY std::sort: qsort(base, n, size, cmp) trong stdlib.h, hàm so sánh cơ bản tăng/giảm, sắp mảng int/double/char
+10-03-c-xay-dung-comparison-function-cho-ham-sort-trong-c	10-03-c-xay-dung-ham-so-sanh-cho-qsort	[C]. Xây Dựng Hàm So Sánh Cho qsort	comparator trả <0/0/>0, ép kiểu const void*, bẫy a-b tràn số, sắp struct theo nhiều tiêu chí, sắp mảng chuỗi
+10-04-c-ham-stablesort-trong-c	10-04-c-sap-xep-on-dinh-va-merge-sort	[C]. Sắp Xếp Ổn Định Và Merge Sort	THAY stable_sort: khái niệm ổn định, qsort KHÔNG đảm bảo ổn định, tự cài merge sort / thêm chỉ số gốc làm tiêu chí phụ
+10-05-c-thuat-toan-tim-kiem-tuyen-tinh	10-05-c-thuat-toan-tim-kiem-tuyen-tinh	[C]. Thuật Toán Tìm Kiếm Tuyến Tính
+10-06-c-ham-binarysearch-lowerbound-upperbound-trong-c	10-06-c-ham-bsearch-va-lower-bound-upper-bound	[C]. Hàm bsearch Và Tự Cài lower_bound, upper_bound	THAY: bsearch của stdlib.h, tự viết hàm lower_bound/upper_bound trả chỉ số, đếm số lần xuất hiện

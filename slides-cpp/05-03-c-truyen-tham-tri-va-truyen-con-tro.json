@@ -1,0 +1,72 @@
+{
+  "title": "Truyền Tham Trị Và Truyền Con Trỏ",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vấn đề: hàm muốn sửa biến bên ngoài",
+      "bullets": [
+        "Khi gọi hàm, **đối số** được sao chép vào **tham số**",
+        "C **chỉ có truyền tham trị**, không có tham chiếu `int &n`",
+        "Muốn sửa biến ngoài: truyền **địa chỉ** của biến (con trỏ)"
+      ]
+    },
+    {
+      "title": "Truyền tham trị (pass by value)",
+      "bullets": [
+        "Tham số là **biến độc lập**, có địa chỉ riêng trong bộ nhớ",
+        "Thay đổi tham số trong hàm **không** ảnh hưởng đối số",
+        "In địa chỉ bằng `%p` kèm ép kiểu `(void *)`"
+      ],
+      "code": "void thaydoi(int n){\n    n += 100;\n}\n\nint main(void){\n    int m = 1000;\n    thaydoi(m);\n    printf(\"%d\\n\", m);   // vẫn là 1000\n}"
+    },
+    {
+      "title": "Hai toán tử & và *",
+      "bullets": [
+        "`&x`: lấy **địa chỉ** của biến x",
+        "`int *p`: khai báo **con trỏ** p lưu địa chỉ một int",
+        "`*p`: truy cập **ô nhớ** mà p đang trỏ tới"
+      ],
+      "code": "int x = 10;\nint *p = &x;         // p trỏ tới x\nprintf(\"%d\\n\", *p);  // 10\n*p = 28;             // ghi vào ô nhớ của x\nprintf(\"%d\\n\", x);   // 28"
+    },
+    {
+      "title": "Truyền con trỏ (pass by pointer)",
+      "bullets": [
+        "Tham số khai báo `int *n`, khi gọi truyền `&m`",
+        "Trong hàm dùng `*n` để đọc/ghi ô nhớ của m",
+        "Không truyền được hằng số: `thaydoi(&1000)` sai"
+      ],
+      "code": "void thaydoi(int *n){\n    *n += 100;\n}\n\nint main(void){\n    int m = 1000;\n    thaydoi(&m);          // truyền địa chỉ\n    printf(\"%d\\n\", m);   // thành 1100\n}"
+    },
+    {
+      "title": "Ví dụ: hoán đổi 2 biến",
+      "code": "void swap1(int a, int b){        // tham trị: vô ích\n    int tmp = a; a = b; b = tmp;\n}\n\nvoid swap2(int *a, int *b){      // con trỏ: đúng\n    int tmp = *a; *a = *b; *b = tmp;\n}\n\nint x = 100, y = 200;\nswap1(x, y);     // 100 200\nswap2(&x, &y);   // 200 100"
+    },
+    {
+      "title": "Trả về nhiều giá trị qua con trỏ",
+      "bullets": [
+        "`return` chỉ trả **một** giá trị",
+        "Thêm **tham số đầu ra** là con trỏ để hàm ghi kết quả",
+        "Có thể `return` trạng thái, kết quả đi qua con trỏ"
+      ],
+      "code": "int chia(int a, int b, int *thuong, int *du){\n    if(b == 0) return 0;          // thất bại\n    *thuong = a / b;\n    *du = a % b;\n    return 1;                     // thành công\n}\n\nint q, r;\nif(chia(17, 5, &q, &r)) printf(\"%d %d\\n\", q, r);  // 3 2"
+    },
+    {
+      "title": "Lỗi thường gặp",
+      "bullets": [
+        "Quên `&` khi gọi: `swap2(x, y)` → cảnh báo, crash khi chạy",
+        "Quên `*` trong hàm: `n += 100` chỉ đổi địa chỉ con trỏ giữ",
+        "`scanf(\"%d\", &x)` cần `&` vì scanf phải ghi vào x"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "C luôn truyền tham trị: tham số là **bản sao** của đối số",
+        "Muốn hàm sửa biến ngoài: tham số `int *p`, gọi với `&x`",
+        "Trong hàm dùng `*p` để truy cập giá trị",
+        "Con trỏ giúp hàm trả về **nhiều kết quả**"
+      ]
+    }
+  ]
+}

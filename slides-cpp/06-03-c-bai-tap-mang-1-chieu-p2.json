@@ -1,0 +1,57 @@
+{
+  "title": "Bài Tập Mảng 1 Chiều P2",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Tổng quan: đếm, liệt kê và tần suất giá trị",
+      "bullets": [
+        "3 bài toán: **đếm giá trị khác nhau**, **liệt kê giá trị khác nhau**, **tần suất xuất hiện**",
+        "Cốt lõi chung: kiểm tra phần tử **đã xuất hiện trước đó** chưa"
+      ]
+    },
+    {
+      "title": "Đếm số giá trị khác nhau trong mảng",
+      "bullets": [
+        "Với mỗi chỉ số `i`, kiểm tra `a[i]` đã xuất hiện ở đoạn `[0, i-1]` chưa",
+        "Chưa từng xuất hiện ⇒ tính là **1 giá trị khác nhau mới**"
+      ],
+      "code": "int res = 0;\nfor(int i = 0; i < n; i++){\n    int check = 1;\n    for(int j = 0; j < i; j++)\n        if(a[i] == a[j]){ check = 0; break; }\n    if(check == 1) ++res;\n}\nprintf(\"%d\\n\", res);   // 5"
+    },
+    {
+      "title": "Liệt kê các giá trị khác nhau",
+      "bullets": [
+        "Dùng đúng thuật toán ở slide trước, thay vì đếm thì **in ra**",
+        "Kết quả liệt kê theo **thứ tự xuất hiện** trong mảng",
+        "Muốn liệt kê tăng dần thì phải **sắp xếp mảng trước**"
+      ],
+      "code": "for(int i = 0; i < n; i++){\n    int check = 1;\n    for(int j = 0; j < i; j++)\n        if(a[i] == a[j]){ check = 0; break; }\n    if(check == 1) printf(\"%d \", a[i]);\n}\n// 1 3 4 5 2"
+    },
+    {
+      "title": "Tần suất phần tử - cách 1 (không dùng mảng phụ)",
+      "bullets": [
+        "Nếu `a[i]` chưa xuất hiện trước đó, đếm số lần nó xuất hiện từ `i+1` tới cuối",
+        "Mỗi giá trị chỉ được in tần suất **đúng 1 lần**, ở lần gặp đầu tiên"
+      ],
+      "code": "for(int i = 0; i < n; i++){\n    int check = 1;\n    for(int j = 0; j < i; j++) if(a[i]==a[j]){ check=0; break; }\n    if(check == 1){\n        int dem = 1;\n        for(int j = i+1; j < n; j++) if(a[i]==a[j]) ++dem;\n        printf(\"%d xuat hien %d lan\\n\", a[i], dem);\n    }\n}"
+    },
+    {
+      "title": "Tần suất phần tử - cách 2 (dùng mảng đánh dấu)",
+      "bullets": [
+        "Mảng phụ `b[]` đánh dấu phần tử **đã được tính** tần suất",
+        "Duyệt `i`: nếu `b[i]==0` thì đếm và đánh dấu mọi vị trí trùng giá trị `b[j]=1`",
+        "Tránh việc phải xét lại đoạn `[0, i-1]` như cách 1"
+      ],
+      "code": "int b[10] = {0};\nfor(int i = 0; i < n; i++){\n    if(b[i] == 0){\n        int dem = 1;\n        for(int j = i+1; j < n; j++)\n            if(a[i]==a[j]){ ++dem; b[j] = 1; }\n        printf(\"%d xuat hien %d lan\\n\", a[i], dem);\n    }\n}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Khuôn chung: kiểm tra phần tử đã xuất hiện ở đoạn trước chưa",
+        "Đếm khác nhau và liệt kê khác nhau dùng **cùng 1 thuật toán**, chỉ khác hành động",
+        "Mảng đánh dấu giúp tránh so sánh lại phần tử đã tính tần suất",
+        "Cách cơ bản O(n²); bài sau tối ưu bằng mảng đánh dấu, sắp xếp"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "title": "Bài Toán Tần Suất Ký Tự Trong Chuỗi",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Đếm tần suất ký tự - 2 cách",
+      "bullets": [
+        "**Mảng đếm 256 phần tử**: mã ký tự (0-255) làm chỉ số, **O(N)**",
+        "**Mảng đếm 26 phần tử**: chỉ đếm chữ cái, chỉ số `c - 'a'`, **O(N)**",
+        "Cả hai đều dựa trên kỹ thuật **mảng đánh dấu**"
+      ]
+    },
+    {
+      "title": "Đếm bằng mảng 256 phần tử",
+      "bullets": [
+        "'a' có mã ASCII 97 nên `cnt[97]` là tần suất của 'a'",
+        "Ép `(unsigned char)`: `char` có thể âm, làm chỉ số ra ngoài mảng"
+      ],
+      "code": "int cnt[256] = {0};\nfor(int i = 0; s[i] != '\\0'; i++)\n    cnt[(unsigned char)s[i]]++;\nfor(int i = 0; i < 256; i++)\n    if(cnt[i] != 0)\n        printf(\"%c xuat hien %d lan\\n\", i, cnt[i]);\n// in theo thu tu ma ASCII"
+    },
+    {
+      "title": "Đếm chữ cái bằng mảng 26 phần tử",
+      "bullets": [
+        "Ánh xạ `'a'` → 0, ..., `'z'` → 25; in ra bằng `'a' + i`",
+        "**Bắt buộc** kiểm tra ký tự nằm trong `'a'..'z'` trước"
+      ],
+      "code": "int cnt[26] = {0};\nfor(int i = 0; s[i] != '\\0'; i++)\n    if(s[i] >= 'a' && s[i] <= 'z')\n        cnt[s[i] - 'a']++;\nfor(int i = 0; i < 26; i++)\n    if(cnt[i] != 0)\n        printf(\"%c xuat hien %d lan\\n\", 'a' + i, cnt[i]);"
+    },
+    {
+      "title": "Bài tập: đếm ký tự khác nhau",
+      "bullets": [
+        "Đánh dấu ký tự xuất hiện = 1, rồi cộng tất cả các ô"
+      ],
+      "code": "int cnt[256] = {0};\nfor(int i = 0; s[i] != '\\0'; i++)\n    cnt[(unsigned char)s[i]] = 1;\nint dem = 0;\nfor(int i = 0; i < 256; i++) dem += cnt[i];\n// s = \"codelab codelab aaa\" -> dem = 8"
+    },
+    {
+      "title": "Bài tập: liệt kê theo thứ tự xuất hiện",
+      "bullets": [
+        "Duyệt chuỗi gốc thay vì duyệt mảng đếm",
+        "Sau khi in, gán tần suất về **0** để tránh in lại"
+      ],
+      "code": "for(int i = 0; s[i] != '\\0'; i++){\n    unsigned char c = (unsigned char)s[i];\n    if(cnt[c] != 0){\n        printf(\"%c xuat hien %d lan\\n\", s[i], cnt[c]);\n        cnt[c] = 0;\n    }\n}"
+    },
+    {
+      "title": "Bài tập: kiểm tra chuỗi pangram",
+      "bullets": [
+        "Pangram: chứa đủ **a-z** không phân biệt hoa thường",
+        "Đưa về chữ thường bằng `tolower()` rồi đếm"
+      ],
+      "code": "int cnt[256] = {0};\nfor(int i = 0; s[i] != '\\0'; i++)\n    cnt[tolower((unsigned char)s[i])]++;\nbool ok = true;                 // can <stdbool.h>\nfor(int i = 'a'; i <= 'z'; i++)\n    if(cnt[i] == 0){ ok = false; break; }\nprintf(ok ? \"YES\\n\" : \"NO\\n\");"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Mảng đếm 256 phần tử dùng **mã ký tự** làm chỉ số, độ phức tạp **O(N)**",
+        "Luôn ép `(unsigned char)` trước khi dùng ký tự làm chỉ số",
+        "Mảng 26 phần tử: chỉ số `c - 'a'`, phải kiểm tra là chữ cái",
+        "Reset tần suất về 0 sau khi in để tránh in lặp"
+      ]
+    }
+  ]
+}

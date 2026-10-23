@@ -1,0 +1,48 @@
+{
+  "title": "Con Trỏ Và Mảng 1 Chiều",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Tên mảng chính là một con trỏ hằng",
+      "bullets": [
+        "Giá trị của tên mảng `A` = **địa chỉ phần tử đầu tiên** `A[0]`",
+        "`A` là **hằng con trỏ**: không thể gán lại giá trị cho `A`"
+      ]
+    },
+    {
+      "title": "Công thức quy đổi con trỏ và chỉ số mảng",
+      "bullets": [
+        "`A + i` tương đương `&A[i]` — **địa chỉ** phần tử thứ i",
+        "`*(A + i)` tương đương `A[i]` — **giá trị** phần tử thứ i"
+      ],
+      "code": "int a[5] = {3, 8, 4, 2, 9};\n// a         -> dia chi cua a[0]\n// a + i     -> dia chi cua a[i]\n// *(a + i)  -> gia tri cua a[i]\n\nfor (int i = 0; i < 5; i++) {\n    cout << *(a + i) << ' ';   // 3 8 4 2 9\n}"
+    },
+    {
+      "title": "Dùng con trỏ riêng để duyệt và di chuyển trong mảng",
+      "bullets": [
+        "Có thể gán một con trỏ khác trỏ tới phần tử đầu để duyệt mảng",
+        "Dùng `++`, `--`, `+=`, `-=` để **di chuyển con trỏ** qua các ô nhớ",
+        "Chỉ con trỏ phụ mới di chuyển được, **không** di chuyển được tên mảng gốc"
+      ],
+      "code": "int a[5] = {3, 8, 4, 2, 9};\nint *ptr = &a[0];\n\n++ptr;      // ptr tro toi a[1], gia tri 8\nptr += 2;   // ptr tro toi a[3], gia tri 2\n--ptr;      // ptr tro toi a[2], gia tri 4"
+    },
+    {
+      "title": "Dịch chuyển con trỏ bằng giá trị lấy từ mảng",
+      "bullets": [
+        "Bước dịch có thể lấy từ chính giá trị phần tử trong mảng",
+        "Vẫn tuân theo công thức địa chỉ = vị trí ban đầu + số ô dịch"
+      ],
+      "code": "int a[10] = {1,2,3,4,5,6,7,8,9,10};\nint *ptr = &a[3];   // tro toi a[3] = 4\nptr += a[2];        // a[2] = 3 => ptr += 3 => tro toi a[6] = 7\n--ptr;              // lui 1 o => tro toi a[5] = 6"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`A + i` là địa chỉ, `*(A + i)` là giá trị của `A[i]`",
+        "Tên mảng là **hằng con trỏ**, không gán lại được",
+        "Dùng con trỏ phụ (không phải tên mảng) để `++`/`--`/`+=` duyệt qua các phần tử",
+        "Bước dịch con trỏ có thể là hằng số hoặc lấy từ giá trị trong mảng"
+      ]
+    }
+  ]
+}

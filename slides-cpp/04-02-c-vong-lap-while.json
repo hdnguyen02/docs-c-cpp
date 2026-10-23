@@ -1,0 +1,54 @@
+{
+  "title": "Vòng Lặp While",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "While giải quyết vấn đề gì?",
+      "bullets": [
+        "Lặp lại khối lệnh khi **chưa biết trước số lần lặp**",
+        "Kiểm tra **điều kiện trước**, đúng mới chạy thân vòng lặp",
+        "Có thể **không chạy lần nào** nếu điều kiện sai ngay từ đầu"
+      ]
+    },
+    {
+      "title": "Cú pháp",
+      "code": "while(condition){\n    // code\n}"
+    },
+    {
+      "title": "Luồng chạy",
+      "bullets": [
+        "Kiểm tra `condition`, sai thì kết thúc ngay, không chạy thân vòng lặp",
+        "Đúng thì chạy khối lệnh, xong quay lại kiểm tra tiếp",
+        "Lặp lại đến khi điều kiện sai mới dừng",
+        "Quên cập nhật biến điều kiện → lặp **vô hạn**"
+      ]
+    },
+    {
+      "title": "Ví dụ: in số từ 1 đến n",
+      "code": "int n = 4, i = 1;\nwhile(i <= n){\n    printf(\"%d \", i);\n    ++i;\n}\n// 1 2 3 4"
+    },
+    {
+      "title": "Ví dụ: đếm và tính tổng chữ số",
+      "caption": "Mẫu chung: lấy chữ số cuối bằng n % 10, bỏ đi bằng n /= 10",
+      "code": "int n = 12345, dem = 0;\nwhile(n != 0){\n    ++dem;\n    n /= 10;\n}\n// dem = 5\n\nint n2 = 12345, tong = 0;\nwhile(n2 != 0){\n    tong += n2 % 10;\n    n2 /= 10;\n}\n// tong = 15"
+    },
+    {
+      "title": "Vòng lặp vô hạn có điều kiện thoát",
+      "bullets": [
+        "`while(1)` tạo vòng lặp **vô hạn** (khác 0 là đúng), phải tự thoát bên trong",
+        "Nhập số tới khi gặp `28` thì dừng (dùng `goto` khi chưa học `break`)"
+      ],
+      "code": "while(1){\n    printf(\"Nhap n : \");\n    scanf(\"%d\", &n);\n    if(n == 28) goto end;\n    else printf(\"Nhap lai\\n\");\n}\nend: ;"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "While kiểm tra điều kiện **trước** mỗi lần lặp",
+        "Khác `do-while`: `do-while` kiểm tra điều kiện **sau**, luôn chạy ít nhất 1 lần",
+        "Hợp với bài toán **chưa biết trước số lần lặp**",
+        "Nhớ cập nhật biến điều kiện để tránh lặp vô hạn"
+      ]
+    }
+  ]
+}

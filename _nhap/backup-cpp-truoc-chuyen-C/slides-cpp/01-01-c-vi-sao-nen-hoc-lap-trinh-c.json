@@ -1,0 +1,56 @@
+{
+  "title": "Vì Sao Nên Học Lập Trình C++",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vì sao chọn C++ để bắt đầu?",
+      "bullets": [
+        "Rất nhiều ngôn ngữ: C/C++, Python, PHP, Java, JavaScript, Go...",
+        "Ngôn ngữ chỉ là công cụ, kiến thức mới quan trọng",
+        "C++ là lựa chọn nền tảng phù hợp để học lập trình đầu tiên"
+      ]
+    },
+    {
+      "title": "C++ là ngôn ngữ nền tảng",
+      "bullets": [
+        "**C** và **C++** là 2 ngôn ngữ khác nhau nhưng hay đi cùng nhau",
+        "Thành thạo 2 ngôn ngữ này giúp học ngôn ngữ khác nhanh hơn",
+        "C++ là bản mở rộng của C: thêm tính năng, thư viện, thuật toán",
+        "Không bắt buộc học C thì nên học **C++** ngay từ đầu"
+      ]
+    },
+    {
+      "title": "Dễ tiếp cận, tài liệu và cộng đồng lớn",
+      "bullets": [
+        "C++ dễ học hơn so với đồn đại, dễ hơn cả Assembly, Prolog",
+        "Tài liệu, video hướng dẫn dồi dào trên Youtube, Google",
+        "Cộng đồng người học đông đảo, dễ tìm chỗ hỏi đáp"
+      ]
+    },
+    {
+      "title": "Được giảng dạy rộng rãi",
+      "bullets": [
+        "Nhiều đại học dùng C++ để giảng dạy: UET, PTIT, UIT, HUST...",
+        "Dùng phổ biến ở bậc THCS, THPT trong các kỳ thi lập trình"
+      ]
+    },
+    {
+      "title": "Thư viện mạnh, tối ưu cho thuật toán",
+      "bullets": [
+        "Có sẵn thư viện **thuật toán** và **cấu trúc dữ liệu** mạnh mẽ",
+        "Tốc độ thực thi nhanh, phù hợp lập trình thi đấu, Olympic",
+        "Học C++ giúp làm quen thư viện tương tự ở Java, Python sau này"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "**C++** là ngôn ngữ nền tảng, học xong dễ chuyển ngôn ngữ khác",
+        "Dễ tiếp cận với người mới hơn nhiều người nghĩ",
+        "Tài liệu, cộng đồng, môi trường giảng dạy đều rất lớn",
+        "Thư viện thuật toán mạnh, tối ưu cho lập trình thi đấu"
+      ]
+    }
+  ]
+}

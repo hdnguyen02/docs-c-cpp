@@ -1,0 +1,62 @@
+{
+  "title": "Cấp Phát Mảng Động",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Cấp phát động là gì?",
+      "bullets": [
+        "Lập trình viên **chủ động xin** vùng nhớ khi cần và **giải phóng** khi xong",
+        "Vùng nhớ cấp phát động nằm ở **heap**",
+        "Quên giải phóng → **rò rỉ bộ nhớ** (memory leak)",
+        "Nền tảng để xây dựng danh sách liên kết, cây nhị phân...",
+        "Các hàm nằm trong thư viện `<stdlib.h>`"
+      ]
+    },
+    {
+      "title": "Hàm `malloc`: xin cấp phát theo byte",
+      "bullets": [
+        "Tham số là **số byte**: nhân số phần tử với `sizeof(kiểu)`",
+        "Trả về `void *` tới ô đầu tiên, hoặc **NULL** nếu thiếu bộ nhớ",
+        "Vùng nhớ **chưa khởi tạo** (giá trị rác); dùng như mảng 1 chiều"
+      ],
+      "code": "int *ptr = malloc(5 * sizeof(int));\nif (ptr == NULL) return 1;   // LUON kiem tra\nfor (int i = 0; i < 5; i++) ptr[i] = i + 1;\nfor (int i = 0; i < 5; i++) printf(\"%d \", ptr[i]); // 1 2 3 4 5\nfree(ptr);"
+    },
+    {
+      "title": "Khi cấp phát thất bại",
+      "bullets": [
+        "C không có ngoại lệ: `malloc` chỉ trả về **NULL**",
+        "Dùng con trỏ NULL mà không kiểm tra → **Segmentation fault**",
+        "`free(NULL)` hợp lệ, không làm gì cả"
+      ],
+      "code": "int *ptr = malloc(10000000000000LL * sizeof(int));\nif (ptr == NULL) {\n    printf(\"Khong du bo nho cap phat !\\n\");\n}\nfree(ptr);"
+    },
+    {
+      "title": "`calloc` và `realloc`",
+      "bullets": [
+        "`calloc(n, size)`: cấp phát n phần tử, **tất cả byte = 0**",
+        "`realloc(p, size_moi)`: **đổi kích thước**, giữ dữ liệu cũ",
+        "`realloc` thất bại trả NULL nhưng **vùng cũ vẫn còn** → dùng con trỏ tạm"
+      ],
+      "code": "int *p = calloc(3, sizeof(int));        // 0 0 0\nint *tmp = realloc(p, 6 * sizeof(int)); // mo rong len 6\nif (tmp == NULL) { free(p); return 1; }\np = tmp;                                // chi gan khi thanh cong\nfree(p);"
+    },
+    {
+      "title": "Hàm `free`: giải phóng vùng nhớ",
+      "bullets": [
+        "Chỉ một hàm `free` cho cả 1 phần tử lẫn cả mảng",
+        "Chỉ `free` con trỏ lấy từ `malloc`/`calloc`/`realloc`",
+        "Không `free` 2 lần; sau `free` nên gán `ptr = NULL`"
+      ],
+      "code": "int n;\nscanf(\"%d\", &n);\nint *ptr = malloc(n * sizeof(int));\nif (ptr != NULL) {\n    for (int i = 0; i < n; i++) scanf(\"%d\", &ptr[i]);\n    for (int i = 0; i < n; i++) printf(\"%d \", ptr[i]);\n    free(ptr);\n    ptr = NULL;\n}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`malloc(n * sizeof(T))` — tham số là **byte**, không phải số phần tử",
+        "**Luôn kiểm tra NULL** sau mỗi lần cấp phát",
+        "`calloc` khởi tạo 0; `realloc` đổi kích thước qua con trỏ tạm",
+        "Mỗi vùng cấp phát phải `free` đúng **một lần**, rồi gán NULL"
+      ]
+    }
+  ]
+}

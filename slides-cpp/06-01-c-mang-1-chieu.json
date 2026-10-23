@@ -1,0 +1,78 @@
+{
+  "title": "Mảng 1 Chiều",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Mảng 1 chiều là gì?",
+      "bullets": [
+        "Cấu trúc dữ liệu lưu nhiều phần tử **cùng kiểu**, nằm liền nhau trong bộ nhớ",
+        "Kích thước **cố định**, không mở rộng hay thu hẹp được",
+        "Là cấu trúc dữ liệu được sử dụng nhiều nhất trong lập trình"
+      ]
+    },
+    {
+      "title": "Khai báo và khởi tạo mảng",
+      "bullets": [
+        "Cú pháp: `Kiểu_dữ_liệu Tên_mảng[Số_phần_tử];`",
+        "Không khởi tạo ⇒ các phần tử có giá trị **ngẫu nhiên** (rác)",
+        "Khởi tạo thiếu phần tử ⇒ các phần tử còn lại mặc định **bằng 0**"
+      ],
+      "code": "int a[100];                 // giá trị ngẫu nhiên\nint b[6] = {2, 8, 0, 4, 2, 5};\nint c[100] = {2, 8, 0};     // 3 phần tử sau =0"
+    },
+    {
+      "title": "Chỉ số và truy cập phần tử",
+      "bullets": [
+        "Mảng có N phần tử ⇒ chỉ số đánh từ **0** tới **N-1**",
+        "Truy cập / gán giá trị qua `tên_mảng[chỉ_số]`",
+        "Duyệt thuận: `i` tăng dần; duyệt ngược: `i` giảm dần"
+      ],
+      "code": "for(int i = 0; i < n; i++)   printf(\"%d \", a[i]);   // duyệt thuận\nfor(int i = n-1; i >= 0; i--) printf(\"%d \", a[i]);   // duyệt ngược"
+    },
+    {
+      "title": "Nhập mảng từ bàn phím",
+      "bullets": [
+        "Nhập số lượng phần tử `n` trước, rồi nhập lần lượt từng `a[i]`",
+        "Cách 1 - kích thước cố định: khai dư (vd `a[1000]`), chỉ dùng `n` phần tử đầu",
+        "Cách 2 - vừa đủ `int a[n]` (VLA, từ C99): gcc hỗ trợ, MSVC thì không",
+        "`scanf` cần địa chỉ phần tử: `&a[i]`"
+      ],
+      "code": "int n, a[1000];\nscanf(\"%d\", &n);\nfor(int i = 0; i < n; i++) scanf(\"%d\", &a[i]);"
+    },
+    {
+      "title": "Mảng làm tham số của hàm",
+      "bullets": [
+        "Luôn truyền kèm số lượng phần tử `n` để hàm biết duyệt tới đâu",
+        "Thay đổi phần tử mảng **bên trong hàm** làm thay đổi luôn mảng gốc",
+        "Lý do: C chỉ truyền **địa chỉ phần tử đầu**, không sao chép mảng"
+      ],
+      "code": "void change(int a[], int n){\n    for(int i = 0; i < n; i++) a[i] = 28;\n}\n// gọi change(b, m) -> mảng b gốc cũng đổi thành toàn 28"
+    },
+    {
+      "title": "Lỗi truy cập chỉ số không hợp lệ",
+      "bullets": [
+        "Chỉ số hợp lệ: 0 → N-1, nhưng C **không cấm** truy cập ngoài phạm vi này",
+        "Truy cập chỉ số sai (vd -1, N, N+2) ⇒ giá trị rác hoặc lỗi bộ nhớ",
+        "Luôn kiểm soát điều kiện vòng lặp để không vượt biên mảng"
+      ]
+    },
+    {
+      "title": "Tràn stack khi khai mảng quá lớn",
+      "bullets": [
+        "Mảng lớn khai trong `main` dùng vùng nhớ **stack** (khá nhỏ) ⇒ dễ bị tràn",
+        "Khai mảng ở **phạm vi toàn cục** (ngoài main) dùng vùng nhớ lớn hơn (uninitialized data segment)",
+        "Cách xử lý mảng cỡ 10^6-10^7 phần tử: khai báo global thay vì local"
+      ],
+      "code": "int main(){ int a[1000000]; }   // dễ tràn stack\n\nint a[1000000];                 // global, an toàn hơn\nint main(){ }"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Mảng lưu phần tử cùng kiểu, chỉ số luôn từ 0 tới N-1",
+        "Truyền mảng cho hàm phải kèm số lượng phần tử",
+        "Thay đổi mảng bên trong hàm luôn ảnh hưởng mảng gốc",
+        "Mảng rất lớn nên khai global để tránh tràn stack"
+      ]
+    }
+  ]
+}

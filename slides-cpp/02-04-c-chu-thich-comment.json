@@ -1,0 +1,49 @@
+{
+  "title": "Chú Thích - Comment",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Comment giúp giải thích code",
+      "bullets": [
+        "**Comment** không phải mã nguồn, bị bỏ qua khi biên dịch",
+        "Giải thích ý tưởng để người khác (hoặc chính bạn) đọc lại nhanh",
+        "Mô tả thuật toán khi cách cài đặt trở nên phức tạp"
+      ]
+    },
+    {
+      "title": "Comment làm metadata và hỗ trợ debug",
+      "bullets": [
+        "**Metadata**: mô tả chức năng, thông tin về file mã nguồn",
+        "**Debugging**: biến dòng lệnh nghi lỗi thành comment để tạm loại bỏ",
+        "Không cần xoá code, chỉ cần comment lại rồi mở lại sau"
+      ]
+    },
+    {
+      "title": "Chú thích trên 1 dòng",
+      "bullets": [
+        "Dùng 2 dấu gạch chéo `//` (có từ chuẩn **C99**)",
+        "Nội dung sau `//` trên cùng dòng là chú thích",
+        "Phím tắt `Ctrl + /` để bật/tắt comment nhanh nhiều dòng"
+      ],
+      "code": "#include <stdio.h>\n//Chu thich tren 1 dong\nint main(){\n    //Khai bao 3 bien int va khoi tao\n    int a = 10, b = 20, c = 30;\n    //Cau lenh nay in ra gia tri cua 3 bien a, b, c\n    printf(\"%d %d %d\\n\", a, b, c);   // 10 20 30\n    return 0;\n}"
+    },
+    {
+      "title": "Chú thích trên nhiều dòng",
+      "bullets": [
+        "Đặt nội dung giữa cặp `/*` và `*/`",
+        "Dùng cho đoạn giải thích dài, nhiều dòng"
+      ],
+      "code": "/*\nđây là chú thích trên nhiều dòng\ncodelab.dev\nlập trình C\n*/\nint main(){\n    /*\n    Chương trình này khai báo 3 biến int\n    và in ra giá trị của 3 biến lên màn hình\n    */\n    int a = 10, b = 20, c = 30;\n    printf(\"%d %d %d\\n\", a, b, c);\n    return 0;\n}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Comment bị compiler loại bỏ, không ảnh hưởng chương trình chạy",
+        "`//` cho **1 dòng**, `/* ... */` cho **nhiều dòng**",
+        "Dùng comment để giải thích, mô tả thuật toán, hoặc debug tạm thời",
+        "Viết comment là thói quen tốt giúp code dễ bảo trì"
+      ]
+    }
+  ]
+}

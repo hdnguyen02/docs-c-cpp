@@ -1,0 +1,47 @@
+{
+  "title": "If Và Else If",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "If else if giải quyết vấn đề gì?",
+      "bullets": [
+        "Kiểm tra **nhiều điều kiện** liên tiếp thay vì if-else lồng nhau",
+        "Tránh code dài dòng, khó đọc khi có nhiều rẽ nhánh",
+        "Chỉ đúng **một nhánh** được thực thi rồi kết thúc cấu trúc"
+      ]
+    },
+    {
+      "title": "Cú pháp",
+      "code": "if(điều_kiện_1){\n    // code 1\n}\nelse if(điều_kiện_2){\n    // code 2\n}\nelse if(điều_kiện_n){\n    // code n\n}\nelse{\n    // code else\n}"
+    },
+    {
+      "title": "Luồng chạy",
+      "bullets": [
+        "Kiểm tra lần lượt từ điều kiện 1, đúng đâu chạy nhánh đó rồi dừng",
+        "Không nhánh nào đúng thì chạy `else` (nếu có)",
+        "Số điều kiện kiểm tra tùy ý, `else` có thể bỏ",
+        "Cấu trúc phẳng, dễ đọc hơn if-else lồng nhau nhiều tầng"
+      ]
+    },
+    {
+      "title": "Ví dụ: số ngày trong tháng",
+      "caption": "Tháng 2 của năm nhuận có 29 ngày",
+      "code": "if(m==1||m==3||m==5||m==7||m==8||m==10||m==12)\n    cout << 31 << endl;\nelse if(m==4||m==6||m==9||m==11)\n    cout << 30 << endl;\nelse if(m==2){\n    if((y%400==0) || (y%4==0 && y%100!=0))\n        cout << 29 << endl;\n    else cout << 28 << endl;\n}\nelse cout << \"Thang khong hop le !\\n\";"
+    },
+    {
+      "title": "Ví dụ: phân loại tam giác",
+      "caption": "Giả sử a, b, c đã là 3 cạnh hợp lệ của tam giác",
+      "code": "if(a==b && b==c) cout << 1 << endl;       // đều\nelse if(a==b || b==c || a==c) cout << 2 << endl; // cân\nelse if((a*a==b*b+c*c) || (b*b==a*a+c*c) ||\n        (c*c==a*a+b*b)) cout << 3 << endl;   // vuông\nelse cout << 4 << endl;                    // thường"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`else if` kiểm tra nhiều điều kiện, chỉ 1 nhánh được chạy",
+        "Thứ tự điều kiện quan trọng: đúng nhánh đầu tiên là dừng",
+        "`else` cuối cùng xử lý mọi trường hợp còn lại (tùy chọn)",
+        "Thay được if-else lồng nhau khi các điều kiện **loại trừ nhau**"
+      ]
+    }
+  ]
+}

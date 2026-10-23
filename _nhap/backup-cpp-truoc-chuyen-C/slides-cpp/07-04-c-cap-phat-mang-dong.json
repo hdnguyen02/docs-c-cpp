@@ -1,0 +1,51 @@
+{
+  "title": "Cấp Phát Mảng Động",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Cấp phát động là gì?",
+      "bullets": [
+        "**Dynamic memory allocation**: lập trình viên chủ động xin cấp phát vùng nhớ khi cần",
+        "Vùng nhớ dùng khi cấp phát động nằm ở **heap** (khác với mảng tĩnh trên stack)",
+        "Nền tảng để dựng cấu trúc dữ liệu như danh sách liên kết, cây nhị phân"
+      ]
+    },
+    {
+      "title": "Toán tử `new`: xin cấp phát vùng nhớ",
+      "bullets": [
+        "`new data_type` cấp 1 phần tử; `new data_type[n]` cấp một mảng n phần tử",
+        "Trả về **con trỏ** tới ô nhớ đầu tiên được cấp phát",
+        "Sau khi cấp phát, dùng mảng động qua con trỏ y hệt mảng 1 chiều"
+      ],
+      "code": "int *ptr = new int[5];\nptr[0] = 1; ptr[1] = 2; ptr[2] = 3;\nptr[3] = 4; ptr[4] = 5;\nfor (int i = 0; i < 5; i++) {\n    cout << ptr[i] << ' ';  // hoac *(ptr + i)\n}\n// 1 2 3 4 5"
+    },
+    {
+      "title": "Khi cấp phát thất bại",
+      "bullets": [
+        "Nếu heap không đủ chỗ, `new` mặc định **ném ngoại lệ** `std::bad_alloc`",
+        "Dùng `new(nothrow)` để không ném ngoại lệ, thay vào đó trả về `NULL`",
+        "Luôn kiểm tra `ptr == NULL` sau khi dùng `new(nothrow)`"
+      ],
+      "code": "int *ptr = new(nothrow) int[10000000000000ll];\nif (ptr == NULL) {\n    cout << \"Khong du bo nho cap phat !\\n\";\n}"
+    },
+    {
+      "title": "Toán tử `delete`: giải phóng vùng nhớ",
+      "bullets": [
+        "`delete pointer` giải phóng vùng nhớ cấp cho **1 phần tử**",
+        "`delete [] pointer` giải phóng vùng nhớ cấp cho **mảng phần tử**",
+        "Luôn dùng đúng cặp: `new int[n]` đi với `delete [] ptr`"
+      ],
+      "code": "int *ptr = new(nothrow) int[n];\nif (ptr == NULL) {\n    cout << \"Khong du bo nho cap phat !\\n\";\n} else {\n    for (int i = 0; i < n; i++) cin >> ptr[i];\n    for (int i = 0; i < n; i++) cout << ptr[i] << ' ';\n    delete [] ptr;   // giai phong sau khi dung xong\n}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Cấp phát bằng `new`/`new[]`, giải phóng bằng `delete`/`delete []` — **đúng cặp**",
+        "Quên `delete` sau khi dùng xong `new` sẽ gây **rò rỉ bộ nhớ** (leak memory)",
+        "Dùng `new(nothrow)` + kiểm tra `NULL` để tránh chương trình bị crash vì `bad_alloc`",
+        "Mảng động nằm ở heap, khác mảng tĩnh khai báo sẵn kích thước ở stack"
+      ]
+    }
+  ]
+}

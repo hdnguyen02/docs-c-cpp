@@ -1,0 +1,58 @@
+{
+  "title": "Nhập Xuất Với Cin và Cout",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "In ra màn hình với cout",
+      "bullets": [
+        "`cout` hiển thị số nguyên, số thực, biến, text ra màn hình",
+        "Đi kèm toán tử chèn `<<`",
+        "Cần thư viện `iostream` và `using namespace std`"
+      ],
+      "code": "cout << \"codelab blog\" << endl;\ncout << \"codelab.dev\" << \" \" << \"C++ programming !\" << endl;\ncout << 100 << \" \" << 200 << \" \" << 300 << endl;\nint n = 282828;\ncout << \"Gia tri cua bien n : \" << n << endl;"
+    },
+    {
+      "title": "In giá trị bool và boolalpha",
+      "bullets": [
+        "In `bool`: `true` hiển thị là `1`, `false` hiển thị là `0`",
+        "Thêm `boolalpha` trước biến để in chữ **true/false**"
+      ],
+      "code": "bool check = true, used = false;\ncout << check << \" \" << used << endl;      // 1 0\ncout << boolalpha << check << endl;         // true\ncout << boolalpha << used << endl;          // false"
+    },
+    {
+      "title": "In số thực với độ chính xác",
+      "bullets": [
+        "Thêm `fixed << setprecision(k)` trước biến để in `k` chữ số thập phân",
+        "Cần thư viện `iomanip` để dùng `setprecision`"
+      ],
+      "code": "#include \"iomanip\"\nfloat a = 30.192387;\ndouble b = 9.18293;\ncout << fixed << setprecision(2) << a << endl;   // 30.19\ncout << fixed << setprecision(10) << b << endl;  // 9.1829300000"
+    },
+    {
+      "title": "Căn chỉnh độ rộng: setw và setfill",
+      "bullets": [
+        "`setw(k)` đặt độ rộng in ra là `k` ký tự",
+        "`setfill(c)` thay khoảng trắng còn thiếu bằng ký tự `c`"
+      ],
+      "code": "int n = 12345;\ncout << setw(10) << n << endl;                     //      12345\ncout << setw(10) << setfill('0') << n << endl;     // 0000012345\ncout << setw(10) << setfill('#') << \"codelab\" << endl; // ####codelab"
+    },
+    {
+      "title": "Nhập dữ liệu với cin",
+      "bullets": [
+        "`cin` nhập dữ liệu từ bàn phím, đi kèm toán tử `>>`",
+        "Có thể nhập nhiều biến liên tiếp, cách nhau bằng dấu cách",
+        "Cần `iostream` và namespace `std` giống `cout`"
+      ],
+      "code": "int n, a, b, c;\ncout << \"Nhap gia tri cho n : \";\ncin >> n;\ncout << \"Nhap gia tri cho a, b, c : \";\ncin >> a >> b >> c;   // co the nhap cach nhau dau cach roi enter"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`cout` + `<<` để xuất, `cin` + `>>` để nhập",
+        "`boolalpha` in chữ true/false thay vì 1/0",
+        "`fixed << setprecision(k)` kiểm soát số chữ số thập phân",
+        "`setw`/`setfill` dùng để căn chỉnh độ rộng khi in"
+      ]
+    }
+  ]
+}

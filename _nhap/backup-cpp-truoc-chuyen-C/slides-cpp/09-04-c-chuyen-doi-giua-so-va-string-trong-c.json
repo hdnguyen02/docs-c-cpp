@@ -1,0 +1,51 @@
+{
+  "title": "Chuyển Đổi Giữa Số Và String Trong C++",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Tổng quan các hàm chuyển xâu thành số",
+      "bullets": [
+        "Chỉ dùng được từ chuẩn **C++11** trở lên",
+        "Thông dụng nhất: `stoi()` (int), `stoll()` (long long), `stod()` (double)",
+        "Còn có `stof`, `stol`, `stold`, `stoul`, `stoull` cho các kiểu số khác"
+      ]
+    },
+    {
+      "title": "stoi(): quy tắc cần nhớ",
+      "bullets": [
+        "Xâu **rỗng** hoặc số vượt giới hạn `int` → ném lỗi `std::out_of_range`",
+        "Nếu xâu có ký tự chữ phía sau, `stoi()` chỉ lấy phần số đứng trước nó"
+      ]
+    },
+    {
+      "title": "stoi(): ví dụ",
+      "code": "string s1 = \"282828\";\nstring s2 = \"-292828\";\nstring s3 = \"2828codelab.dev\";\ncout << stoi(s1);   // 282828\ncout << stoi(s2);   // -292828\ncout << stoi(s3);   // 282828 (dừng tại ký tự 't')"
+    },
+    {
+      "title": "stoll() và stod(): số lớn và số thực",
+      "bullets": [
+        "`stoll()`: chuyển xâu thành `long long`, dùng khi giá trị vượt phạm vi `int`",
+        "`stod()`: chuyển xâu thành `double`, giữ được phần thập phân"
+      ],
+      "code": "long long n1 = stoll(\"100000000000000000\");\ndouble n2 = stod(\"100.123\");   // 100.123"
+    },
+    {
+      "title": "to_string(): chuyển số thành xâu",
+      "bullets": [
+        "Hàm `to_string(n)` chuyển một số bất kỳ thành `string`",
+        "Cũng chỉ hỗ trợ từ **C++11** trở lên"
+      ],
+      "code": "int n = 28282828;\nstring s = to_string(n);   // \"28282828\""
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Xâu → số: `stoi`, `stoll`, `stod`... đều yêu cầu **C++11**",
+        "Xâu rỗng hoặc số **vượt giới hạn kiểu** khi dùng `stoi`/`stoll` sẽ ném lỗi",
+        "Ký tự không phải số phía sau bị **cắt bỏ**, không gây lỗi",
+        "Số → xâu: dùng `to_string()`"
+      ]
+    }
+  ]
+}

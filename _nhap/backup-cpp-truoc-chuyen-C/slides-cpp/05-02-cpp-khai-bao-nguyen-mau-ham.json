@@ -1,0 +1,48 @@
+{
+  "title": "Khai Báo Nguyên Mẫu Hàm",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Nguyên mẫu hàm giải quyết vấn đề gì?",
+      "bullets": [
+        "Hàm gọi hàm khác thì hàm kia phải được **định nghĩa trước đó**",
+        "Không theo đúng thứ tự → **lỗi biên dịch**",
+        "**Nguyên mẫu hàm** (function prototype) khai báo trước để gọi tự do"
+      ]
+    },
+    {
+      "title": "Nguyên mẫu hàm chứa gì?",
+      "bullets": [
+        "Kiểu trả về của hàm",
+        "Tên hàm",
+        "Số lượng và kiểu dữ liệu của tham số (không cần tên tham số)"
+      ]
+    },
+    {
+      "title": "Cú pháp",
+      "code": "//function prototype\nvoid greet();\nint tong(int, int, int);\nlong long solve(int, long long);"
+    },
+    {
+      "title": "Lỗi khi gọi hàm chưa định nghĩa",
+      "bullets": [
+        "Hàm `B()` gọi `A()` nhưng `A()` được định nghĩa **bên dưới** `B()`",
+        "Trình biên dịch chưa biết `A()` khi đọc tới `B()` → **lỗi biên dịch**"
+      ],
+      "code": "void B(){\n    cout << \"codelab blog\\n\";\n    A();     // lỗi: A() chưa được biết tới\n}\n\nvoid A(){\n    cout << \"codelab\\n\";\n}"
+    },
+    {
+      "title": "Khắc phục bằng prototype",
+      "code": "//function prototype\nvoid A();\nvoid B();\n\nvoid B(){\n    cout << \"codelab blog\\n\";\n    A();     // hợp lệ nhờ đã khai báo trước\n}\n\nvoid A(){\n    cout << \"codelab\\n\";\n}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Prototype cho phép gọi hàm **không cần đúng thứ tự** định nghĩa",
+        "Thường đặt các dòng khai báo ở đầu file, phía trên `main`",
+        "Không cần tên tham số trong prototype, chỉ cần **kiểu dữ liệu**",
+        "Thiếu prototype mà gọi hàm định nghĩa ở dưới → lỗi biên dịch"
+      ]
+    }
+  ]
+}

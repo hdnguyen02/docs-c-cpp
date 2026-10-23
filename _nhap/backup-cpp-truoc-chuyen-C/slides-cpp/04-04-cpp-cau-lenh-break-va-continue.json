@@ -1,0 +1,57 @@
+{
+  "title": "Câu Lệnh Break Và Continue",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Break và Continue giải quyết vấn đề gì?",
+      "bullets": [
+        "Điều khiển luồng chạy bên trong vòng lặp (`for`, `while`, `do-while`)",
+        "`break`: dừng vòng lặp **ngay lập tức**",
+        "`continue`: bỏ qua phần còn lại, sang **lần lặp kế tiếp**",
+        "Với vòng lặp lồng nhau: chỉ tác động vòng lặp **gần nhất** chứa nó"
+      ]
+    },
+    {
+      "title": "Break: dừng vòng lặp ngay",
+      "bullets": [
+        "Các lệnh sau `break` trong vòng lặp đó **không chạy nữa**",
+        "Vòng lặp kết thúc ngay tại vị trí đặt `break`"
+      ],
+      "code": "for(int i = 1; i <= 5; i++){\n    cout << i << \" codelab\\n\";\n    if(i == 3) break;\n    cout << \"C++ programming !\\n\";\n}\n// dừng hẳn sau khi in \"3 codelab\""
+    },
+    {
+      "title": "Ví dụ dùng break: tìm rồi dừng sớm",
+      "code": "// UCLN của a, b\nint mn = a < b ? a : b;\nfor(int i = mn; i >= 1; i--){\n    if(a % i == 0 && b % i == 0){\n        cout << i; break;\n    }\n}\n\n// chữ số chẵn đầu tiên từ phải sang của n\nwhile(n != 0){\n    if(n % 2 == 0){ cout << n % 10; break; }\n    n /= 10;\n}"
+    },
+    {
+      "title": "Break với vòng lặp lồng nhau",
+      "bullets": [
+        "`break` chỉ thoát vòng lặp **trong cùng** chứa nó",
+        "Vòng lặp bên ngoài vẫn tiếp tục chạy bình thường"
+      ],
+      "code": "for(int i = 1; i <= 2; i++){\n    for(int j = 1; j <= 5; j++){\n        cout << \"codelab\\n\";\n        if(j == 2) break;  // chỉ dừng vòng j\n        cout << \"C++ programming !\\n\";\n    }\n}"
+    },
+    {
+      "title": "Continue: bỏ qua, sang vòng lặp kế",
+      "bullets": [
+        "Lệnh sau `continue` trong lần lặp đó **bị bỏ qua**",
+        "Vòng lặp vẫn tiếp tục, khác hẳn `break`"
+      ],
+      "code": "for(int i = 1; i <= 4; i++){\n    cout << \"codelab\\n\";\n    if(i % 2 == 0) continue;\n    cout << \"C++\\n\";\n}\n// i chẵn: bỏ qua dòng in \"C++\""
+    },
+    {
+      "title": "Ví dụ dùng continue: tổng số dương",
+      "code": "int tong = 0, n;\nwhile(true){\n    cin >> n;\n    if(n < 0) continue;      // bỏ qua số âm\n    else if(n == 0) break;   // 0 thì dừng\n    tong += n;\n}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`break` = **dừng hẳn** vòng lặp; `continue` = **bỏ qua**, lặp tiếp",
+        "Cả hai chỉ ảnh hưởng vòng lặp **gần nhất** chứa nó",
+        "`break` dùng khi đã có kết quả, không cần lặp tiếp",
+        "`continue` dùng khi muốn **loại trừ** một số trường hợp trong vòng lặp"
+      ]
+    }
+  ]
+}

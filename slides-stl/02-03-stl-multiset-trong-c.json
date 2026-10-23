@@ -1,0 +1,53 @@
+{
+  "title": "Multiset Trong C++",
+  "course": "STL C++",
+  "source": "",
+  "slides": [
+    {
+      "title": "Multiset khác set ở đâu?",
+      "bullets": [
+        "Cũng cài đặt bằng **cây nhị phân tìm kiếm** như set",
+        "**Cho phép** các phần tử **trùng giá trị**",
+        "Vẫn tự động sắp xếp **tăng dần**",
+        "Không sửa được phần tử, chỉ **thêm** hoặc **xóa**",
+        "Không truy cập qua chỉ số"
+      ],
+      "code": "multiset<int> ms;\nms.insert(3); ms.insert(1); ms.insert(3);\nms.insert(2); ms.insert(2); ms.insert(3); ms.insert(4);\n// {1, 2, 2, 3, 3, 3, 4} - giu ca gia tri trung"
+    },
+    {
+      "title": "find() trong multiset",
+      "bullets": [
+        "Trả về iterator tới **vị trí đầu tiên** của giá trị nếu có",
+        "Không tìm thấy trả về `end()`",
+        "Dùng `distance(begin(), it)` để lấy vị trí"
+      ],
+      "code": "multiset<int> ms = {1,1,1,2,2,3,3,3,3,3,4};\nauto it = ms.find(3);\nif(it != ms.end())\n    cout << distance(ms.begin(), it); // 5 - vi tri dau tien cua 3"
+    },
+    {
+      "title": "count() trong multiset",
+      "bullets": [
+        "Khác set: trả về **số lần xuất hiện thực tế**, không chỉ 0/1",
+        "Cùng độ phức tạp O(logN) như set"
+      ],
+      "code": "multiset<int> ms = {1,1,1,2,2,3,3,3,3,3,4};\ncout << ms.count(3);  // 5\ncout << ms.count(1);  // 3\ncout << ms.count(28); // 0"
+    },
+    {
+      "title": "erase() trong multiset — cần cẩn thận",
+      "bullets": [
+        "Xóa theo **giá trị**: xóa **TẤT CẢ** phần tử trùng giá trị đó",
+        "Xóa theo **iterator**: chỉ xóa **1** phần tử tại vị trí đó",
+        "Phải đảm bảo giá trị/vị trí xóa tồn tại, tránh lỗi"
+      ],
+      "code": "multiset<int> ms = {1,1,1,2,2,3,3,3,3,3,4};\nms.erase(3);          // xoa het 5 phan tu gia tri 3\n// {1,1,1,2,2,4}\n\nmultiset<int> ms2 = {1,1,1,2,2,3,3,3,3,3,4};\nauto it = ms2.find(3);\nms2.erase(it);        // chi xoa 1 phan tu 3\n// {1,1,1,2,2,3,3,3,3,4}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Multiset = set nhưng **cho phép trùng lặp**, vẫn sắp xếp tăng dần",
+        "`count()` multiset trả tần suất thực, set chỉ trả 0/1",
+        "`erase(value)` xóa hết bản trùng — dùng `erase(iterator)` nếu chỉ muốn xóa 1",
+        "Độ phức tạp `find`/`count`/`erase` đều O(logN) như set"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "title": "Kiểu Dữ Liệu",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Kiểu dữ liệu số nguyên",
+      "bullets": [
+        "Dùng để lưu số nguyên, kích thước byte khác nhau tuỳ kiểu",
+        "Kiểu **có dấu** dùng 1 bit lưu dấu nên phạm vi dương nhỏ hơn",
+        "Thường chỉ dùng `int` và `long long`, ít khi dùng `short`"
+      ],
+      "code": "short              2 byte   -32,768 .. 32,767\nunsigned short     2 byte   0 .. 65,535\nint                4 byte   -2,147,483,648 .. 2,147,483,647\nunsigned int       4 byte   0 .. 4,294,967,295\nlong long          8 byte   -9223372036854775808 .. 9223372036854775807\nunsigned long long 8 byte   0 .. 18446744073709551615"
+    },
+    {
+      "title": "Lưu ý khi dùng số nguyên",
+      "bullets": [
+        "Không lưu được **phần thập phân**, bị **tràn số** nếu vượt phạm vi",
+        "Có dấu K bit: từ -2^(K-1) đến 2^(K-1) - 1",
+        "Không dấu K bit: từ 0 đến 2^K - 1",
+        "Trong khoảng ±2.10^9 dùng `int`, ngoài khoảng đó dùng `long long`",
+        "Giới hạn có sẵn trong `<limits.h>`: `INT_MAX`, `LLONG_MAX`..."
+      ]
+    },
+    {
+      "title": "Kiểu dữ liệu số thực",
+      "bullets": [
+        "3 kiểu: `float`, `double`, `long double`",
+        "Chọn kiểu theo **độ chính xác** cần thiết",
+        "`long double` phụ thuộc trình biên dịch",
+        "Có sai số, không nên lưu số nguyên; thường dùng `double`"
+      ],
+      "code": "float        4 byte    6 - 9 chữ số thập phân\ndouble       8 byte    15 - 18 chữ số thập phân\nlong double  16 byte   33 - 36 chữ số thập phân"
+    },
+    {
+      "title": "Kiểu ký tự",
+      "bullets": [
+        "`char` lưu 1 ký tự, thực chất lưu số nguyên (mã ASCII)",
+        "`unsigned char` lưu ký tự với phạm vi 0 → 255",
+        "C **không có kiểu chuỗi**: chuỗi là mảng `char` kết thúc `'\\0'`"
+      ],
+      "code": "char           1 byte   Ký tự hoặc số nguyên   -128 .. 127\nunsigned char  1 byte   Ký tự hoặc số nguyên   0 .. 255"
+    },
+    {
+      "title": "Kiểu đúng sai",
+      "bullets": [
+        "Kiểu gốc là `_Bool` (từ C99), kích thước 1 byte",
+        "Cần `#include <stdbool.h>` để dùng `bool`, `true`, `false`",
+        "`true` là 1, `false` là 0, in bằng `%d`"
+      ],
+      "code": "#include <stdbool.h>\n\nbool check = true;\nbool done = false;\nprintf(\"%d %d\\n\", check, done);   // 1 0"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Chọn kiểu nguyên theo phạm vi giá trị: `int` hay `long long`",
+        "Số thực có sai số, chọn `double` khi cần độ chính xác cao",
+        "`char` vừa lưu ký tự vừa lưu được số nguyên nhỏ",
+        "`bool` cần `<stdbool.h>`, in ra là 1/0",
+        "C không có kiểu `string`, chuỗi là mảng `char`"
+      ]
+    }
+  ]
+}

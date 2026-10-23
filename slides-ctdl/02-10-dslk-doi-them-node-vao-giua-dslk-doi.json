@@ -1,0 +1,62 @@
+{
+  "title": "Thêm Node Vào Giữa DSLK Đôi",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vấn đề: thêm node vào vị trí K",
+      "bullets": [
+        "Vị trí hợp lệ: từ **1 đến n+1** (n = số node hiện có)",
+        "Chèn vào vị trí n+1 tương đương **thêm vào cuối**",
+        "DSLK đôi: từ node K có thể quay lại K-1 qua `prev`"
+      ]
+    },
+    {
+      "title": "Các bước thêm vào vị trí K (K > 1)",
+      "bullets": [
+        "Duyệt tới node thứ **K** (`tmp`)",
+        "Cho `newNode->next = tmp`",
+        "Nối K-1 với `newNode`: `tmp->prev->next = newNode`, `newNode->prev = tmp->prev`",
+        "Cho `tmp->prev = newNode`"
+      ],
+      "code": "Truoc:  1 <-> 2 <-> 3 <-> NULL   (chen x vao k=2)\nSau:    1 <-> x <-> 2 <-> 3 <-> NULL   // tmp=2, newNode=x"
+    },
+    {
+      "title": "Cài đặt hàm `themgiua`",
+      "code": "void themgiua(node **head, int x, int k){\n    int n = len(*head);\n    if(k < 1 || k > n + 1) return;      // vi tri khong hop le\n    node *newNode = makeNode(x);\n    if(k == 1){                         // khong co node k-1\n        newNode->next = *head;\n        if(*head) (*head)->prev = newNode;\n        *head = newNode; return;\n    }\n    node *tmp = *head;\n    for(int i = 1; i <= k - 1; i++) tmp = tmp->next;  // toi node k\n    newNode->next = tmp; tmp->prev->next = newNode;\n    newNode->prev = tmp->prev; tmp->prev = newNode;\n}"
+    },
+    {
+      "title": "Vì sao k=1 phải tách riêng?",
+      "bullets": [
+        "Chèn vào K cần nối với node **K-1**",
+        "K=1 không có node thứ 0 để lấy `prev`",
+        "Xử lý như **thêm vào đầu**: cập nhật `head`"
+      ]
+    },
+    {
+      "title": "Quản lý bằng head và tail: điểm khác biệt",
+      "bullets": [
+        "DSLK rỗng và `k==1`: gán thẳng `head = tail = newNode`",
+        "Chèn vào cuối cùng (K = n+1): sau khi nối phải **cập nhật `tail = newNode`**",
+        "Các vị trí giữa khác: không đụng tới `tail`"
+      ]
+    },
+    {
+      "title": "Trường hợp đặc biệt",
+      "bullets": [
+        "Vị trí không hợp lệ (`k < 1` hoặc `k > n+1`): báo lỗi, không chèn",
+        "DSLK rỗng: chỉ `k = 1` hợp lệ, `head = tail = newNode`",
+        "Chèn ở vị trí cuối (`k = n+1`): tương đương thêm cuối, nhớ cập nhật `tail`"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Chèn K: nối `newNode` với cả K-1 và K — 4 liên kết cập nhật",
+        "K=1 không có node trước → xử lý như thêm đầu",
+        "Vị trí hợp lệ luôn là **1 đến n+1**, kiểm tra bằng `len()`",
+        "Dùng `tail`: chỉ cập nhật khi chèn đúng vào vị trí cuối cùng"
+      ]
+    }
+  ]
+}

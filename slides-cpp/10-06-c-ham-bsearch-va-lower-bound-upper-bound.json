@@ -1,0 +1,72 @@
+{
+  "title": "Hàm bsearch Và Tự Cài lower_bound, upper_bound",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Tìm kiếm nhị phân trong C",
+      "bullets": [
+        "Chỉ dùng trên mảng **đã sắp xếp**",
+        "`bsearch` (`stdlib.h`): có sẵn, trả con trỏ hoặc `NULL`",
+        "`lower_bound`: chỉ số đầu tiên **≥ X** — tự viết",
+        "`upper_bound`: chỉ số đầu tiên **> X** — tự viết",
+        "Độ phức tạp cả 3: **O(logN)**"
+      ]
+    },
+    {
+      "title": "Hàm bsearch()",
+      "bullets": [
+        "Hàm so sánh giống `qsort`, được gọi `cmp(key, phần_tử)`",
+        "Trả con trỏ tới phần tử bằng X, không có → `NULL`",
+        "Lấy chỉ số bằng phép trừ con trỏ `p - a`"
+      ],
+      "code": "void *bsearch(const void *key, const void *base, size_t n,\n              size_t size, int (*cmp)(const void *, const void *));"
+    },
+    {
+      "title": "Ví dụ bsearch()",
+      "code": "int cmp(const void *a, const void *b){\n    int x = *(const int*)a, y = *(const int*)b;\n    return (x > y) - (x < y);\n}\nint a[10] = {1,2,3,5,5,6,8,9,14,21}, X = 6;\nint *p = bsearch(&X, a, 10, sizeof(int), cmp);\nif(p != NULL) printf(\"%d\\n\", (int)(p - a));   // 5\n// doan chi so [L, R]:\nbsearch(&X, a + L, R - L + 1, sizeof(int), cmp);",
+      "caption": "Nhiều phần tử bằng X: chuẩn C không quy định bsearch trả về phần tử nào"
+    },
+    {
+      "title": "Tự cài lower_bound()",
+      "bullets": [
+        "Tìm trên nửa khoảng `[l, r)`, ban đầu `l = 0`, `r = n`",
+        "`a[m] < x` → đáp án bên phải: `l = m + 1`",
+        "Ngược lại `a[m]` có thể là đáp án: `r = m`",
+        "Không có phần tử ≥ X → trả về **n**"
+      ],
+      "code": "int lower_bound(int a[], int n, int x){\n    int l = 0, r = n;\n    while(l < r){\n        int m = l + (r - l) / 2;\n        if(a[m] < x) l = m + 1; else r = m;\n    }\n    return l;\n}"
+    },
+    {
+      "title": "Tự cài upper_bound()",
+      "bullets": [
+        "Giống hệt `lower_bound`, chỉ đổi `<` thành `<=`",
+        "Tìm chỉ số đầu tiên có giá trị **> X**"
+      ],
+      "code": "int upper_bound(int a[], int n, int x){\n    int l = 0, r = n;\n    while(l < r){\n        int m = l + (r - l) / 2;\n        if(a[m] <= x) l = m + 1; else r = m;\n    }\n    return l;\n}"
+    },
+    {
+      "title": "Ví dụ với số cụ thể",
+      "code": "int a[10] = {1,2,3,5,5,5,8,9,14,21}, n = 10;\nlower_bound(a, n, 5);    // 3  (a[3] = 5, nho nhat >= 5)\nupper_bound(a, n, 5);    // 6  (a[6] = 8, nho nhat > 5)\nlower_bound(a, n, 22);   // 10 = n -> khong tim thay\n// kiem tra vi tri < n truoc khi truy cap a[vi_tri]"
+    },
+    {
+      "title": "Đếm số lần xuất hiện",
+      "bullets": [
+        "Phần tử bằng X nằm liền nhau: đoạn `[lower_bound, upper_bound)`",
+        "Số lần xuất hiện = `upper_bound - lower_bound`",
+        "X không có → hai hàm trả **cùng chỉ số** = vị trí chèn"
+      ],
+      "code": "// a = {1,2,3,5,5,5,8,9,14,21}\n// x=5: lb=3, ub=6 -> 3 lan\n// x=8: lb=6, ub=7 -> 1 lan\n// x=4: lb=3, ub=3 -> 0 lan"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Cả 3 hàm chỉ dùng đúng khi mảng đã **sắp xếp**",
+        "`bsearch`: trả con trỏ hoặc `NULL`, truyền **địa chỉ** `&X`",
+        "`lower_bound`: chỉ số đầu tiên **≥ X**; `upper_bound`: đầu tiên **> X**",
+        "Không tìm thấy: hai hàm tự viết trả về `n`",
+        "Hàm so sánh của `bsearch` phải khớp thứ tự đã sắp"
+      ]
+    }
+  ]
+}

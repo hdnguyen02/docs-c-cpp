@@ -1,0 +1,53 @@
+{
+  "title": "So Sánh Xâu Ký Tự Theo Thứ Tự Từ Điển",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Thứ tự từ điển là gì?",
+      "bullets": [
+        "Giống thứ tự abc trong bảng chữ cái",
+        "So sánh dựa vào **ký tự khác nhau đầu tiên** của 2 xâu",
+        "Thứ tự ký tự được quy định bởi mã **ASCII**"
+      ]
+    },
+    {
+      "title": "Quy tắc so sánh 2 xâu",
+      "bullets": [
+        "Cùng độ dài, giống mọi ký tự → **bằng nhau**",
+        "Ký tự khác nhau đầu tiên quyết định xâu nào lớn hơn",
+        "Không có ký tự khác nhau → xâu **dài hơn** lớn hơn",
+        "Chữ hoa và chữ thường có thứ tự từ điển khác nhau"
+      ]
+    },
+    {
+      "title": "Ví dụ minh hoạ",
+      "code": "\"codelab\" > \"codelabzzz\"        // 't' thuong > 'T' hoa (ASCII)\n\"lan\" < \"lan di hoc lap trinh\"  // la tien to, ngan hon nen nho hon\n\"codelab\" > \"27tech\"            // '8' > '7' tai vi tri thu 2\n\"codelab java\" < \"codelab@\"      // ' ' (32) < '@' (64)"
+    },
+    {
+      "title": "So sánh bằng toán tử",
+      "bullets": [
+        "Dùng trực tiếp `==`, `!=`, `<`, `>` như so sánh số"
+      ],
+      "code": "(\"codelab\" == \"codelab\")       // true\n(\"codelababc\" < \"codelabza\")   // true\n(\"codelab\" < \"codelab\")        // true, hoa < thuong"
+    },
+    {
+      "title": "Hàm `compare()`",
+      "bullets": [
+        "`s.compare(t)` trả về **0** nếu 2 xâu bằng nhau",
+        "Trả **dương** nếu `s` lớn hơn `t` theo từ điển",
+        "Trả **âm** nếu `s` nhỏ hơn `t`"
+      ],
+      "code": "string s = \"codelab\", t = \"codelab\", p = \"codelab\";\ns.compare(p);  // 0  (bang nhau)\ns.compare(t);  // 1  (s > t)\nt.compare(p);  // -1 (t < p)"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "So sánh xâu dựa vào **ký tự khác nhau đầu tiên**, không phải độ dài",
+        "Không có ký tự khác nhau thì xâu **dài hơn** sẽ lớn hơn",
+        "Hoa và thường khác thứ tự từ điển theo **ASCII**",
+        "Dùng toán tử so sánh trực tiếp hoặc hàm `compare()`"
+      ]
+    }
+  ]
+}

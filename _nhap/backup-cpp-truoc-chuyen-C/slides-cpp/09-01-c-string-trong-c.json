@@ -1,0 +1,58 @@
+{
+  "title": "String Trong C++",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "String là gì?",
+      "bullets": [
+        "Lớp chuyên xử lý **xâu ký tự**, thay thế cho mảng char",
+        "Hoạt động như mảng char động: tự đổi kích thước, hỗ trợ chèn/xóa/sửa",
+        "Khai báo: xâu rỗng `string s;` hoặc có nội dung `string s = \"data\";`"
+      ],
+      "code": "string s1;              // rỗng\nstring s2 = \"\";         // rỗng\nstring s3 = \"codelab\";   // có nội dung\ncout << s3.size();      // 6 - số ký tự trong xâu"
+    },
+    {
+      "title": "Truy xuất từng ký tự bằng chỉ số",
+      "bullets": [
+        "Chỉ số đánh từ **0**, truy cập bằng `s[index]`",
+        "VD `s = \"codelab!@#\"`: `s[0]` = '2', `s[8]` = '#'"
+      ],
+      "code": "string s = \"codelab!@#\";\nfor (int i = 0; i < (int)s.size(); i++)\n    cout << s[i];   // in từng ký tự theo chỉ số"
+    },
+    {
+      "title": "3 cách duyệt string",
+      "bullets": [
+        "Duyệt bằng **chỉ số**: `for (int i...) s[i]`",
+        "Duyệt bằng **range-based for**: `for (char x : s)`",
+        "Duyệt bằng **iterator**: từ `s.begin()` tới `s.end()`, lấy giá trị bằng `*it`"
+      ],
+      "code": "for (char x : s) cout << x << ' ';\n\nfor (string::iterator it = s.begin(); it != s.end(); ++it)\n    cout << *it << ' ';"
+    },
+    {
+      "title": "Nhập xâu không có khoảng trắng: cin",
+      "bullets": [
+        "`cin >> s` chỉ đọc tới khi gặp **khoảng trắng/tab/enter**",
+        "Phù hợp khi xâu không chứa dấu cách"
+      ],
+      "code": "string s;\ncin >> s;"
+    },
+    {
+      "title": "Nhập xâu có khoảng trắng: getline()",
+      "bullets": [
+        "`getline(cin, s)`: đọc tới hết dòng, dừng ở ký tự **enter**",
+        "`getline(cin, s, delim)`: đọc tới khi gặp ký tự `delim` chỉ định"
+      ],
+      "code": "getline(cin, s);         // đọc hết dòng, dừng ở enter\ngetline(cin, s, ',');    // đọc tới dấu ',' thì dừng\n// input: codelab.C++,string -> s = \"codelab.C++\""
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "**String** linh hoạt hơn mảng char, hỗ trợ nhiều hàm dựng sẵn",
+        "`size()` trả về số ký tự; chỉ số bắt đầu từ 0",
+        "`cin >>` dừng ở khoảng trắng, `getline()` đọc cả khoảng trắng tới enter/delim",
+        "Có thể duyệt bằng chỉ số, range-for hoặc iterator, kết quả như nhau"
+      ]
+    }
+  ]
+}

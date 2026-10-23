@@ -1,0 +1,65 @@
+{
+  "title": "Kiểu Dữ Liệu Suy Luận Auto Trong C++",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Từ khóa auto là gì?",
+      "bullets": [
+        "Từ **C++11**: `auto` tự suy luận kiểu dữ liệu qua giá trị gán",
+        "Giống cách khai báo biến ở Python (Dynamically Typed)",
+        "Kiểu dữ liệu được xác định lúc **runtime** thay vì compile-time",
+        "**Bắt buộc** phải khởi tạo giá trị khi khai báo biến `auto`"
+      ]
+    },
+    {
+      "title": "Ví dụ suy luận kiểu qua auto",
+      "bullets": [
+        "`typeid(x).name()` cho biết kiểu dữ liệu thật của biến",
+        "Mỗi biến `auto` nhận kiểu theo giá trị được gán"
+      ],
+      "code": "auto x = 100;             // int\nauto y = 30.5f;           // float\nauto z = '@';              // char\nauto t = 1000000000000000; // long long\nauto p = make_pair(10, 20); // pair<int,int>\nauto l = 30.5d;            // double"
+    },
+    {
+      "title": "Auto thay cho pair và con trỏ",
+      "bullets": [
+        "Dùng `auto` để thay các kiểu **dài dòng**: pair, iterator, con trỏ",
+        "Kiểu con trỏ được suy ra từ biến được tham chiếu"
+      ],
+      "code": "auto p = make_pair(10, 20);\nint n = 100;\nauto ptr1 = &n;    // ptr1 la con tro int (Pi)\nauto ptr2 = &ptr1; // ptr2 la con tro cap 2 (PPi)"
+    },
+    {
+      "title": "Auto và vector",
+      "bullets": [
+        "`auto x` trong range-based for: `x` mang kiểu phần tử của vector",
+        "`auto it = v.begin()` thì `it` là **iterator**, cần giải tham chiếu `*it`"
+      ],
+      "code": "vector<int> v = {1, 2, 3, 4, 5};\nfor (auto x : v) cout << x << ' ';         // duyet gia tri\n\nfor (auto it = v.begin(); it != v.end(); ++it)\n    cout << *it << ' ';                     // duyet bang iterator"
+    },
+    {
+      "title": "Auto và set",
+      "bullets": [
+        "`auto x` khi duyệt `set<string>` thì `x` có kiểu `string`",
+        "`auto pos = se.find(...)` trả về kiểu `set::iterator`"
+      ],
+      "code": "set<string> se = {\"codelab\", \"c++\", \"python\", \"java\"};\nfor (auto x : se) cout << x << \" \";\n\nauto pos = se.find(\"codelab\");\nif (pos == se.end()) cout << \"NOT FOUND\";\nelse cout << \"FOUND\";"
+    },
+    {
+      "title": "Auto và map",
+      "bullets": [
+        "`auto p` khi duyệt map thì `p` có kiểu `pair<key, value>`",
+        "`auto it = mp.begin()` là `map::iterator`, dùng `it->first`/`it->second`"
+      ],
+      "code": "map<string, string> mp;\nmp.insert({\"codelab\", \"codelab.dev\"});\nfor (auto p : mp) cout << p.first << ' ' << p.second << endl;\n\nfor (auto it = mp.begin(); it != mp.end(); ++it)\n    cout << it->first << ' ' << it->second << endl;"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`auto` tự suy luận kiểu dữ liệu từ giá trị khởi tạo",
+        "Biến `auto` **phải khởi tạo giá trị** ngay khi khai báo",
+        "Dùng `auto` thay cho kiểu dài dòng: `pair`, `iterator`, con trỏ",
+        "Với container (vector/set/map), `auto` giúp duyệt gọn hơn"
+      ]
+    }
+  ]
+}

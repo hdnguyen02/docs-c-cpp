@@ -1,0 +1,57 @@
+{
+  "title": "Con Trỏ Cấp 2",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vì sao cần con trỏ cấp 2?",
+      "bullets": [
+        "Biến con trỏ cũng là biến, cũng có **địa chỉ riêng**",
+        "Muốn lưu địa chỉ của một con trỏ → cần **con trỏ tới con trỏ**",
+        "Số dấu `*` trước tên biến thể hiện cấp của con trỏ (1, 2, 3...)"
+      ]
+    },
+    {
+      "title": "Khai báo và giải tham chiếu con trỏ cấp 2",
+      "bullets": [
+        "`int **ptr2 = &ptr1` → `ptr2` lưu **địa chỉ của ptr1**",
+        "Giải tham chiếu 1 lần `*ptr2` → giá trị của `ptr1` (địa chỉ của N)",
+        "Giải tham chiếu 2 lần `**ptr2` → giá trị của N"
+      ],
+      "code": "int N = 28;\nint *ptr1 = &N;\nint **ptr2 = &ptr1;\n\n// ptr1        -> dia chi cua N\n// ptr2        -> dia chi cua ptr1\n// *ptr2       -> gia tri cua ptr1 = dia chi cua N\n// **ptr2      -> gia tri cua N = 28"
+    },
+    {
+      "title": "Mở rộng: con trỏ cấp 3",
+      "bullets": [
+        "Nguyên tắc lặp lại: mỗi cấp giải tham chiếu lùi về một tầng",
+        "`*ptr3` → ptr2, `**ptr3` → ptr1, `***ptr3` → N"
+      ],
+      "code": "int N = 28;\nint *ptr1 = &N;\nint **ptr2 = &ptr1;\nint ***ptr3 = &ptr2;\n\n// *ptr3   -> gia tri cua ptr2 (dia chi cua ptr1)\n// **ptr3  -> gia tri cua ptr1 (dia chi cua N)\n// ***ptr3 -> gia tri cua N = 28"
+    },
+    {
+      "title": "Con trỏ cấp 1 không đổi được con trỏ khác qua hàm",
+      "bullets": [
+        "Truyền `ptr1`, `ptr2` (con trỏ cấp 1) vào hàm chỉ tạo **bản sao** `x`, `y`",
+        "Gán `x = y` trong hàm không ảnh hưởng gì tới `ptr1` bên ngoài"
+      ],
+      "code": "void change(int *x, int *y) {\n    x = y;   // chi doi ban sao x, khong doi ptr1\n}\n\nchange(ptr1, ptr2);\n// ptr1 va ptr2 KHONG doi sau khi goi ham"
+    },
+    {
+      "title": "Dùng con trỏ cấp 2 để đổi được con trỏ cấp 1",
+      "bullets": [
+        "Muốn hàm sửa được `ptr1`, phải truyền **địa chỉ của ptr1** (`&ptr1`)",
+        "Tham số hàm nhận con trỏ cấp 2 (`int **x`), gán qua `*x = y`"
+      ],
+      "code": "void change(int **x, int *y) {\n    *x = y;   // sua truc tiep gia tri cua ptr1\n}\n\nchange(&ptr1, ptr2);\n// ptr1 gio bang ptr2 (cung tro toi M)"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Muốn sửa **giá trị biến thường** qua hàm → dùng con trỏ cấp 1",
+        "Muốn sửa **giá trị con trỏ** qua hàm → phải dùng con trỏ cấp 2",
+        "Số dấu `*` = số lần giải tham chiếu để chạm tới giá trị gốc",
+        "Nhầm lẫn phổ biến: tưởng con trỏ cấp 1 đủ để đổi con trỏ khác"
+      ]
+    }
+  ]
+}

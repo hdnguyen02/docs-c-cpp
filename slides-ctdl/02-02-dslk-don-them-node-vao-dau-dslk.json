@@ -1,0 +1,75 @@
+{
+  "title": "Thêm Node Vào Đầu DSLK",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Bài toán: thêm node vào đầu DSLK",
+      "bullets": [
+        "Chèn một phần tử mới thành **node đầu tiên** của danh sách",
+        "Node mới trở thành `head` mới, trỏ tới `head` cũ"
+      ]
+    },
+    {
+      "title": "Vì sao cần con trỏ tới con trỏ / tham chiếu",
+      "bullets": [
+        "`head` là biến con trỏ; truyền vào hàm theo kiểu thường là **pass by value**",
+        "Hàm chỉ sửa được **giá trị node** qua con trỏ, không sửa được bản thân biến con trỏ",
+        "Muốn đổi `head` sau khi hàm kết thúc: dùng con trỏ tới con trỏ (`node**`)",
+        "Hoặc dùng tham chiếu tới con trỏ (`node*&`) — chỉ có ở C++"
+      ]
+    },
+    {
+      "title": "Các bước thêm node vào đầu — chú ý thứ tự",
+      "code": "// Thứ tự bắt buộc:\n// 1. Cấp phát node mới\n// 2. newNode->next = head CŨ  (làm trước khi đổi head)\n// 3. head = newNode           (mới cập nhật head)\n//\n// Đảo bước 2 và 3: head đã đổi trước, newNode->next\n// sẽ trỏ vào chính newNode -> mất hết phần đuôi DSLK"
+    },
+    {
+      "title": "Cài đặt cách 1: con trỏ tới con trỏ / tham chiếu",
+      "bullets": [
+        "C dùng `node **head` và thao tác qua `(*head)` thay cho `head`"
+      ],
+      "code": "// C++ (tham chiếu)\nvoid themdau(node *&head, int x){\n    node *newNode = new node;\n    newNode->data = x;\n    newNode->next = head;   // 1. trỏ tới head cũ\n    head = newNode;         // 2. cập nhật head\n}"
+    },
+    {
+      "title": "Trường hợp đặc biệt: danh sách rỗng",
+      "bullets": [
+        "Khi DSLK rỗng thì `head == NULL`",
+        "`newNode->next = head` tự nhiên gán NULL, không cần xử lý riêng",
+        "Cách 1 và cách 2 đều hoạt động đúng ngay cả khi DSLK đang rỗng"
+      ]
+    },
+    {
+      "title": "Cài đặt cách 2: hàm trả về head mới",
+      "bullets": [
+        "Không cần con trỏ tới con trỏ hay tham chiếu",
+        "Bắt buộc gán lại `head = themdau(head, x)` ở nơi gọi hàm"
+      ],
+      "code": "node* themdau(node *head, int x){\n    node *newNode = new node;\n    newNode->data = x;\n    newNode->next = head;\n    head = newNode;\n    return head;\n}\n// gọi: head = themdau(head, x);"
+    },
+    {
+      "title": "Cài đặt cách 3: quản lý bằng head và tail",
+      "bullets": [
+        "**Trường hợp đặc biệt**: DSLK rỗng thì phải gán luôn `tail = newNode`",
+        "Cách này phổ biến trong giáo trình Việt Nam, ít gặp ở tài liệu quốc tế"
+      ],
+      "code": "void themdau(LIST &l, int x){\n    node *newNode = new node;\n    newNode->data = x; newNode->next = NULL;\n    if(l.head == NULL) l.tail = newNode; // DSLK rỗng\n    newNode->next = l.head;\n    l.head = newNode;\n}"
+    },
+    {
+      "title": "Độ phức tạp",
+      "bullets": [
+        "Thêm node vào đầu luôn là **O(1)**",
+        "Không phụ thuộc vào số lượng phần tử hiện có trong DSLK"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Muốn sửa `head` qua hàm: dùng con trỏ tới con trỏ hoặc tham chiếu",
+        "Thứ tự bắt buộc: gán `newNode->next = head` trước, rồi mới `head = newNode`",
+        "Cách trả về con trỏ mới đơn giản hơn nhưng phải nhớ gán lại `head` khi gọi",
+        "Có `tail`: nhớ cập nhật `tail` khi DSLK đang rỗng",
+        "Độ phức tạp: O(1)"
+      ]
+    }
+  ]
+}

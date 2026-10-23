@@ -1,0 +1,63 @@
+{
+  "title": "Số Fibonacci Sử Dụng Nhân Ma Trận O(logN)",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Bài toán",
+      "bullets": [
+        "Tìm số Fibonacci thứ N, kể cả khi N lớn tới **10^18**",
+        "Yêu cầu một thuật toán nhanh hơn hẳn quy hoạch động thông thường"
+      ]
+    },
+    {
+      "title": "So sánh các cách tính Fibonacci",
+      "bullets": [
+        "Đệ quy thường: độ phức tạp rất tệ, khoảng O(1.618^N)",
+        "Quy hoạch động: O(N) — chấp nhận được khi N ≤ 10^7",
+        "Nhân ma trận (chia để trị): **O(log N)** — dùng khi N cực lớn"
+      ]
+    },
+    {
+      "title": "Ý tưởng: biểu diễn Fibonacci bằng lũy thừa ma trận",
+      "bullets": [
+        "Xây dựng ma trận cơ sở A = [[1,1],[1,0]]",
+        "Fibonacci thứ N nằm trong ma trận **A^N**",
+        "Cần kiến thức nhân ma trận và lũy thừa nhị phân để cài đặt",
+        "Tính A^N chỉ tốn O(log N) nhờ lũy thừa nhị phân trên ma trận"
+      ]
+    },
+    {
+      "title": "Cài đặt: struct ma trận và phép nhân",
+      "bullets": [
+        "Nạp chồng toán tử `*` cho ma trận 2x2, chia dư mỗi phần tử cho MOD"
+      ],
+      "code": "struct matran{\n    ll X[2][2];\n    friend matran operator * (matran a, matran b){\n        matran c;\n        for(int i = 0; i < 2; i++)\n        for(int j = 0; j < 2; j++){\n            c.X[i][j] = 0;\n            for(int k = 0; k < 2; k++){\n                c.X[i][j] += a.X[i][k] * b.X[k][j];\n                c.X[i][j] %= MOD;\n            }\n        }\n        return c;\n    }\n};"
+    },
+    {
+      "title": "Cài đặt: lũy thừa ma trận bằng binpow",
+      "bullets": [
+        "Áp dụng đúng công thức lũy thừa nhị phân, thay số bằng ma trận",
+        "Kết quả Fibonacci thứ N nằm ở phần tử X[0][1] của A^N"
+      ],
+      "code": "matran binpow(matran a, ll n){\n    if(n == 1) return a;\n    matran tmp = binpow(a, n / 2);\n    if(n % 2 == 1) return tmp * tmp * a;\n    else return tmp * tmp;\n}\n\n// a.X = {{1,1},{1,0}};\n// Fibonacci(n) = binpow(a, n).X[0][1]"
+    },
+    {
+      "title": "Độ phức tạp",
+      "bullets": [
+        "Mỗi lần nhân ma trận 2x2 tốn thời gian hằng số",
+        "Số lần nhân ma trận bằng số bước của lũy thừa nhị phân: **O(log N)**",
+        "Cho phép tính Fibonacci thứ 10^18 trong thời gian rất nhanh"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Fibonacci thứ N có thể tính qua lũy thừa ma trận A = [[1,1],[1,0]]",
+        "Kết quả nằm ở phần tử X[0][1] của ma trận A^N",
+        "Độ phức tạp O(log N), vượt trội so với quy hoạch động O(N)",
+        "Cần nắm vững nhân ma trận và lũy thừa nhị phân trước khi cài đặt"
+      ]
+    }
+  ]
+}

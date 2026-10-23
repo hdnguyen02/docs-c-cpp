@@ -1,0 +1,63 @@
+{
+  "title": "Các Hàm Thông Dụng Của Lớp Vector",
+  "course": "STL C++",
+  "source": "",
+  "slides": [
+    {
+      "title": "Nhóm hàm truy cập phần tử",
+      "bullets": [
+        "`[]` và `at(index)`: truy cập qua chỉ số",
+        "`front()`: phần tử **đầu tiên**",
+        "`back()`: phần tử **cuối cùng**"
+      ],
+      "code": "vector<int> v = {100,200,300,400,500};\nfor(int i = 0; i < 5; i++) cout << v.at(i);\ncout << v.front();  // 100\ncout << v.back();   // 500"
+    },
+    {
+      "title": "Nhóm hàm kích thước",
+      "bullets": [
+        "`size()`: số phần tử hiện có",
+        "`empty()`: kiểm tra rỗng, trả `true`/`false`",
+        "`max_size()`: kích thước tối đa **lý thuyết**",
+        "`resize()`: thay đổi kích thước vector"
+      ],
+      "code": "vector<int> v = {100,200,300,400,500};\ncout << v.size();      // 5\ncout << v.max_size();  // rat lon, chi la ly thuyet\nv.resize(3);           // {100,200,300}\nv.resize(0);\ncout << boolalpha << v.empty(); // true"
+    },
+    {
+      "title": "Thêm/xóa ở cuối — O(1)",
+      "bullets": [
+        "`push_back()`/`emplace_back()`: thêm phần tử vào cuối",
+        "`pop_back()`: xóa phần tử cuối",
+        "**Lưu ý**: `pop_back()` khi vector rỗng sẽ gây lỗi"
+      ],
+      "code": "vector<int> v = {1,2,3};\nv.push_back(4); v.emplace_back(5); v.push_back(6);\n// {1,2,3,4,5,6}\nv.pop_back();\n// {1,2,3,4,5}"
+    },
+    {
+      "title": "Chèn/xóa tại vị trí bất kỳ — O(N)",
+      "bullets": [
+        "`insert(iterator, value)`: chèn qua iterator, ví dụ `v.begin()+3`",
+        "`erase(iterator)`: xóa phần tử tại vị trí iterator trỏ tới",
+        "Cả hai đều làm dịch chuyển phần tử phía sau nên chậm hơn thao tác ở cuối"
+      ],
+      "code": "vector<int> v = {1,2,3,4,5};\nv.insert(v.begin()+3, 28);  // {1,2,3,28,4,5}\nv.insert(v.begin(), 1000);  // {1000,1,2,3,28,4,5}\n\nv.erase(v.begin()+3);   // xoa theo chi so\nv.erase(v.begin());     // xoa dau"
+    },
+    {
+      "title": "Xóa toàn bộ, gán lại, hoán đổi",
+      "bullets": [
+        "`clear()`: xóa hết phần tử, vector thành rỗng — O(N)",
+        "`assign(n, val)`: gán lại toàn bộ nội dung vector — O(N)",
+        "`assign(first, last)`: gán từ dải iterator của vector khác",
+        "`swap()`: hoán đổi nội dung 2 vector — O(N)"
+      ],
+      "code": "vector<int> v = {1,2,3,4,5};\nv.clear();  // rong\n\nv1.assign(5, 28);              // 5 phan tu = 28\nv2.assign(v1.begin(), v1.begin()+3); // 3 phan tu dau cua v1\n\nv1.swap(v2); // hoan doi noi dung"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Truy cập đầu/cuối/`[]`: O(1); chèn/xóa **giữa** vector: O(N)",
+        "`push_back`/`pop_back` luôn rẻ hơn `insert`/`erase` ở giữa",
+        "`insert()`/`erase()`/`assign()` thao tác qua **iterator**",
+        "`max_size()` chỉ mang tính lý thuyết, giới hạn thực tế do bộ nhớ"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "title": "Bài Tập Về Dãy Số",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Tổng quan 5 dạng bài về dãy con",
+      "bullets": [
+        "Tổng dãy con liên tiếp **cỡ K** cố định",
+        "Dãy con liên tiếp **giống nhau** / **khác nhau liền kề** dài nhất",
+        "Kiểm tra mảng **tăng dần**",
+        "Dãy con **nguyên tố** liên tiếp dài nhất"
+      ]
+    },
+    {
+      "title": "Tổng các dãy con liên tiếp cỡ K",
+      "caption": "A[] = {3,2,1,5,6,7,2}, K=3 -> các dãy con {3,2,1}, {2,1,5}, {1,5,6}...",
+      "bullets": [
+        "Duyệt chỉ số bắt đầu `i` từ 0 tới N-K",
+        "Với mỗi `i`, cộng dồn đúng K phần tử liên tiếp `a[i..i+K-1]`"
+      ],
+      "code": "for(int i = 0; i <= n - k; i++){\n    int tong = 0;\n    for(int j = 0; j < k; j++) tong += a[i + j];\n    cout << tong << endl;\n}"
+    },
+    {
+      "title": "Dãy con liên tiếp giống nhau / khác nhau dài nhất",
+      "bullets": [
+        "Đếm dồn: **giống nhau** thì so `a[i]==a[i-1]`; **khác nhau liền kề** thì so `a[i]!=a[i-1]`",
+        "Thỏa điều kiện thì tăng biến đếm, không thỏa thì so kết quả rồi reset đếm về 1",
+        "**Lưu ý**: phải so sánh kết quả thêm 1 lần sau khi vòng lặp kết thúc (dãy có thể kết thúc ở cuối mảng)"
+      ],
+      "code": "int dem = 1, res = 1;\nfor(int i = 1; i < n; i++){\n    if(a[i] == a[i-1]) ++dem;      // đổi != cho bài \"khác nhau\"\n    else{ res = max(res, dem); dem = 1; }\n}\nres = max(res, dem);   // cập nhật lần cuối"
+    },
+    {
+      "title": "Kiểm tra mảng tăng dần",
+      "bullets": [
+        "Mảng tăng dần: mọi cặp liền kề thỏa `a[i] >= a[i-1]`",
+        "Chỉ cần **1 cặp sai** là kết luận ngay mảng không tăng dần",
+        "Không cần xét `a[0]` với phần tử đứng trước nó (không tồn tại)"
+      ],
+      "code": "bool check(int a[], int n){\n    for(int i = 1; i < n; i++)\n        if(a[i] < a[i-1]) return false;\n    return true;\n}"
+    },
+    {
+      "title": "Dãy con nguyên tố liên tiếp dài nhất",
+      "caption": "A[]={2,3,5,8,7,11,19,4,10,23,5} -> dãy {7,11,19} dài nhất và có tổng lớn nhất",
+      "bullets": [
+        "Duyệt mảng, gặp số nguyên tố thì cộng dồn đếm và tổng",
+        "Gặp số không nguyên tố: so kết quả (ưu tiên **dài hơn**, bằng độ dài thì ưu tiên **tổng lớn hơn**), rồi reset đếm/tổng về 0",
+        "**Lưu ý**: so sánh kết quả thêm 1 lần cuối nếu dãy nguyên tố kết thúc ngay tại cuối mảng"
+      ],
+      "code": "int dem=0, tong=0, res_dem=0, res_tong=0;\nfor(int i = 0; i < n; i++){\n    if(prime(a[i])){ ++dem; tong += a[i]; }\n    else{\n        if(dem > res_dem || (dem==res_dem && tong>res_tong)){\n            res_dem = dem; res_tong = tong;\n        }\n        dem = 0; tong = 0;\n    }\n}\n// so sánh lần cuối tương tự sau vòng lặp"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Dạng \"dãy con liên tiếp\" luôn cần 1 biến đếm + so sánh phần tử liền kề",
+        "**Lỗi hay gặp**: quên cập nhật kết quả sau khi vòng lặp kết thúc",
+        "Dãy con cỡ K cố định: duyệt chỉ số bắt đầu rồi cộng dồn K phần tử",
+        "Bài dãy nguyên tố dài nhất kết hợp cả đếm liên tiếp lẫn so sánh tổng khi bằng độ dài"
+      ]
+    }
+  ]
+}

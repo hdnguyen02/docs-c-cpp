@@ -1,0 +1,70 @@
+{
+  "title": "Xóa Node Giữa Trong DSLK Đôi",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vấn đề: xóa node ở vị trí K trong DSLK đôi",
+      "bullets": [
+        "Nhờ có `prev`, chỉ cần duyệt tới **đúng node K** (không cần K-1)",
+        "Nối K-1 với K+1 **theo cả 2 chiều**: `next` và `prev`",
+        "K = 1 vẫn là trường hợp đặc biệt như DSLK đơn"
+      ]
+    },
+    {
+      "title": "Các bước xóa node giữa (K > 1)",
+      "bullets": [
+        "Duyệt tới node **K** (`tmp`)",
+        "Cho K-1 trỏ tới K+1: `tmp->prev->next = tmp->next`",
+        "Cho K+1 trỏ ngược về K-1: `tmp->next->prev = tmp->prev` (nếu K+1 tồn tại)",
+        "Giải phóng `tmp`"
+      ],
+      "code": "Truoc:  1 <-> 2 <-> 3 <-> 4 <-> NULL  (xoa k=3)\nSau:    1 <-> 2 <-> 4 <-> NULL        // noi 2 va 4 ca 2 chieu"
+    },
+    {
+      "title": "Cài đặt hàm `xoagiua`",
+      "code": "void xoagiua(node **head, int k){\n    if(k < 1 || k > len(*head)) return;  // vi tri khong hop le\n    if(k == 1){ xoadau(head); return; }  // k=1: khong co node k-1\n    node *tmp = *head;\n    for(int i = 1; i <= k - 1; i++)\n        tmp = tmp->next;                 // toi dung node k\n    tmp->prev->next = tmp->next;\n    if(tmp->next != NULL)\n        tmp->next->prev = tmp->prev;     // K+1 co ton tai\n    free(tmp);\n}"
+    },
+    {
+      "title": "So với DSLK đơn: khác gì?",
+      "bullets": [
+        "DSLK đơn phải duyệt tới **K-1** vì không lùi được",
+        "DSLK đôi duyệt thẳng tới **K**, dùng `prev` để nối ngược",
+        "Thêm 1 bước: cập nhật `next->prev` của node K+1"
+      ]
+    },
+    {
+      "title": "Quản lý bằng head và tail: điểm khác biệt",
+      "bullets": [
+        "Vẫn duyệt tới node K và nối 2 chiều như cách 1",
+        "Nếu K là **node cuối** (`tmp->next == NULL`): phải **cập nhật `tail = tmp->prev`**",
+        "Xóa ở đầu (`k==1`) gọi `xoadau(l)`, hàm tự xử lý `tail`"
+      ]
+    },
+    {
+      "title": "Trường hợp đặc biệt",
+      "bullets": [
+        "Vị trí không hợp lệ (`k < 1` hoặc `k > len`): return, không xóa",
+        "DSLK chỉ có 1 node: chỉ hợp lệ `k = 1`, tương đương xóa đầu",
+        "Xóa đúng node cuối: cần cập nhật `tail` nếu dùng head+tail"
+      ]
+    },
+    {
+      "title": "Giải phóng bộ nhớ",
+      "bullets": [
+        "Node K bị tách khỏi danh sách sau khi nối K-1 với K+1",
+        "Phải `free`/`delete` node đó để tránh rò rỉ bộ nhớ",
+        "Giải phóng **sau khi** đã nối lại cả 2 chiều"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "DSLK đôi xóa giữa: duyệt tới đúng K, nối K-1 và K+1 **2 chiều**",
+        "`k == 1` không có node trước → xử lý như xóa đầu",
+        "Luôn kiểm tra vị trí hợp lệ bằng `len()` trước khi xóa",
+        "Dùng `tail`: cập nhật khi node xóa là node cuối cùng"
+      ]
+    }
+  ]
+}

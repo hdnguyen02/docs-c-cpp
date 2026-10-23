@@ -1,0 +1,81 @@
+{
+  "title": "Bậc Thừa Số Nguyên Tố Trong Giai Thừa",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Bài toán",
+      "bullets": [
+        "Cho N và số nguyên tố p, tìm x lớn nhất sao cho N! chia hết cho p^x",
+        "Ví dụ: N = 10, p = 2 → N! chia hết tối đa cho 2^8",
+        "N có thể rất lớn nên **không thể** tính N! rồi mới chia cho p"
+      ]
+    },
+    {
+      "title": "Ý tưởng: đếm số lần p xuất hiện trong N!",
+      "bullets": [
+        "N! = 1.2.3...N, vì p nguyên tố nên chỉ bội số của p mới chứa p",
+        "Bậc của p trong N! = tổng số lần p xuất hiện trong các bội số ≤ N",
+        "Ví dụ N=10, p=2: các bội 2, 4, 6, 8, 10 mới chứa thừa số 2"
+      ]
+    },
+    {
+      "title": "Cài đặt thuật toán ngây thơ",
+      "bullets": [
+        "Duyệt từng bội số của p ≤ N, phân tích xem bội đó chứa bao nhiêu p"
+      ],
+      "code": "int find_power(int n, int p){\n    int res = 0, tmp;\n    for(int i = p; i <= n; i += p){\n        tmp = i;\n        while(tmp % p == 0){\n            ++res;\n            tmp /= p;\n        }\n    }\n    return res;\n}"
+    },
+    {
+      "title": "Công thức Legendre",
+      "bullets": [
+        "v_p(n!) = n/p + n/p² + n/p³ + ... (phép chia nguyên) cho tới p^L ≤ n",
+        "Ví dụ N=35, p=3: 35/3 + 35/9 + 35/27 = 11 + 3 + 1 = 15",
+        "Hiệu quả hơn hẳn cách ngây thơ: độ phức tạp chỉ còn **O(log_p N)**"
+      ]
+    },
+    {
+      "title": "Vì sao công thức Legendre đúng",
+      "bullets": [
+        "n/p: đếm số bội của p, mỗi bội đóng góp ít nhất 1 lần thừa số p",
+        "n/p²: các bội chứa **từ 2 thừa số p** trở lên được cộng thêm 1 lần nữa",
+        "n/p³: các bội chứa từ 3 thừa số p được cộng thêm 1 lần nữa, v.v.",
+        "Mỗi số được đếm đúng bằng số thừa số p mà nó thực sự chứa"
+      ]
+    },
+    {
+      "title": "Cài đặt Legendre",
+      "bullets": [
+        "Độ phức tạp: **O(log_p N)**, rất nhanh so với thuật toán ngây thơ"
+      ],
+      "code": "int legendre(int n, int p){\n    int res = 0;\n    for(int i = p; i <= n; i *= p){\n        res += n / i;\n    }\n    return res;\n}"
+    },
+    {
+      "title": "Ứng dụng: đếm số 0 liên tiếp cuối N!",
+      "bullets": [
+        "Số 0 cuối N! sinh ra từ mỗi cặp thừa số (2, 5) vì 10 = 2 * 5",
+        "Vì 2 < 5 nên bậc của 5 trong N! luôn nhỏ hơn hoặc bằng bậc của 2",
+        "Số cặp (2, 5) tối đa = bậc của **5** trong N! → chỉ cần tính legendre(n, 5)"
+      ],
+      "code": "int n; cin >> n;\ncout << legendre(n, 5) << endl;"
+    },
+    {
+      "title": "Mở rộng: bậc của hợp số trong giai thừa",
+      "bullets": [
+        "Nếu p là hợp số, phân tích p = p1^e1 * p2^e2 * ... * pk^ek",
+        "Tính bậc x1, x2, ..., xk của từng thừa số nguyên tố pi trong N!",
+        "Bậc của hợp số p trong N! = min(x1/e1, x2/e2, ..., xk/ek)"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Bậc của p trong N! = số lần p xuất hiện khi phân tích thừa số N!",
+        "Công thức Legendre: cộng dồn n/p, n/p², n/p³... tới khi p^L > n",
+        "Độ phức tạp Legendre O(log_p N), vượt trội so với duyệt từng bội O(N)",
+        "Đếm số 0 cuối N! chỉ cần tính bậc của 5 (vì bậc 5 luôn nhỏ hơn bậc 2)",
+        "Với hợp số p: lấy min(xi / ei) trên từng thừa số nguyên tố của p"
+      ]
+    }
+  ]
+}

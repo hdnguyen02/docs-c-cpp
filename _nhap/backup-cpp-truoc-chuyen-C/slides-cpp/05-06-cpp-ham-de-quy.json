@@ -1,0 +1,68 @@
+{
+  "title": "Hàm Đệ Quy",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Đệ quy là gì?",
+      "bullets": [
+        "Hàm **đệ quy** là hàm gọi lại chính nó",
+        "Nền tảng của nhiều thuật toán: Quick sort, Merge sort, DFS, Cây phân đoạn"
+      ],
+      "code": "void demNguoc(int n){\n    if(n > 0){\n        cout << n << \" \";\n        demNguoc(n - 1);\n    }\n}\n// demNguoc(4) in: 4 3 2 1"
+    },
+    {
+      "title": "Hai phần bắt buộc của mọi hàm đệ quy",
+      "bullets": [
+        "**Điều kiện dừng** (base case): trường hợp đã biết kết quả, không gọi đệ quy nữa",
+        "**Bước đệ quy**: tính bài toán lớn dựa vào bài toán con nhỏ hơn",
+        "Thiếu điều kiện dừng ⇒ hàm gọi chính nó **vô hạn**"
+      ]
+    },
+    {
+      "title": "Lần vết một hàm đệ quy có giá trị trả về",
+      "caption": "sum(3) = 3 + sum(2) = 3+2+sum(1) = 3+2+1+sum(0); sum(0)=0 nên kết quả cộng ngược lại = 6",
+      "bullets": [
+        "Lời gọi đi xuống dần tới bài toán cơ sở `sum(0) = 0`",
+        "Kết quả được **cộng dồn khi các lời gọi lần lượt trả về** (đi lên)"
+      ],
+      "code": "int sum(int n){\n    if(n == 0) return 0;\n    return n + sum(n - 1);\n}"
+    },
+    {
+      "title": "Thứ tự lệnh trước và sau lời gọi đệ quy",
+      "bullets": [
+        "Lệnh đặt **trước** lời gọi đệ quy: chạy theo thứ tự n=4,3,2,1",
+        "Lệnh đặt **sau** lời gọi đệ quy: chạy ngược lại, từ n=0 lên n=4",
+        "Lý do: hàm gọi sau cùng (n=0) lại kết thúc trước tiên"
+      ],
+      "code": "void dequy(int n){\n    if(n > 0){\n        cout << \"goi n=\" << n << endl;\n        dequy(n - 1);\n    }\n    cout << \"n=\" << n << \" ket thuc\\n\";\n}"
+    },
+    {
+      "title": "Công thức truy hồi qua các ví dụ",
+      "bullets": [
+        "Fibonacci: cơ sở F(0)=0, F(1)=1; truy hồi F(n)=F(n-1)+F(n-2)",
+        "Giai thừa: cơ sở 0!=1; truy hồi n!=n*(n-1)!",
+        "Tổng chữ số: cơ sở Sum(n)=n nếu n<10; truy hồi Sum(n)=n%10+Sum(n/10)"
+      ],
+      "code": "int F(int n){ return (n==0||n==1) ? n : F(n-1)+F(n-2); }\n\nlong long giaithua(int n){ return n==0 ? 1 : n*giaithua(n-1); }\n\nint tongchuso(int n){ return n<10 ? n : n%10 + tongchuso(n/10); }"
+    },
+    {
+      "title": "Stack Overflow",
+      "bullets": [
+        "Mỗi lời gọi hàm chiếm **1 khung nhớ** trong bộ nhớ ngăn xếp (stack)",
+        "Thiếu điều kiện dừng ⇒ gọi đệ quy liên tục không kết thúc",
+        "Stack đầy ⇒ chương trình bị **dừng đột ngột**"
+      ],
+      "code": "void loop(){\n    cout << \"codelab\\n\";\n    loop();   // không có điều kiện dừng\n}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Mọi hàm đệ quy cần **điều kiện dừng** + **công thức truy hồi**",
+        "Thiếu điều kiện dừng ⇒ **Stack Overflow**",
+        "Lệnh trước/sau lời gọi đệ quy chạy theo **thứ tự ngược nhau**",
+        "Đệ quy tính trực tiếp (như Fibonacci) có thể chạy rất chậm khi n lớn"
+      ]
+    }
+  ]
+}

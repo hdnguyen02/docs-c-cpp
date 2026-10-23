@@ -1,0 +1,288 @@
+[
+  {
+    "chapter": "Làm Quen Với Ngôn Ngữ C++",
+    "items": [
+      [
+        "c-vi-sao-nen-hoc-lap-trinh-c",
+        "[C++]. Vì Sao Nên Học Lập Trình C++"
+      ],
+      [
+        "c-tai-lieu-hoc-lap-trinh-c",
+        "[C++]. Tài Liệu Học Lập Trình C++"
+      ],
+      [
+        "c-ide-hoc-lap-trinh-c",
+        "[C++]. IDE Học Lập Trình C++"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C++]. Kiểu Dữ Liệu - Toán Tử - Nhập Xuất",
+    "items": [
+      [
+        "c-chuong-trinh-hello-world",
+        "[C++]. Chương Trình Hello World"
+      ],
+      [
+        "cpp-kieu-du-lieu",
+        "[C++]. Kiểu Dữ Liệu"
+      ],
+      [
+        "cpp-bien-va-tu-khoa",
+        "[C++]. Biến Và Từ Khóa"
+      ],
+      [
+        "cpp-chu-thich-comment",
+        "[C++]. Chú Thích - Comment"
+      ],
+      [
+        "cpp-nhap-xuat-voi-cin-va-cout",
+        "[C++]. Nhập Xuất Với Cin và Cout"
+      ],
+      [
+        "cpp-kieu-pair",
+        "[C++]. Kiểu Pair"
+      ],
+      [
+        "cpp-toan-tu-operator",
+        "[C++]. Toán Tử - Operator"
+      ],
+      [
+        "cpp-thu-vien-mathh-va-thu-vien-algorithm",
+        "[C++]. Thư Viện Math.h Và Thư Viện Algorithm"
+      ],
+      [
+        "cpp-define-typedef-va-using",
+        "[C++]. Define, Typedef Và Using"
+      ],
+      [
+        "c-kieu-du-lieu-suy-luan-auto-trong-c",
+        "[C++]. Kiểu Dữ Liệu Suy Luận Auto Trong C++"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C++]. Cấu Trúc Rẽ Nhánh",
+    "items": [
+      [
+        "cpp-if-else",
+        "[C++]. If Else"
+      ],
+      [
+        "cpp-if-va-else-if",
+        "[C++]. If và Else If"
+      ],
+      [
+        "cpp-switch-case",
+        "[C++]. Switch Case"
+      ],
+      [
+        "cpp-bang-ma-ascii-va-thu-vien-ctype",
+        "[C++]. Bảng Mã ASCII Và Thư Viện ctype"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C++]. Vòng Lặp",
+    "items": [
+      [
+        "cpp-vong-lap-for",
+        "[C++]. Vòng Lặp For"
+      ],
+      [
+        "cpp-vong-lap-while",
+        "[C++]. Vòng Lặp While"
+      ],
+      [
+        "cpp-vong-lap-do-while",
+        "[C++]. Vòng Lặp Do-While"
+      ],
+      [
+        "cpp-cau-lenh-break-va-continue",
+        "[C++]. Câu Lệnh Break Và Continue"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C++]. Hàm Và Đệ Quy",
+    "items": [
+      [
+        "cpp-ham-function",
+        "[C++]. Hàm"
+      ],
+      [
+        "cpp-khai-bao-nguyen-mau-ham",
+        "[C++]. Khai Báo Nguyên Mẫu Hàm"
+      ],
+      [
+        "c-tham-chieu-va-tham-tri",
+        "[C++]. Tham Chiếu Và Tham Trị"
+      ],
+      [
+        "cpp-doi-so-mac-dinh-cua-ham",
+        "[C++]. Đối Số Mặc Định Của Hàm"
+      ],
+      [
+        "cpp-ly-thuyet-so-va-toan-hoc",
+        "[C++]. Lý Thuyết Số Và Toán Học"
+      ],
+      [
+        "cpp-ham-de-quy",
+        "[C++]. Hàm Đệ Quy"
+      ],
+      [
+        "cpp-bai-tap-de-quy-c",
+        "[C++]. Bài Tập Đệ Quy C++"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C++]. Mảng 1 Chiều",
+    "items": [
+      [
+        "cpp-mang-1-chieu",
+        "[C++]. Mảng 1 Chiều"
+      ],
+      [
+        "cpp-bai-tap-mang-1-chieu-p1",
+        "[C++]. Bài Tập Mảng 1 Chiều P1"
+      ],
+      [
+        "cpp-bai-tap-mang-1-chieu-p2",
+        "[C++]. Bài Tập Mảng 1 Chiều P2"
+      ],
+      [
+        "cpp-bai-tap-ve-day-so",
+        "[C++]. Bài Tập Về Dãy Số"
+      ],
+      [
+        "cpp-chen-va-xoa-phan-tu",
+        "[C++]. Chèn Và Xóa Phần Tử"
+      ],
+      [
+        "cpp-mang-danh-dau",
+        "[C++]. Mảng Đánh Dấu"
+      ],
+      [
+        "c-range-based-for-loop-trong-c",
+        "[C++]. Range-based for loop trong C++"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C++]. Lý Thuyết Con Trỏ",
+    "items": [
+      [
+        "cpp-ly-thuyet-con-tro-sub",
+        "[C++]. Lý Thuyết Con Trỏ"
+      ],
+      [
+        "cpp-con-tro-cap-2",
+        "[C++]. Con Trỏ Cấp 2"
+      ],
+      [
+        "cpp-con-tro-va-mang-1-chieu",
+        "[C++]. Con Trỏ Và Mảng 1 Chiều"
+      ],
+      [
+        "c-cap-phat-mang-dong",
+        "[C++]. Cấp Phát Mảng Động"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C++]. Mảng 2 Chiều",
+    "items": [
+      [
+        "c-ly-thuyet-mang-2-chieu-c",
+        "[C++]. Lý Thuyết Mảng 2 Chiều C++"
+      ],
+      [
+        "cpp-bai-tap-mang-2-chieu-c",
+        "[C++]. Bài Tập Mảng 2 Chiều C++"
+      ],
+      [
+        "c-ma-tran-va-mang-2-chieu-c",
+        "[C++]. Ma Trận Và Mảng 2 Chiều C++"
+      ],
+      [
+        "c-cong-tru-nhan-2-ma-tran-c",
+        "[C++]. Cộng, Trừ, Nhân 2 Ma Trận C++"
+      ],
+      [
+        "c-ma-tran-xoan-oc-c",
+        "[C++]. Ma Trận Xoắn Ốc C++"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C++]. String | Xâu Ký Tự",
+    "items": [
+      [
+        "c-string-trong-c",
+        "[C++]. String Trong C++"
+      ],
+      [
+        "c-xu-ly-troi-lenh-khi-nhap-chuoi-ky-tu-c",
+        "[C++]. Xử Lý Trôi Lệnh Khi Nhập Chuỗi Ký Tự C++"
+      ],
+      [
+        "c-cac-ham-string-xu-ly-xau-trong-c",
+        "[C++]. Các Hàm String Xử Lý Xâu Trong C++"
+      ],
+      [
+        "c-chuyen-doi-giua-so-va-string-trong-c",
+        "[C++]. Chuyển Đổi Giữa Số Và String Trong C++"
+      ],
+      [
+        "c-so-sanh-xau-ky-tu-theo-thu-tu-tu-dien",
+        "[C++]. So Sánh Xâu Ký Tự Theo Thứ Tự Từ Điển"
+      ],
+      [
+        "c-chuyen-doi-xau-ky-tu-in-hoa-in-thuong",
+        "[C++]. Chuyển Đổi Xâu Ký Tự In Hoa, In Thường"
+      ],
+      [
+        "c-stringstream-trong-c-va-ung-dung",
+        "[C++]. Stringstream Trong C++ Và Ứng Dụng"
+      ],
+      [
+        "c-bai-toan-tan-suat-ky-tu-trong-xau",
+        "[C++]. Bài Toán Tần Suất Ký Tự Trong Xâu"
+      ],
+      [
+        "cpp-chuan-hoa-ten-va-email",
+        "[C++]. Chuẩn Hóa Tên Và Email"
+      ]
+    ]
+  },
+  {
+    "chapter": "[C++]. Sắp Xếp Và Tìm Kiếm",
+    "items": [
+      [
+        "c-thuat-toan-tim-kiem-nhi-phan",
+        "[C++]. Thuật Toán Tìm Kiếm Nhị Phân"
+      ],
+      [
+        "c-ham-sort-trong-c",
+        "[C++]. Hàm Sort Trong C++"
+      ],
+      [
+        "c-xay-dung-comparison-function-cho-ham-sort-trong-c",
+        "[C++]. Xây Dựng Comparison Function Cho Hàm Sort Trong C++"
+      ],
+      [
+        "c-ham-stablesort-trong-c",
+        "[C++]. Hàm stable_sort() Trong C++"
+      ],
+      [
+        "c-thuat-toan-tim-kiem-tuyen-tinh",
+        "[C++].  Thuật Toán Tìm Kiếm Tuyến Tính"
+      ],
+      [
+        "c-ham-binarysearch-lowerbound-upperbound-trong-c",
+        "[C++]. Hàm binary_search, lower_bound, upper_bound trong C++"
+      ]
+    ]
+  }
+]

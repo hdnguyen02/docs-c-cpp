@@ -1,0 +1,53 @@
+{
+  "title": "Set Trong C++",
+  "course": "STL C++",
+  "source": "",
+  "slides": [
+    {
+      "title": "Set là gì?",
+      "bullets": [
+        "Container được cài đặt bằng **cây nhị phân tìm kiếm** (BST)",
+        "Phần tử **không trùng nhau**, tự động sắp xếp **tăng dần**",
+        "Tìm kiếm chỉ mất **O(logN)**",
+        "**Không** truy cập được qua chỉ số như mảng/vector"
+      ],
+      "code": "#include \"set\"\nset<data_type> set_name;"
+    },
+    {
+      "title": "Khi nào dùng set?",
+      "bullets": [
+        "Bài toán cần **loại bỏ giá trị trùng lặp**",
+        "Bài toán cần **tìm kiếm nhanh** phần tử"
+      ]
+    },
+    {
+      "title": "Hàm cơ bản",
+      "bullets": [
+        "`size()`: số phần tử trong set",
+        "`insert()`: thêm phần tử — O(logN), giá trị đã có thì bị bỏ qua",
+        "`empty()`: kiểm tra rỗng",
+        "`clear()`: xóa toàn bộ phần tử"
+      ],
+      "code": "set<int> se;\nse.insert(3); se.insert(1); se.insert(1);\nse.insert(2); se.insert(3); se.insert(2); se.insert(4);\n// {1, 2, 3, 4} - tu dong bo trung + sap xep tang dan\ncout << se.size(); // 4"
+    },
+    {
+      "title": "Duyệt set",
+      "bullets": [
+        "Duyệt bằng range-based `for` hoặc bằng **iterator**",
+        "`*se.begin()`: phần tử **nhỏ nhất**",
+        "`*se.rbegin()`: phần tử **lớn nhất**",
+        "Iterator của set chỉ hỗ trợ `++`/`--`, không có `+=`/`-=`"
+      ],
+      "code": "set<int> se = {3,1,2,4};\nfor(int x : se) cout << x << ' ';           // 1 2 3 4\nfor(set<int>::iterator it = se.begin(); it != se.end(); ++it)\n    cout << *it << ' ';\n\ncout << *se.begin();   // nho nhat: 1\ncout << *se.rbegin();  // lon nhat: 4"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Set: không trùng lặp, tự sắp xếp tăng dần, tìm kiếm O(logN)",
+        "Không hỗ trợ truy cập chỉ số như mảng/vector",
+        "Phù hợp bài toán khử trùng lặp và tra cứu nhanh",
+        "Iterator set khác vector: chỉ có `++`/`--`"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "title": "Tài Liệu Học Lập Trình C++",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vấn đề của sách C++ hiện nay",
+      "bullets": [
+        "Nội dung cũ, ít khi tái bản theo kiến thức hiện hành",
+        "Ít hoặc không có bài tập đi kèm",
+        "Không trực quan, thiếu ví dụ minh hoạ",
+        "Ít đề cập thư viện thuật toán, cấu trúc dữ liệu của C++"
+      ]
+    },
+    {
+      "title": "Bài giảng, video và blog",
+      "bullets": [
+        "Học qua **video Youtube** để tiếp cận code trực quan",
+        "Tham khảo các website uy tín: Geeksforgeeks, Cplusplus, Programiz",
+        "Kết hợp nhiều nguồn thay vì chỉ đọc một cuốn sách"
+      ]
+    },
+    {
+      "title": "Bài tập và website chấm bài",
+      "bullets": [
+        "Luyện tập bài tập từ dễ tới khó để code giỏi, code nhanh",
+        "Ebook đi kèm bài tập giúp học lý thuyết hiệu quả hơn",
+        "Website chấm tự động: Hackerrank, Codeforces, VNOI",
+        "Newbie nên luyện code một thời gian rồi mới dùng các site này"
+      ]
+    },
+    {
+      "title": "Cách học lập trình hiệu quả",
+      "bullets": [
+        "**Kiên trì**: kết quả lập trình không đến ngay lập tức",
+        "**Chăm chỉ**: dành thời gian cố định mỗi ngày để học",
+        "**Chủ động**: tự tìm tài liệu, hỏi đáp thay vì chờ người khác",
+        "**Thực hành thật nhiều**: làm nhiều bài tập, tăng dần độ khó"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Không có một tài liệu duy nhất là đủ, cần kết hợp nhiều nguồn",
+        "Video, blog, ebook, bài tập bổ trợ lẫn nhau",
+        "4 yếu tố quyết định: **Kiên Trì, Chăm Chỉ, Chủ Động, Thực Hành**"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Chuẩn Hóa Tên Và Email",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "3 bài toán chuẩn hóa tên",
+      "bullets": [
+        "**Bài 1**: xóa dấu cách thừa, viết hoa chữ đầu mỗi từ",
+        "**Bài 2**: đảo thứ tự, in tên trước rồi tới họ đệm",
+        "**Bài 3**: cấp email tự động từ tên",
+        "Cách làm chung: **tách từ → xử lý từng từ → gộp lại**"
+      ]
+    },
+    {
+      "title": "Chuẩn hóa: viết hoa đầu từ",
+      "code": "stringstream ss(\"tran  VAn  TeCH28\");\nstring res, word;\nwhile(ss >> word){\n    res += toupper(word[0]);\n    for(int j=1;j<word.size();j++) res += tolower(word[j]);\n    res += \" \";\n}\nres.pop_back();\n// res = \"Tran Van Tech28\""
+    },
+    {
+      "title": "Vì sao cần lưu vào vector?",
+      "bullets": [
+        "Muốn in tên theo thứ tự **khác** thứ tự nhập thì phải lưu lại",
+        "Tách từng từ, chuẩn hóa, rồi `push_back` vào vector",
+        "Từ đó chủ động chọn in từ nào trước, từ nào sau"
+      ]
+    },
+    {
+      "title": "In tên trước, họ đệm sau",
+      "bullets": [
+        "Từ cuối vector là **tên**, in trước",
+        "Các từ còn lại là **họ đệm**, in sau"
+      ],
+      "code": "// v = {\"Tran\", \"Van\", \"Tech28\"}\ncout << v.back();            // in ten truoc: Tech28\nfor(int i = 0; i < v.size()-1; i++)\n    cout << \" \" << v[i];    // roi ho dem: Tran Van"
+    },
+    {
+      "title": "Cấp email theo tên",
+      "bullets": [
+        "Email = **tên** + chữ cái đầu của **họ và đệm**",
+        "Ví dụ: \"Nguyen Van Nam\" → `namnv@...`"
+      ],
+      "code": "vector<string> v; string word;\nwhile(ss >> word) v.push_back(word);   // da doi ve thuong\nstring email = v.back();               // ten\nfor(int i = 0; i < v.size()-1; i++)\n    email += v[i][0];                  // chu cai dau ho dem\nemail += \"@codelab.dev\";\n// \"tran van long\" -> \"longtv@codelab.dev\""
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Chuẩn hóa xâu: **tách từ → xử lý từng từ → gộp lại**",
+        "Dùng **vector** khi cần in/xử lý các từ theo thứ tự khác thứ tự gốc",
+        "Cấp email: ghép tên với chữ cái đầu họ đệm",
+        "Nhớ đổi toàn xâu về thường trước khi lấy chữ cái đầu"
+      ]
+    }
+  ]
+}

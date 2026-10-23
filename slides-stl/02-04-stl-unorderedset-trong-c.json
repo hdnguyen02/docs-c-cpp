@@ -1,0 +1,43 @@
+{
+  "title": "Unordered_set Trong C++",
+  "course": "STL C++",
+  "source": "",
+  "slides": [
+    {
+      "title": "Unordered_set khác set ở đâu?",
+      "bullets": [
+        "Cài đặt bằng **bảng băm (hash table)**, không phải cây BST",
+        "Phần tử **đôi một khác nhau** (giống set)",
+        "**Không duy trì thứ tự** nào giữa các phần tử",
+        "Cần thư viện `unordered_set` (C++11 trở lên)"
+      ],
+      "code": "#include \"unordered_set\"\nunordered_set<int> se = {1,3,1,1,2,3,1,4,1};\ncout << se.size(); // 4, gia tri trung bi loai\nfor(int x : se) cout << x << ' '; // thu tu khong co quy luat"
+    },
+    {
+      "title": "Độ phức tạp — khác biệt lớn nhất",
+      "bullets": [
+        "`find()`, `erase()`, `insert()` của **set/multiset**: O(logN)",
+        "`find()`, `erase()`, `insert()` của **unordered_set**: trung bình **O(1)**",
+        "Trường hợp tệ nhất (hash đụng độ nhiều) vẫn có thể là O(N)"
+      ],
+      "code": "unordered_set<int> se = {1,2,3,4};\nif(se.find(3) == se.end()) cout << \"NOT FOUND\";\nelse cout << \"FOUND\";"
+    },
+    {
+      "title": "Khi nào dùng unordered_set?",
+      "bullets": [
+        "Chỉ cần **tra cứu/khử trùng lặp nhanh**, không quan tâm thứ tự",
+        "Ưu tiên tốc độ trung bình O(1) hơn set (O(logN))",
+        "Cần thứ tự tăng dần thì vẫn phải dùng `set`"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "unordered_set = set nhưng dùng **hash table**, không sắp xếp",
+        "Đổi lại tốc độ trung bình O(1) cho find/insert/erase",
+        "Worst case vẫn có thể chậm như O(N) do đụng độ hash",
+        "Chọn set khi cần thứ tự, unordered_set khi chỉ cần tốc độ"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "title": "Xử Lý Trôi Lệnh Khi Nhập Chuỗi Ký Tự C++",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Hiện tượng trôi lệnh",
+      "bullets": [
+        "Nhập `n` bằng `cin >>`, xong gọi `getline()` để nhập xâu `s`",
+        "`getline()` bị **trôi qua**, không dừng lại để chờ nhập",
+        "Kết quả: xâu `s` trở thành **rỗng**"
+      ],
+      "code": "int n;\ncin >> n;\nstring s;\ngetline(cin, s);   // bị trôi, s rỗng"
+    },
+    {
+      "title": "Nguyên nhân: ký tự enter còn sót",
+      "bullets": [
+        "`cin >> n` chỉ lấy phần **giá trị số**, không lấy ký tự enter cuối",
+        "Ký tự enter đó vẫn nằm lại trong **luồng vào cin**"
+      ]
+    },
+    {
+      "title": "getline() gặp ngay enter sót lại",
+      "bullets": [
+        "`getline()` đọc từ `cin` cho tới khi gặp ký tự **xuống dòng**",
+        "Gặp ngay enter còn sót → dừng đọc **ngay lập tức**, chưa nhận ký tự nào",
+        "Xâu `s` do đó là xâu **rỗng**"
+      ]
+    },
+    {
+      "title": "Khi nào không bị trôi lệnh",
+      "bullets": [
+        "`getline()` đứng ngay sau một `getline()` khác thì **không bị trôi**",
+        "Vì `getline()` tự loại bỏ enter cuối dòng, không để sót như `cin >>`"
+      ]
+    },
+    {
+      "title": "Cách khắc phục: cin.ignore()",
+      "bullets": [
+        "Gọi `cin.ignore()` (hoặc `cin.ignore(1)`) **trước** `getline()` để bỏ enter còn sót",
+        "Có thể dùng `getchar()` thay thế: đọc bỏ 1 ký tự, cũng loại được enter thừa"
+      ],
+      "code": "int n;\ncin >> n;\nstring s;\ncin.ignore();      // loại bỏ ký tự enter còn sót trong cin\ngetline(cin, s);   // giờ chạy đúng, chờ nhập s"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Trôi lệnh xảy ra khi `getline()` đứng **ngay sau** `cin >>`",
+        "Nguyên nhân: ký tự enter của `cin >>` còn sót trong luồng vào",
+        "Khắc phục: thêm `cin.ignore()` (hoặc `getchar()`) trước `getline()`",
+        "`getline()` sau một `getline()` khác thì không cần xử lý gì thêm"
+      ]
+    }
+  ]
+}

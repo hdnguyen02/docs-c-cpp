@@ -1,0 +1,75 @@
+{
+  "title": "Sắp Xếp Ổn Định Và Merge Sort",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Tính ổn định (stable) là gì?",
+      "bullets": [
+        "Các phần tử **cùng giá trị sắp xếp** giữ nguyên **thứ tự xuất hiện ban đầu**"
+      ],
+      "code": "// (111, 9, 3000, 18, 81, 1002, 2002) sap theo tong chu so, on dinh:\n// (111, 3000, 1002, 2002, 9, 18, 81)\n// 111, 3000, 1002 cung tong=3, giu dung thu tu ban dau"
+    },
+    {
+      "title": "Thuật toán ổn định vs không ổn định",
+      "bullets": [
+        "**Không ổn định**: quick sort, heap sort, selection sort",
+        "**Ổn định**: merge sort, insertion sort, tim sort, counting sort",
+        "Java, Python, JS: hàm sort có sẵn đã ổn định"
+      ]
+    },
+    {
+      "title": "qsort() không đảm bảo ổn định",
+      "bullets": [
+        "Chuẩn C: phần tử bằng nhau có **thứ tự không xác định**",
+        "Mỗi thư viện C cài `qsort` bằng thuật toán khác nhau",
+        "glibc thường ổn định; musl, MSVC thì không",
+        "**Không được dựa vào** kết quả \"tình cờ\" trên máy mình"
+      ]
+    },
+    {
+      "title": "Ví dụ qsort() theo tổng chữ số",
+      "code": "int tong(int n){ int s=0; while(n){ s+=n%10; n/=10; } return s; }\nint cmp(const void *a, const void *b){\n    return tong(*(const int*)a) - tong(*(const int*)b);\n}\nint a[] = {10002,19,3000,111,81,45,1002,21,10071,203,401};\nqsort(a, 11, sizeof(int), cmp);\n// 10002 3000 111 1002 21 203 401 81 45 10071 19\n// thu tu giua cac so cung tong: tuy thu vien C",
+      "caption": "Sắp đúng theo tổng chữ số, nhưng nhóm bằng nhau không được hứa hẹn thứ tự"
+    },
+    {
+      "title": "Cách 1: thêm chỉ số gốc làm tiêu chí phụ",
+      "bullets": [
+        "Lưu kèm `viTriGoc` cho mỗi phần tử",
+        "Cùng giá trị sắp xếp → so tiếp `viTriGoc`"
+      ],
+      "code": "typedef struct { int giaTri; int viTriGoc; } PhanTu;\nint cmp(const void *a, const void *b){\n    const PhanTu *x = a, *y = b;\n    int tx = tong(x->giaTri), ty = tong(y->giaTri);\n    if(tx != ty) return tx - ty;       // tieu chi chinh\n    return x->viTriGoc - y->viTriGoc;  // tieu chi phu\n}"
+    },
+    {
+      "title": "Cách 2: merge sort — ý tưởng",
+      "bullets": [
+        "Chia mảng làm 2 nửa, sắp xếp đệ quy từng nửa",
+        "**Trộn** 2 nửa đã sắp thành một mảng",
+        "Bằng nhau → lấy **nửa trái** trước → ổn định",
+        "**O(NlogN)** mọi trường hợp, cần mảng phụ `malloc` O(N)"
+      ]
+    },
+    {
+      "title": "Code merge sort theo tổng chữ số",
+      "code": "void tron(int a[], int tam[], int l, int m, int r){\n    int i = l, j = m + 1, k = l;\n    while(i <= m && j <= r)\n        if(tong(a[i]) <= tong(a[j])) tam[k++] = a[i++]; // <= la mau chot\n        else tam[k++] = a[j++];\n    while(i <= m) tam[k++] = a[i++];  while(j <= r) tam[k++] = a[j++];\n    for(k = l; k <= r; k++) a[k] = tam[k];\n}\nvoid mergeSort(int a[], int tam[], int l, int r){\n    if(l >= r) return;\n    int m = l + (r - l) / 2;\n    mergeSort(a, tam, l, m); mergeSort(a, tam, m+1, r);\n    tron(a, tam, l, m, r);\n}"
+    },
+    {
+      "title": "So sánh 2 cách",
+      "bullets": [
+        "`qsort` + chỉ số: code ngắn, thêm 1 trường mỗi phần tử",
+        "Merge sort tự viết: code dài hơn, tốn mảng phụ O(N)",
+        "Cả hai đều **đảm bảo** kết quả ổn định"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Ổn định = giữ **thứ tự tương đối** giữa các phần tử bằng nhau",
+        "`qsort` **không đảm bảo** ổn định theo chuẩn C",
+        "Cần ổn định: thêm chỉ số gốc, hoặc tự viết merge sort",
+        "Merge sort: đổi `<=` thành `<` khi trộn sẽ **mất ổn định**",
+        "Nhớ `free()` mảng phụ đã `malloc`"
+      ]
+    }
+  ]
+}

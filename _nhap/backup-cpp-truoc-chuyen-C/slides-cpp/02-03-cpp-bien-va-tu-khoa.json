@@ -1,0 +1,60 @@
+{
+  "title": "Biến Và Từ Khóa",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Khai báo biến",
+      "bullets": [
+        "**Biến** (variable) dùng để lưu trữ giá trị cho bài toán",
+        "Cần xác định: kiểu dữ liệu, tên biến, giá trị khởi tạo",
+        "Không khởi tạo thì biến có giá trị **ngẫu nhiên**",
+        "Cú pháp: `[Kiểu dữ liệu] [Tên biến];`"
+      ],
+      "code": "int a = 28;\nlong long b = 282828282828282;\nfloat c = 3.8912;\ndouble d = 10.8912781;\nchar kitu = '@';\nbool check = true;\n// Gia tri cua check : 1  (true in ra la 1)"
+    },
+    {
+      "title": "Khai báo nhiều biến cùng dòng",
+      "bullets": [
+        "Nhiều biến **cùng kiểu dữ liệu** có thể khai báo chung 1 dòng",
+        "Ngăn cách các biến bằng dấu phẩy"
+      ],
+      "code": "int a = 10, b = 20, c = 30;\nchar x = '@', y = '#', z = '$';\ncout << a << ' ' << b << ' ' << c << endl;  // 10 20 30\ncout << x << ' ' << y << ' ' << z << endl;  // @ # $"
+    },
+    {
+      "title": "Quy tắc đặt tên biến",
+      "bullets": [
+        "Không được bắt đầu bằng **chữ số**: `codelab` sai",
+        "Không chứa dấu cách hoặc ký tự đặc biệt",
+        "Không được trùng **keyword** có sẵn: `int`, `using`...",
+        "Không đặt 2 biến cùng tên dù khác kiểu dữ liệu",
+        "**Phân biệt hoa/thường**: `tech28` khác `Tech28`"
+      ]
+    },
+    {
+      "title": "Cách đặt tên biến rõ nghĩa",
+      "bullets": [
+        "Không có quy chuẩn bắt buộc, nên đặt ngắn gọn, có ý nghĩa",
+        "Kiểu camelCase: `BanKinh`, `ChuVi`, `DienTich`",
+        "Kiểu gạch dưới: `ban_kinh`, `chu_vi`, `dien_tich`"
+      ]
+    },
+    {
+      "title": "Keywords (từ khóa)",
+      "bullets": [
+        "Từ khoá được định nghĩa sẵn trong C++, không dùng làm tên biến",
+        "Không cần học thuộc, sẽ gặp dần khi học kiến thức mới",
+        "Ví dụ: `cout`, `cin`, `int`, `float`, `for`, `while`, `try`..."
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Biến cần đủ 3 yếu tố: kiểu dữ liệu, tên, giá trị khởi tạo",
+        "Tên biến không trùng keyword, không bắt đầu bằng số",
+        "C++ **phân biệt hoa thường** trong tên biến",
+        "Nhiều biến cùng kiểu có thể gộp khai báo trên 1 dòng"
+      ]
+    }
+  ]
+}

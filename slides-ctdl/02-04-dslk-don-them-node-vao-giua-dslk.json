@@ -1,0 +1,62 @@
+{
+  "title": "Thêm Node Vào Giữa DSLK",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Bài toán: chèn node vào vị trí thứ K",
+      "bullets": [
+        "Chèn node mới vào vị trí thứ **K** trong DSLK đang có N phần tử",
+        "Vị trí hợp lệ: 1 ≤ K ≤ N + 1 (K = N+1 tương đương thêm vào cuối)",
+        "Ngoài phạm vi này thì báo **vị trí chèn không hợp lệ**"
+      ]
+    },
+    {
+      "title": "Các bước thêm node vào giữa — chú ý thứ tự",
+      "code": "// Thứ tự bắt buộc khi chèn vào vị trí K (K > 1):\n// 1. Duyệt tmp tới node thứ K - 1\n// 2. newNode->next = tmp->next   (nối trước khi đổi tmp->next)\n// 3. tmp->next = newNode\n//\n// Đảo bước 2, 3 sẽ làm mất toàn bộ phần đuôi phía sau vị trí K"
+    },
+    {
+      "title": "Trường hợp đặc biệt",
+      "bullets": [
+        "**K = 1**: DSLK không có node thứ 0 → xử lý như **thêm node vào đầu**",
+        "**K < 1 hoặc K > N + 1**: vị trí không hợp lệ, báo lỗi và dừng",
+        "Cần hàm `len()` đếm số node để kiểm tra hợp lệ trước khi chèn"
+      ]
+    },
+    {
+      "title": "Cài đặt cách 1: con trỏ tới con trỏ / tham chiếu",
+      "code": "void themgiua(node **head, int x, int k){\n    int n = len(*head);\n    if(k < 1 || k > n + 1){ printf(\"Khong hop le\\n\"); return; }\n    node *newNode = makeNode(x);\n    if(k == 1){ themdau(head, x); return; }\n    node *tmp = *head;\n    for(int i = 1; i < k - 1; i++) tmp = tmp->next;\n    newNode->next = tmp->next;\n    tmp->next = newNode;\n}"
+    },
+    {
+      "title": "Cài đặt cách 2: hàm trả về head",
+      "bullets": [
+        "Bắt buộc gán lại `head = themgiua(head, x, k)` ở nơi gọi hàm"
+      ],
+      "code": "node* themgiua(node *head, int x, int k){\n    int n = len(head);\n    if(k < 1 || k > n + 1) return head;\n    node *newNode = makeNode(x);\n    if(k == 1) return themdau(head, x);\n    node *tmp = head;\n    for(int i = 1; i < k - 1; i++) tmp = tmp->next;\n    newNode->next = tmp->next;\n    tmp->next = newNode;\n    return head;\n}"
+    },
+    {
+      "title": "Cài đặt cách 3: quản lý bằng head và tail",
+      "bullets": [
+        "Chèn tại K = N + 1 (vào cuối) phải cập nhật lại `tail`"
+      ],
+      "code": "void themgiua(LIST *l, int x, int k){\n    int n = len(l->head);\n    if(k < 1 || k > n + 1) return;\n    node *newNode = makeNode(x);\n    if(k == 1){ themdau(l, x); return; }\n    node *tmp = l->head;\n    for(int i = 1; i < k - 1; i++) tmp = tmp->next;\n    newNode->next = tmp->next;\n    if(tmp->next == NULL) l->tail = newNode;   // chèn vào cuối\n    tmp->next = newNode;\n}"
+    },
+    {
+      "title": "Độ phức tạp",
+      "bullets": [
+        "Phải duyệt tới node thứ K - 1 → **O(N)** trong trường hợp xấu nhất",
+        "Nhanh hơn nếu K nhỏ (vị trí gần đầu danh sách)"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Vị trí hợp lệ: 1 ≤ K ≤ N + 1, ngoài khoảng này phải báo lỗi",
+        "K = 1 là trường hợp đặc biệt, xử lý như thêm node vào đầu",
+        "Thứ tự bắt buộc: `newNode->next = tmp->next` trước, rồi mới `tmp->next = newNode`",
+        "Chèn vào cuối (K = N+1) khi có `tail`: nhớ cập nhật lại `tail`",
+        "Độ phức tạp O(N) do phải duyệt tìm vị trí chèn"
+      ]
+    }
+  ]
+}

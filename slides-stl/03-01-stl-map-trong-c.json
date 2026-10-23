@@ -1,0 +1,52 @@
+{
+  "title": "Map Trong C++",
+  "course": "STL C++",
+  "source": "",
+  "slides": [
+    {
+      "title": "Map là gì?",
+      "bullets": [
+        "Container lưu dữ liệu dạng **key - value**, giống từ điển",
+        "Mỗi phần tử là một `pair<key, value>`",
+        "Ví dụ: mã sinh viên (key) → tên sinh viên (value)"
+      ],
+      "code": "#include \"map\"\nmap<key_data_type, value_data_type> map_name;"
+    },
+    {
+      "title": "Tính chất quan trọng",
+      "bullets": [
+        "Các **key** trong map là riêng biệt, không trùng nhau",
+        "Map duy trì thứ tự phần tử theo **key tăng dần**",
+        "Tìm kiếm theo key: **O(logN)**",
+        "**Không** truy cập được qua chỉ số như mảng/vector"
+      ]
+    },
+    {
+      "title": "Thêm phần tử: insert() và map[key]",
+      "bullets": [
+        "`insert(make_pair(key, value))`: thêm nếu key **chưa tồn tại**",
+        "`map[key] = value`: thêm mới **hoặc ghi đè** nếu key đã có",
+        "`map[key]` cũng dùng để **đọc** giá trị theo key"
+      ],
+      "code": "map<int,int> mp;\nmp.insert(make_pair(1, 2)); // ok\nmp.insert(make_pair(1, 5)); // khong doi, key 1 da co\n\nmp[5] = 10;   // them moi key 5\nmp[1] = 100;  // ghi de gia tri key 1 thanh 100\ncout << mp[1]; // 100"
+    },
+    {
+      "title": "Duyệt map",
+      "bullets": [
+        "Cách 1: range-based `for` với `pair<key,value>`",
+        "Cách 2: duyệt bằng **iterator**, truy cập `(*it).first`/`(*it).second`",
+        "Duyệt ngược: dùng `reverse_iterator` (`rbegin()`/`rend()`)"
+      ],
+      "code": "for(pair<int,int> it : mp)\n    cout << it.first << \" \" << it.second;\n\nfor(auto it = mp.begin(); it != mp.end(); it++)\n    cout << (*it).first << \" \" << (*it).second;\n\nfor(auto it = mp.rbegin(); it != mp.rend(); it++)\n    cout << (*it).first << \" \" << (*it).second; // tu cuoi ve dau"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Map = tập cặp key-value, key **duy nhất**, sắp xếp theo key tăng dần",
+        "`insert()` không ghi đè key đã có, `map[key] = value` thì có",
+        "Không hỗ trợ truy cập qua chỉ số như vector",
+        "Dùng `begin()`/`rbegin()` để lấy phần tử đầu/cuối theo key"
+      ]
+    }
+  ]
+}

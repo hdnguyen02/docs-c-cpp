@@ -1,0 +1,76 @@
+{
+  "title": "Bài Tập Thực Hành Map Trong C++",
+  "course": "STL C++",
+  "source": "",
+  "slides": [
+    {
+      "title": "Bài 1: Đếm giá trị khác nhau trong mảng",
+      "caption": "Cho mảng A[], đếm số giá trị khác nhau",
+      "bullets": [
+        "Đưa mỗi phần tử mảng làm **key** của map, value tùy chọn",
+        "Map tự loại key trùng → `size()` = số giá trị khác nhau",
+        "O(NlogN) với map, O(N) nếu dùng `unordered_map`"
+      ],
+      "code": "int a[12] = {1,3,2,1,2,3,4,1,5,8,10,2};\nmap<int,int> mp;\nfor(int i = 0; i < 12; i++) mp[a[i]] = 1;\ncout << mp.size(); // 7"
+    },
+    {
+      "title": "Bài 2: Đếm tần suất, in theo giá trị tăng dần",
+      "caption": "Đếm mỗi giá trị xuất hiện bao nhiêu lần, in theo thứ tự tăng dần",
+      "bullets": [
+        "Key = giá trị phần tử, value = tần suất xuất hiện",
+        "Duyệt mảng, mỗi phần tử `mp[x]++`",
+        "Map tự sắp key tăng dần nên duyệt map là ra đúng thứ tự yêu cầu"
+      ],
+      "code": "int a[12] = {1,3,2,1,2,3,4,1,5,8,10,2};\nmap<int,int> mp;\nfor(int i = 0; i < 12; i++) mp[a[i]]++;\nfor(pair<int,int> it : mp)\n    cout << it.first << \" xuat hien \" << it.second << \" lan\";"
+    },
+    {
+      "title": "Bài 3: Đếm tần suất, in theo thứ tự xuất hiện",
+      "caption": "Mỗi giá trị chỉ in 1 lần, theo đúng thứ tự xuất hiện trong mảng",
+      "bullets": [
+        "Đếm tần suất vào map như bài 2",
+        "Duyệt lại **mảng gốc** (giữ thứ tự xuất hiện) để in",
+        "Sau khi in một giá trị, đặt tần suất của nó về 0 để tránh in lại"
+      ],
+      "code": "map<int,int> mp;\nfor(int i = 0; i < n; i++) mp[a[i]]++;\nfor(int i = 0; i < n; i++){\n    if(mp[a[i]] != 0){\n        cout << a[i] << \" xuat hien \" << mp[a[i]] << \" lan\";\n        mp[a[i]] = 0;\n    }\n}"
+    },
+    {
+      "title": "Bài 4: Đếm tần suất từ trong xâu ký tự",
+      "caption": "Đếm mỗi từ trong câu xuất hiện bao nhiêu lần, in theo thứ tự từ điển",
+      "bullets": [
+        "Key = `string` (từng từ), value = tần suất",
+        "Tách từ bằng `stringstream`, mỗi từ tách được thì `mp[word]++`",
+        "Map tự sắp key theo thứ tự từ điển tăng dần"
+      ],
+      "code": "stringstream ss(s);\nstring word;\nmap<string,int> mp;\nwhile(ss >> word) mp[word]++;\nfor(pair<string,int> it : mp)\n    cout << it.first << \" xuat hien \" << it.second << \" lan\";"
+    },
+    {
+      "title": "Bài 5: Tập hợp (Union) của 2 mảng",
+      "caption": "Tìm các giá trị xuất hiện ít nhất ở 1 trong 2 mảng, in tăng dần",
+      "bullets": [
+        "Đưa toàn bộ phần tử của cả A[] và B[] vào làm key của map",
+        "Map tự loại trùng và tự sắp tăng dần → chính là tập hợp cần tìm",
+        "Duyệt map để in kết quả"
+      ],
+      "code": "map<int,int> mp;\nfor(int i = 0; i < 5; i++) mp[a[i]] = 1;\nfor(int i = 0; i < 5; i++) mp[b[i]] = 1;\nfor(pair<int,int> it : mp) cout << it.first << \" \";"
+    },
+    {
+      "title": "Bài 6: Tập giao (Intersection) của 2 mảng",
+      "caption": "Tìm các giá trị xuất hiện ở cả 2 mảng, in tăng dần",
+      "bullets": [
+        "Đưa mảng A[] vào map, đánh dấu value = 1 (xuất hiện ở A)",
+        "Duyệt B[]: nếu `mp[x] == 1` thì đổi thành value = 2 (có ở cả 2 mảng)",
+        "In các key có value = 2 — **không** dùng đếm tần suất để tránh sai"
+      ],
+      "code": "map<int,int> mp;\nfor(int i = 0; i < 5; i++) mp[a[i]] = 1;\nfor(int i = 0; i < 5; i++)\n    if(mp[b[i]] == 1) mp[b[i]] = 2;\nfor(pair<int,int> it : mp)\n    if(it.second == 2) cout << it.first << \" \";"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Map mạnh nhất khi cần **đếm tần suất** hoặc **đánh dấu trạng thái** theo key",
+        "Duyệt map luôn ra kết quả theo **key tăng dần** sẵn, khỏi sort thêm",
+        "Muốn giữ **thứ tự xuất hiện gốc** phải duyệt lại mảng, dùng map chỉ để tra cứu",
+        "Bài tập giao 2 mảng: dùng cờ đánh dấu (1/2), không dùng đếm tần suất"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "title": "Các Hàm String Xử Lý Xâu Trong C++",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Thêm / xóa ký tự ở cuối xâu",
+      "bullets": [
+        "`push_back(c)`: thêm **1 ký tự** `c` vào cuối xâu — độ phức tạp O(1)",
+        "`pop_back()`: xóa ký tự **cuối cùng** — độ phức tạp O(1)",
+        "Chỉ thêm được **1 ký tự**, cố truyền cả chuỗi sẽ gây lỗi"
+      ],
+      "code": "string s = \"codelab\";\ns.push_back('@');   // codelab@\ns.push_back('#');   // codelab@#\ns.pop_back();       // codelab@"
+    },
+    {
+      "title": "Nối xâu: append() và +=",
+      "bullets": [
+        "`s.append(t)`: nối toàn bộ xâu `t` vào cuối `s` — O(N)",
+        "`s.append(t, pos, n)`: nối `n` ký tự của `t` tính từ chỉ số `pos`",
+        "Toán tử `+=` cũng dùng để nối xâu hoặc nối 1 ký tự, viết gọn hơn"
+      ],
+      "code": "s.append(\"blog\");     // codelabblog\ns.append(t, 1, 5);    // nối 5 ký tự từ chỉ số 1 của t\ns += \" blog\";         // cách viết gọn tương đương append\ns += '@';             // nối 1 ký tự"
+    },
+    {
+      "title": "Chèn xâu: insert()",
+      "bullets": [
+        "`s.insert(index, t)`: chèn xâu `t` vào vị trí `index` của `s` — O(N)"
+      ],
+      "code": "s.insert(2, \"####\");   // chèn vào chỉ số 2: 28####tech\ns.insert(0, \"blog \");  // chèn vào đầu xâu"
+    },
+    {
+      "title": "Xóa xâu con: erase()",
+      "bullets": [
+        "`s.erase(pos)`: xóa từ chỉ số `pos` tới **hết xâu**",
+        "`s.erase(pos, n)`: xóa `n` ký tự tính từ chỉ số `pos` — độ phức tạp O(N)"
+      ],
+      "code": "s.erase(6);      // \"codelab.dev\" -> \"codelab\"\nt.erase(2, 4);   // \"codelab.dev\" -> \"28.com.vn\""
+    },
+    {
+      "title": "Tách xâu con: substr()",
+      "bullets": [
+        "`s.substr(pos)`: trả về xâu con từ chỉ số `pos` tới hết",
+        "`s.substr(pos, n)`: trả về `n` ký tự tính từ chỉ số `pos`",
+        "Không sửa xâu gốc, trả về **xâu mới** — độ phức tạp O(N)"
+      ],
+      "code": "s.substr(2);     // \"codelab.dev\" -> \"tech.com.vn\"\ns.substr(0, 6);  // \"codelab.dev\" -> \"codelab\""
+    },
+    {
+      "title": "Tìm kiếm xâu con: find()",
+      "bullets": [
+        "`s.find(t)`: trả về **chỉ số đầu tiên** xâu con `t` xuất hiện trong `s`",
+        "Không tìm thấy → trả về `string::npos` — độ phức tạp O(N)"
+      ],
+      "code": "if (s.find(\"codelab\") == string::npos)\n    cout << \"NOT FOUND\";\nelse\n    cout << s.find(\"codelab\");   // vị trí xuất hiện đầu tiên"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "**Thêm/xóa cuối**: `push_back`/`pop_back` — 1 ký tự, O(1)",
+        "**Nối xâu**: `append()` hoặc `+=`",
+        "**Chèn/xóa/tách**: `insert()`, `erase()`, `substr()` đều thao tác theo chỉ số",
+        "Không tìm thấy trong `find()` trả về `string::npos`, không phải -1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "title": "Kiểu Cấu Trúc Struct",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Struct là gì?",
+      "bullets": [
+        "Kiểu do bạn tự định nghĩa, gom **nhiều giá trị liên quan** vào 1 biến",
+        "Mỗi **trường** (member) có kiểu và tên riêng, kiểu có thể khác nhau",
+        "Truy cập bằng toán tử dấu chấm: `bien.tenTruong`",
+        "Ví dụ: toạ độ (x, y), thời gian bắt đầu/kết thúc, thông tin sinh viên"
+      ]
+    },
+    {
+      "title": "Khai báo và khởi tạo",
+      "bullets": [
+        "Định nghĩa `struct Ten { ... };` nhớ **dấu chấm phẩy** cuối",
+        "`{}` theo thứ tự trường; thiếu trường nào thì trường đó bằng 0",
+        "`{.y = 20, .x = 10}`: chỉ định tên trường (C99)"
+      ],
+      "code": "struct Diem { int x; int y; };\n\nstruct Diem a;\na.x = 28; a.y = 100;                  // gan tung truong\nstruct Diem b = {28, 100};            // theo thu tu\nstruct Diem c = {.y = 20, .x = 10};   // chi dinh ten\nprintf(\"%d %d\\n\", c.x, c.y);          // 10 20"
+    },
+    {
+      "title": "Struct lồng nhau",
+      "bullets": [
+        "Trường của struct có thể là **một struct khác**",
+        "Dùng nhiều dấu chấm liên tiếp để đi vào từng tầng"
+      ],
+      "code": "struct Diem { int x, y; };\nstruct DoanThang { struct Diem dau, cuoi; };\n\nstruct DoanThang d = {{10, 20}, {30, 40}};\nprintf(\"%d %d\\n\", d.dau.x, d.dau.y);   // 10 20\nd.cuoi.x = 99;                          // cuoi = {99, 40}"
+    },
+    {
+      "title": "typedef struct: đặt tên ngắn",
+      "bullets": [
+        "Viết `SinhVien` thay cho `struct SinhVien` mỗi lần khai báo",
+        "scanf trường số: `&sv.tuoi`; trường mảng char: `sv.ten` không `&`"
+      ],
+      "code": "typedef struct {\n    char ten[50];\n    int tuoi;\n    double diem;\n} SinhVien;\n\nSinhVien sv = {\"codelab\", 20, 8.5};\nscanf(\"%d\", &sv.tuoi);\nprintf(\"%s %d %.2f\\n\", sv.ten, sv.tuoi, sv.diem);"
+    },
+    {
+      "title": "Gán và so sánh struct",
+      "bullets": [
+        "**Gán** `p1 = p` copy toàn bộ trường, kể cả mảng char",
+        "**Không** dùng được `==`, `<`, `>` trên struct: lỗi biên dịch",
+        "Tự so từng trường: trường 1 trước, bằng nhau mới xét trường 2"
+      ],
+      "code": "typedef struct { int x, y; } Cap;\nCap p1 = {10, 20}, p2 = {10, 21};\n\nbool bang   = (p1.x == p2.x) && (p1.y == p2.y);          // false\nbool nhoHon = (p1.x < p2.x) || (p1.x == p2.x && p1.y < p2.y); // true"
+    },
+    {
+      "title": "Hoán đổi 2 struct",
+      "bullets": [
+        "C không có sẵn `swap`, dùng **biến tạm** như với số nguyên"
+      ],
+      "code": "Cap p1 = {10, 20}, p2 = {30, 40};\nCap tmp = p1;\np1 = p2;\np2 = tmp;\n// p1 = {30, 40}\n// p2 = {10, 20}"
+    },
+    {
+      "title": "Mảng struct",
+      "bullets": [
+        "Mỗi phần tử là 1 struct, truy cập `ds[i].diem`",
+        "Tên và điểm luôn đi cùng nhau, gán `best = ds[i]` copy cả hai"
+      ],
+      "code": "SinhVien ds[100];\nfor (int i = 0; i < n; i++)\n    scanf(\"%49s %lf\", ds[i].ten, &ds[i].diem);\n\nSinhVien best = ds[0];\nfor (int i = 1; i < n; i++)\n    if (ds[i].diem > best.diem) best = ds[i];"
+    },
+    {
+      "title": "Struct 2 trường lưu dữ liệu theo cặp",
+      "bullets": [
+        "C không có kiểu \"cặp\" dựng sẵn, dùng struct 2 trường",
+        "Hàm chỉ `return` 1 giá trị, nhưng giá trị đó có thể là struct"
+      ],
+      "code": "typedef struct { int thuong; int du; } KetQuaChia;\n\nKetQuaChia chia(int a, int b){\n    KetQuaChia kq = {a / b, a % b};\n    return kq;\n}\n\nKetQuaChia k = chia(17, 5);   // k.thuong = 3, k.du = 2"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`struct` gom nhiều trường có tên vào 1 biến, truy cập bằng `.`",
+        "`typedef struct {...} Ten;` giúp khai báo gọn",
+        "Gán `=` copy cả struct; **không** so sánh bằng `==`, `<`",
+        "Mảng struct giữ các thông tin của 1 bản ghi luôn đi cùng nhau",
+        "Hàm trả nhiều giá trị: gói vào struct rồi `return`"
+      ]
+    }
+  ]
+}

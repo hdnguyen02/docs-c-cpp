@@ -1,0 +1,64 @@
+{
+  "title": "Stringstream Trong C++ Và Ứng Dụng",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Stringstream giải quyết vấn đề gì?",
+      "bullets": [
+        "Biến `string` thành **luồng** (stream), đọc giống `cin`",
+        "Ứng dụng chính: **tách từ** trong xâu",
+        "Ứng dụng khác: **đổi kiểu** dữ liệu qua toán tử `>>`",
+        "Cần thư viện `sstream`"
+      ]
+    },
+    {
+      "title": "Tách từ bằng toán tử `>>`",
+      "bullets": [
+        "`ss >> word` đọc từng từ, dừng khi hết luồng",
+        "Nhiều dấu cách liên tiếp đều bị bỏ qua"
+      ],
+      "code": "stringstream ss(\"codelab    hoc  lap trinh\");\nstring word;\nwhile(ss >> word)\n    cout << word << endl;\n// codelab / hoc / lap / trinh"
+    },
+    {
+      "title": "Tách theo ký tự khác bằng `getline()`",
+      "bullets": [
+        "Mặc định `>>` chỉ tách theo dấu cách",
+        "Muốn tách theo ký tự khác (vd `-`) dùng `getline(ss, word, delim)`"
+      ],
+      "code": "stringstream ss(\"codelab-hoc-lap-trinh\");\nstring word;\nwhile(getline(ss, word, '-'))\n    cout << word << endl;\n// codelab / hoc / lap / trinh"
+    },
+    {
+      "title": "Tách theo nhiều loại dấu (delimiter)",
+      "bullets": [
+        "Nhiều delimiter khác nhau: thay hết thành **dấu cách** trước",
+        "Sau đó tách bình thường bằng `>>`"
+      ],
+      "code": "string s = \"codelab,hoc.lap!!trinh???C++ dsa\";\nfor(char &c : s)\n    if(c=='?'||c=='!'||c=='.'||c==',') c = ' ';\nstringstream ss(s);\nstring word;\nwhile(ss >> word) cout << word << ' ';\n// codelab hoc lap trinh C++ dsa"
+    },
+    {
+      "title": "Bài tập: đếm số từ trong xâu",
+      "bullets": [
+        "Đếm số lần `ss >> word` thành công"
+      ],
+      "code": "stringstream ss(\"codelab codelab com vn blog AI    python\");\nint cnt = 0; string word;\nwhile(ss >> word) ++cnt;\n// cnt = 7"
+    },
+    {
+      "title": "Bài tập: chuẩn hóa từ và nối lại",
+      "bullets": [
+        "Tách từng từ, viết hoa ký tự đầu, thường phần còn lại",
+        "Nối các từ đã chuẩn hóa, xóa dấu cách thừa cuối"
+      ],
+      "code": "stringstream ss(\"   NgUYeN   vAN   tECH28  \");\nstring res, word;\nwhile(ss >> word){\n    res += toupper(word[0]);\n    for(int j=1;j<word.size();j++) res += tolower(word[j]);\n    res += \" \";\n}\nres.pop_back();\n// res = \"Nguyen Van Tech28\""
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`stringstream` biến string thành luồng đọc như `cin`",
+        "`>>` tách theo dấu cách, `getline(ss, word, delim)` tách theo ký tự khác",
+        "Nhiều delimiter: đổi hết thành dấu cách rồi tách bằng `>>`",
+        "Cũng dùng để **đổi kiểu** dữ liệu (string ↔ số) qua `>>`"
+      ]
+    }
+  ]
+}

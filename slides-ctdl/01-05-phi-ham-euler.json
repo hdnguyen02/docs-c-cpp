@@ -1,0 +1,80 @@
+{
+  "title": "Phi Hàm Euler",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Bài toán: Phi hàm Euler là gì?",
+      "bullets": [
+        "Phi(n) = số lượng số **nguyên tố cùng nhau** với n trong đoạn [1, n]",
+        "Hai số nguyên tố cùng nhau (đồng nguyên tố): ước chung lớn nhất là 1",
+        "Duyệt 1→n và gọi GCD từng số thì chậm; phi hàm tính trực tiếp O(√N)"
+      ]
+    },
+    {
+      "title": "Ý tưởng: dựa vào phân tích thừa số nguyên tố",
+      "bullets": [
+        "Phân tích n thành các thừa số nguyên tố phân biệt p1, p2, ...",
+        "Mỗi thừa số p loại bỏ đúng 1/p số trong đoạn [1, n] khỏi tập đếm",
+        "Kết hợp các thừa số bằng tích các hệ số (1 - 1/p)"
+      ]
+    },
+    {
+      "title": "Công thức phi hàm Euler",
+      "bullets": [
+        "phi(n) = n nhân tích các (1 - 1/p), với p là ước nguyên tố của n",
+        "Ví dụ n = 60 = 2² * 3 * 5",
+        "phi(60) = 60 * (1 - 1/2) * (1 - 1/3) * (1 - 1/5) = 16"
+      ]
+    },
+    {
+      "title": "Cài đặt tính phi(n)",
+      "bullets": [
+        "Độ phức tạp: **O(√N)** nhờ chỉ duyệt ước nguyên tố tới √n"
+      ],
+      "code": "int phi(int n){\n    int res = n;\n    for(int i = 2; i <= sqrt(n); i++){\n        if(n % i == 0){\n            res = res - res / i;   // res *= (1 - 1/i)\n            while(n % i == 0) n /= i;\n        }\n    }\n    if(n > 1) res -= res / n;   // thừa số nguyên tố lớn còn lại\n    return res;\n}"
+    },
+    {
+      "title": "Một số tính chất của phi hàm Euler",
+      "bullets": [
+        "phi(p) = p - 1, nếu p là số nguyên tố",
+        "phi(a*b) = phi(a) * phi(b), nếu a và b nguyên tố cùng nhau",
+        "phi(p^k) = p^k - p^(k-1), nếu p là số nguyên tố",
+        "phi(a*b) = phi(a)*phi(b)*d / phi(d), với d = GCD(a, b) nếu a, b không nguyên tố cùng nhau",
+        "phi(n) = tổng phi(d) với d là mọi ước của n"
+      ]
+    },
+    {
+      "title": "Bài toán mở rộng: tính phi cho mọi số từ 1 tới n",
+      "bullets": [
+        "Dùng sàng biến đổi: với mỗi số nguyên tố i, cập nhật phi cho mọi bội của i",
+        "Tránh phải gọi hàm phi(n) riêng lẻ cho từng số → nhanh hơn nhiều"
+      ]
+    },
+    {
+      "title": "Cài đặt sàng phi hàm — cách 1",
+      "bullets": [
+        "Độ phức tạp: **O(N log log N)**"
+      ],
+      "code": "int phi[1000001];\nvoid sang(){\n    for(int i = 1; i <= 1000000; i++) phi[i] = i;\n    for(int i = 2; i <= 1000000; i++){\n        if(phi[i] == i){          // i là số nguyên tố\n            for(int j = i; j <= 1000000; j += i)\n                phi[j] -= phi[j] / i;\n        }\n    }\n}"
+    },
+    {
+      "title": "Cài đặt sàng phi hàm — cách 2",
+      "bullets": [
+        "Dựa trên tính chất phi(n) = tổng phi(d) với d là ước của n",
+        "Khởi tạo phi[i] = i - 1, sau đó trừ dần phi[i] khỏi các bội của i",
+        "Độ phức tạp: **O(N log N)**, chậm hơn cách 1 một chút"
+      ],
+      "code": "int phi[1000001];\nvoid sang(){\n    for(int i = 1; i <= 1000000; i++) phi[i] = i - 1;\n    phi[0] = 0; phi[1] = 1;\n    for(int i = 2; i <= 1000000; i++)\n        for(int j = 2 * i; j <= 1000000; j += i)\n            phi[j] -= phi[i];\n}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "phi(n): số lượng số nguyên tố cùng nhau với n trong [1, n]",
+        "Công thức: phi(n) = n nhân tích (1 - 1/p) trên các ước nguyên tố p của n",
+        "Tính đơn lẻ: O(√N); tính cho mọi số 1→n: dùng sàng O(N log log N)",
+        "Ghi nhớ các tính chất phi(p), phi(p^k), phi(a*b) để giải nhanh bài toán tổ hợp"
+      ]
+    }
+  ]
+}

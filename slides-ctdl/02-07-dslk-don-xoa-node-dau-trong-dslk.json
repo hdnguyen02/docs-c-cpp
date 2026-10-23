@@ -1,0 +1,61 @@
+{
+  "title": "Xóa Node Đầu Trong DSLK",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vấn đề: xóa node đầu trong DSLK",
+      "bullets": [
+        "Node đầu chỉ có `head` trỏ tới, không ai khác",
+        "Chỉ cần cập nhật `head` sang node thứ 2 rồi giải phóng node cũ",
+        "Đơn giản hơn xóa giữa/cuối vì **không cần duyệt**"
+      ]
+    },
+    {
+      "title": "Các bước xóa node đầu",
+      "bullets": [
+        "Lưu lại node đầu để giải phóng: `deleteNode = *head`",
+        "Cho `head` trỏ sang node thứ 2: `*head = (*head)->next`",
+        "Giải phóng `deleteNode`"
+      ],
+      "code": "Truoc:  10 -> 9 -> 8 -> ... -> NULL\nSau:    9 -> 8 -> ... -> NULL   // xoa node dau (10), head=9"
+    },
+    {
+      "title": "Cài đặt hàm `xoadau`",
+      "code": "void xoadau(node **head){\n    if(*head == NULL) return;     // DSLK rong\n    node *deleteNode = *head;\n    (*head) = (*head)->next;      // head sang node thu 2\n    free(deleteNode);\n}"
+    },
+    {
+      "title": "Quản lý bằng head và tail: điểm khác biệt",
+      "bullets": [
+        "Vẫn cập nhật `head = head->next` như cách 1",
+        "Nếu xóa xong DSLK **rỗng**: phải cho `tail = NULL`",
+        "Nếu còn node: `tail` **không đổi**, chỉ `head` thay đổi"
+      ]
+    },
+    {
+      "title": "Trường hợp đặc biệt",
+      "bullets": [
+        "DSLK rỗng (`head == NULL`): return ngay, không xóa",
+        "DSLK chỉ 1 node: sau khi xóa `head` và `tail` đều thành `NULL`",
+        "DSLK nhiều node: chỉ `head` đổi, `tail` giữ nguyên"
+      ]
+    },
+    {
+      "title": "Giải phóng bộ nhớ",
+      "bullets": [
+        "Node đầu cũ bị tách khỏi danh sách sau khi đổi `head`",
+        "Phải `free`/`delete` node đó để tránh rò rỉ bộ nhớ",
+        "Lưu địa chỉ **trước** khi đổi `head`, giải phóng **sau**"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Xóa đầu là thao tác **đơn giản nhất**: không cần duyệt",
+        "Luôn kiểm tra DSLK rỗng trước khi xóa",
+        "Dùng `tail`: set `tail = NULL` khi xóa hết node cuối cùng",
+        "Lưu node cũ rồi mới giải phóng, tránh mất con trỏ"
+      ]
+    }
+  ]
+}

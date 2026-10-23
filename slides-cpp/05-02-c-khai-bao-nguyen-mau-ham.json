@@ -1,0 +1,50 @@
+{
+  "title": "Khai Báo Nguyên Mẫu Hàm",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Nguyên mẫu hàm giải quyết vấn đề gì?",
+      "bullets": [
+        "Hàm gọi hàm khác thì hàm kia phải được **khai báo trước đó**",
+        "Không theo đúng thứ tự → **lỗi biên dịch**",
+        "**Nguyên mẫu hàm** (function prototype) khai báo trước để gọi tự do"
+      ]
+    },
+    {
+      "title": "Nguyên mẫu hàm chứa gì?",
+      "bullets": [
+        "Kiểu trả về của hàm",
+        "Tên hàm",
+        "Số lượng và kiểu dữ liệu của tham số (không cần tên tham số)",
+        "Hàm không tham số: viết `(void)`, không để ngoặc rỗng"
+      ]
+    },
+    {
+      "title": "Cú pháp",
+      "code": "//function prototype\nvoid greet(void);\nint tong(int, int, int);\nlong long solve(int, long long);\n\nint main(void){\n    greet();\n    printf(\"%d\\n\", tong(10, 20, 30));   // 60\n    printf(\"%lld\\n\", solve(10, 20));    // 80\n}"
+    },
+    {
+      "title": "Lỗi khi gọi hàm chưa khai báo",
+      "bullets": [
+        "Hàm `B()` gọi `A()` nhưng `A()` được định nghĩa **bên dưới** `B()`",
+        "Từ C99, gọi hàm chưa khai báo là **không hợp lệ**",
+        "gcc 11 chỉ cảnh báo, gcc 14+ báo lỗi: hãy coi cảnh báo là lỗi"
+      ],
+      "code": "void B(void){\n    printf(\"codelab blog\\n\");\n    A();     // implicit declaration of function 'A'\n}\n\nvoid A(void){  // conflicting types for 'A'\n    printf(\"codelab\\n\");\n}"
+    },
+    {
+      "title": "Khắc phục bằng prototype",
+      "code": "//function prototype\nvoid A(void);\nvoid B(void);\n\nvoid B(void){\n    printf(\"codelab blog\\n\");\n    A();     // hợp lệ nhờ đã khai báo trước\n}\n\nvoid A(void){\n    printf(\"codelab\\n\");\n}\n// codelab blog / codelab"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Prototype cho phép gọi hàm **không cần đúng thứ tự** định nghĩa",
+        "Thường đặt các dòng khai báo ở đầu file, phía trên `main`",
+        "Không cần tên tham số trong prototype, chỉ cần **kiểu dữ liệu**",
+        "Thấy cảnh báo `implicit declaration of function` là phải sửa ngay"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "title": "Chuỗi Ký Tự Trong C",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Chuỗi trong C là gì?",
+      "bullets": [
+        "C không có kiểu chuỗi riêng: chuỗi là **mảng `char`**",
+        "Luôn kết thúc bằng ký tự null **`'\\0'`** (mã ASCII 0)",
+        "`\"codelab\"` có 7 ký tự nhưng chiếm **8 byte**",
+        "Mảng `char` cỡ N chứa chuỗi dài tối đa **N - 1** ký tự"
+      ],
+      "code": "// index:  0   1   2   3   4   5   6   7\n// s:     'c' 'o' 'd' 'e' 'l' 'a' 'b' '\\0'"
+    },
+    {
+      "title": "Khai báo và khởi tạo",
+      "bullets": [
+        "Hằng chuỗi `\"...\"` được **tự thêm `'\\0'`**; khởi tạo từng ký tự phải tự thêm",
+        "Không ghi kích thước: trình biên dịch cấp đúng số ký tự + 1"
+      ],
+      "code": "char s1[100] = \"\";                  // rỗng\nchar s2[] = \"codelab\";              // 8 byte\nchar s3[20] = \"codelab\";            // 20 byte, dư điền '\\0'\nchar s4[] = {'c','o','d','e','\\0'};  // tự thêm '\\0'\nprintf(\"%zu %zu\\n\", strlen(s2), sizeof(s2));   // 7 8"
+    },
+    {
+      "title": "In chuỗi với %s",
+      "bullets": [
+        "`printf(\"%s\", s)`: truyền **tên mảng**, in tới khi gặp `'\\0'`",
+        "`puts(s)` in chuỗi và tự xuống dòng; `%c` in một ký tự `s[i]`"
+      ],
+      "code": "printf(\"%s\\n\", s);       // codelab\nputs(s);                 // codelab + xuống dòng\nprintf(\"[%10s]\\n\", s);   // [   codelab]\nprintf(\"[%.4s]\\n\", s);   // [code]"
+    },
+    {
+      "title": "3 cách duyệt chuỗi",
+      "bullets": [
+        "Chỉ số từ 0 tới `strlen(s) - 1` (tính `strlen` một lần)",
+        "Chỉ số tới khi gặp `'\\0'` — cách tự nhiên nhất",
+        "**Con trỏ** `char *p` chạy tới khi `*p == '\\0'`"
+      ],
+      "code": "int n = strlen(s);\nfor (int i = 0; i < n; i++) printf(\"%c\", s[i]);\n\nfor (int i = 0; s[i] != '\\0'; i++) printf(\"%c\", s[i]);\n\nfor (char *p = s; *p != '\\0'; p++) printf(\"%c\", *p);"
+    },
+    {
+      "title": "Độ dài chuỗi: strlen()",
+      "bullets": [
+        "`strlen` (string.h) đếm ký tự **trước `'\\0'`**, trả về `size_t` → in `%zu`",
+        "`sizeof` là kích thước **cả mảng**, khác `strlen`",
+        "Tránh `i < strlen(s)` trong điều kiện for: thành **O(n²)**"
+      ],
+      "code": "int doDai(const char s[]) {\n    int dem = 0;\n    while (s[dem] != '\\0') ++dem;\n    return dem;             // giống strlen(s)\n}"
+    },
+    {
+      "title": "Nhập chuỗi từ bàn phím",
+      "bullets": [
+        "`scanf(\"%99s\", s)`: **không có `&`**, dừng ở khoảng trắng",
+        "`fgets(s, sizeof(s), stdin)`: đọc cả dòng, **giữ lại `'\\n'`**",
+        "**Không bao giờ dùng `gets()`** — đã bị loại khỏi C11"
+      ],
+      "code": "char s[100];\nscanf(\"%99s\", s);                 // \"codelab C\" -> \"codelab\"\n\nfgets(s, sizeof(s), stdin);        // đọc cả dòng\ns[strcspn(s, \"\\n\")] = '\\0';        // xoá '\\n' cuối"
+    },
+    {
+      "title": "Lỗi thường gặp",
+      "bullets": [
+        "`char s[7] = \"codelab\";` — mất chỗ cho `'\\0'`, C vẫn biên dịch",
+        "`s = \"abc\";` lỗi: mảng không gán được → dùng `strcpy`",
+        "`a == b` so sánh **địa chỉ** → dùng `strcmp`",
+        "`char *p = \"abc\"; p[0] = 'X';` sửa hằng chuỗi → crash"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Chuỗi C = **mảng char + `'\\0'`**, luôn chừa 1 ô cho `'\\0'`",
+        "In bằng `%s`, độ dài bằng `strlen` (in `%zu`), khác `sizeof`",
+        "Duyệt tới `'\\0'` bằng chỉ số hoặc con trỏ",
+        "Nhập: `scanf(\"%99s\")` cho 1 từ, `fgets` cho cả dòng, cấm `gets`",
+        "Gán dùng `strcpy`, so sánh dùng `strcmp`, không dùng `=` và `==`"
+      ]
+    }
+  ]
+}

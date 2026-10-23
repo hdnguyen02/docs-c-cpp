@@ -1,0 +1,61 @@
+{
+  "title": "Thêm Node Vào Cuối DSLK",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Bài toán: thêm node vào cuối DSLK",
+      "bullets": [
+        "Chèn một phần tử mới thành **node cuối cùng** của danh sách",
+        "Node cuối hiện tại phải được trỏ `next` sang node mới"
+      ]
+    },
+    {
+      "title": "Các bước thêm node vào cuối — chú ý thứ tự",
+      "code": "// Thứ tự:\n// 1. Cấp phát node mới, next = NULL\n// 2. Duyệt tmp từ head tới khi tmp->next == NULL (node cuối)\n// 3. tmp->next = newNode\n//\n// Không tìm được node cuối nếu bỏ qua điều kiện tmp->next == NULL"
+    },
+    {
+      "title": "Trường hợp đặc biệt: danh sách rỗng",
+      "bullets": [
+        "Nếu `head == NULL` thì **không có node cuối** để nối vào",
+        "Phải xử lý riêng: gán thẳng `head = newNode`",
+        "Bỏ qua hẳn bước duyệt tìm node cuối trong trường hợp này"
+      ]
+    },
+    {
+      "title": "Cài đặt cách 1: con trỏ tới con trỏ / tham chiếu",
+      "code": "void themcuoi(node *&head, int x){\n    node *newNode = new node;\n    newNode->data = x; newNode->next = NULL;\n    if(head == NULL){ head = newNode; return; } // DSLK rỗng\n    node *tmp = head;\n    while(tmp->next != NULL) tmp = tmp->next;\n    tmp->next = newNode;\n}"
+    },
+    {
+      "title": "Cài đặt cách 2: hàm trả về head",
+      "bullets": [
+        "Bắt buộc gán lại `head = themcuoi(head, x)` ở nơi gọi hàm"
+      ],
+      "code": "node* themcuoi(node *head, int x){\n    node *newNode = new node;\n    newNode->data = x; newNode->next = NULL;\n    if(head == NULL) return newNode;   // DSLK rỗng\n    node *tmp = head;\n    while(tmp->next != NULL) tmp = tmp->next;\n    tmp->next = newNode;\n    return head;\n}"
+    },
+    {
+      "title": "Cài đặt cách 3: quản lý bằng head và tail",
+      "bullets": [
+        "Có sẵn con trỏ `tail` nên không cần duyệt tìm node cuối",
+        "DSLK rỗng: phải cập nhật **cả head và tail** đều bằng node mới"
+      ],
+      "code": "void themcuoi(LIST &l, int x){\n    node *newNode = new node;\n    newNode->data = x; newNode->next = NULL;\n    if(l.head == NULL){\n        l.head = newNode; l.tail = newNode;   // rỗng\n    } else {\n        l.tail->next = newNode;\n        l.tail = newNode;\n    }\n}"
+    },
+    {
+      "title": "Độ phức tạp",
+      "bullets": [
+        "Chỉ quản lý bằng `head`: phải duyệt tới cuối → **O(N)**",
+        "Quản lý thêm bằng `tail`: nối thẳng vào tail → **O(1)**"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "DSLK rỗng không có node cuối → phải xử lý riêng bằng gán thẳng vào head",
+        "Có `head` và `tail`: thêm cuối là O(1) thay vì O(N)",
+        "Nhớ cập nhật cả `head` và `tail` khi thêm vào DSLK đang rỗng",
+        "Thứ tự: duyệt tìm node cuối bằng `tmp->next != NULL`, rồi mới nối"
+      ]
+    }
+  ]
+}

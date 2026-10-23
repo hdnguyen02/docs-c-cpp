@@ -1,0 +1,59 @@
+{
+  "title": "Danh Sách Liên Kết Đơn (Singly Linked List)",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Danh sách liên kết đơn là gì?",
+      "bullets": [
+        "Cấu trúc dữ liệu tương tự **mảng động**, mở rộng/thu hẹp linh hoạt",
+        "Phần tử gọi là **node**, được cấp phát động trên heap khi cần",
+        "Không truy cập theo chỉ số như mảng, phải duyệt tuần tự từ đầu",
+        "Dễ chèn/xóa phần tử, nhưng các node không có thứ tự vị trí cố định"
+      ]
+    },
+    {
+      "title": "Cấu trúc một node",
+      "bullets": [
+        "Mỗi node gồm 2 phần: **data** (dữ liệu) và **next** (con trỏ tới node sau)",
+        "DSLK được quản lý thông qua node đầu tiên, gọi là `head`",
+        "Node cuối cùng trong danh sách có `next = NULL`"
+      ],
+      "code": "A -> B -> C -> NULL\n// mỗi ô là 1 node: data + next\n// next của node cuối (C) luôn là NULL"
+    },
+    {
+      "title": "Cài đặt node (C và C++)",
+      "bullets": [
+        "Tạo node mới: dùng `malloc` trong C, dùng `new` trong C++"
+      ],
+      "code": "// C\nstruct node{\n    int data;\n    struct node *next;\n};\ntypedef struct node node;\n\n// C++\nstruct node{\n    int data;\n    node *next;\n};"
+    },
+    {
+      "title": "Lưu ý về con trỏ trong DSLK",
+      "bullets": [
+        "Mỗi node thực chất là **một con trỏ**, trỏ tới vùng nhớ cấp phát động",
+        "Dùng toán tử `->` để truy cập `data`/`next` thông qua con trỏ đó",
+        "DSLK thực chất là danh sách quản lý các con trỏ kiểu `node`",
+        "Số lượng node phụ thuộc vào bộ nhớ heap, không cố định như mảng"
+      ]
+    },
+    {
+      "title": "Độ phức tạp các thao tác",
+      "bullets": [
+        "Truy xuất phần tử: **O(N)** (phải duyệt tuần tự từ head)",
+        "Chèn/xóa node ở **đầu**: O(1)",
+        "Chèn/xóa node ở **cuối**: O(N)",
+        "Chèn/xóa node ở **giữa**: O(N)"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "DSLK đơn: mỗi node gồm `data` + con trỏ `next`, node cuối trỏ NULL",
+        "Quản lý bằng con trỏ `head`, không truy cập được theo chỉ số",
+        "Chèn/xóa ở đầu là O(1), các vị trí còn lại là O(N) do phải duyệt",
+        "Mỗi node là vùng nhớ cấp phát động, thao tác qua con trỏ bằng `->`"
+      ]
+    }
+  ]
+}

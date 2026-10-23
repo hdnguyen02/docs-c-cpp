@@ -1,0 +1,64 @@
+{
+  "title": "Hàm binary_search, lower_bound, upper_bound Trong C++",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "3 hàm tìm kiếm có sẵn trong `algorithm`",
+      "bullets": [
+        "Áp dụng trên mảng/vector/string đã **sắp tăng dần**",
+        "`binary_search`: có tồn tại X hay không (true/false)",
+        "`lower_bound`: vị trí nhỏ nhất **≥ X**",
+        "`upper_bound`: vị trí nhỏ nhất **> X**",
+        "Độ phức tạp cả 3: **O(logN)**"
+      ]
+    },
+    {
+      "title": "Hàm `binary_search()`",
+      "bullets": [
+        "Trả **true** nếu X có trong đoạn tìm kiếm, ngược lại **false**",
+        "Mảng: `binary_search(a, a+n, x)`; vector/string: `binary_search(v.begin(), v.end(), x)`"
+      ],
+      "code": "int a[10] = {1,2,3,5,5,6,8,9,14,21};\nbinary_search(a, a+10, 5);   // true\nbinary_search(a, a+10, 4);   // false"
+    },
+    {
+      "title": "binary_search() trên đoạn [L, R]",
+      "bullets": [
+        "Có thể giới hạn tìm kiếm trong 1 đoạn chỉ số của mảng/vector"
+      ],
+      "code": "// tim X=5 trong doan chi so [5,7]\nbinary_search(a + 5, a + 8, 5);   // false, doan nay khong co 5\n// tim X=5 trong doan chi so [2,6]\nbinary_search(v.begin()+2, v.begin()+7, 5);  // true"
+    },
+    {
+      "title": "Hàm `lower_bound()`",
+      "bullets": [
+        "Tìm giá trị **nhỏ nhất ≥ X** trong mảng/vector tăng dần",
+        "Trả về **con trỏ/iterator** tới vị trí đó",
+        "Không tìm thấy → trả về `a + n` (mảng) hoặc `end()` (vector)"
+      ]
+    },
+    {
+      "title": "Ví dụ lower_bound() với số cụ thể",
+      "code": "int a[10] = {1,2,3,5,5,5,8,9,14,21};\nint *it = lower_bound(a, a+10, 5);\n// *it = 5, chi so = it-a = 3  (gia tri nho nhat >= 5)\nint *it2 = lower_bound(a, a+10, 22);\n// it2 == a+10  -> khong tim thay"
+    },
+    {
+      "title": "Hàm `upper_bound()`",
+      "bullets": [
+        "Tìm giá trị **nhỏ nhất > X** (khác `lower_bound` ở dấu `>` thay vì `>=`)",
+        "Cú pháp, giá trị trả về, độ phức tạp giống hệt `lower_bound()`"
+      ]
+    },
+    {
+      "title": "Ví dụ upper_bound() với số cụ thể",
+      "code": "int a[10] = {1,2,3,5,5,5,8,9,14,21};\nint *it = upper_bound(a, a+10, 5);\n// *it = 8, chi so = it-a = 6  (gia tri nho nhat > 5)\n//\n// so sanh voi cung mang, cung X=5:\n// lower_bound -> *it=5 (chi so 3)\n// upper_bound -> *it=8 (chi so 6)"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Cả 3 hàm chỉ dùng đúng khi mảng đã **sắp tăng dần**",
+        "`binary_search`: có/không tồn tại X",
+        "`lower_bound`: vị trí nhỏ nhất **≥ X**; `upper_bound`: vị trí nhỏ nhất **> X**",
+        "Không tìm thấy: trả về `a + n` hoặc `end()`"
+      ]
+    }
+  ]
+}

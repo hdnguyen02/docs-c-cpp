@@ -1,0 +1,50 @@
+{
+  "title": "Cộng, Trừ, Nhân 2 Ma Trận",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Điều kiện cộng, trừ 2 ma trận",
+      "bullets": [
+        "Hai ma trận phải **cùng số hàng và số cột**",
+        "Ma trận tổng: `C[i][j] = A[i][j] + B[i][j]`",
+        "Ma trận hiệu: `C[i][j] = A[i][j] - B[i][j]`"
+      ]
+    },
+    {
+      "title": "Cộng, trừ: duyệt từng phần tử",
+      "caption": "Duyệt for lồng nhau, tính trực tiếp từng vị trí",
+      "code": "int tong[3][4], hieu[3][4];\nfor (int i = 0; i < n; i++)\n    for (int j = 0; j < m; j++) {\n        tong[i][j] = a[i][j] + b[i][j];\n        hieu[i][j] = a[i][j] - b[i][j];\n    }"
+    },
+    {
+      "title": "Điều kiện nhân 2 ma trận",
+      "bullets": [
+        "A cỡ `n×m`, B cỡ `p×q`: nhân được khi **cột A = hàng B**",
+        "Kết quả C có cỡ `n×q`",
+        "VD: A(3×4)×B(4×2)=C(3×2); A(2×4)×B(2×3) → **không nhân được**"
+      ]
+    },
+    {
+      "title": "Công thức tính phần tử C[i][j]",
+      "bullets": [
+        "`C[i][j] = Σ A[i][k] * B[k][j]`, với `k` chạy từ 0 tới m-1",
+        "Nhân từng phần tử **hàng i của A** với **cột j của B** rồi cộng dồn"
+      ]
+    },
+    {
+      "title": "Nhân 2 ma trận: code",
+      "caption": "3 vòng for lồng nhau: i (hàng C), j (cột C), k (cộng dồn)",
+      "code": "int a[2][3] = {{1, 2, 3}, {4, 5, 6}};   // n = 2, m = 3\nint b[3][2] = {{10, 11}, {20, 22}, {30, 33}};  // q = 2\nint c[2][2];\nfor (int i = 0; i < n; i++)\n    for (int j = 0; j < q; j++) {\n        c[i][j] = 0;\n        for (int k = 0; k < m; k++)\n            c[i][j] += a[i][k] * b[k][j];\n    }\n// 140 154\n// 320 352"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Cộng/trừ: cần **cùng cỡ**, tính trực tiếp từng phần tử",
+        "Nhân: cần **số cột A = số hàng B**, kết quả cỡ n×q",
+        "Nhân ma trận luôn cần **3 vòng for lồng nhau**",
+        "Mảng khai báo bằng biến `int a[n][m]` (VLA) **không khởi tạo được** bằng `{...}`",
+        "Nhầm điều kiện m = p là lỗi thường gặp nhất khi nhân ma trận"
+      ]
+    }
+  ]
+}

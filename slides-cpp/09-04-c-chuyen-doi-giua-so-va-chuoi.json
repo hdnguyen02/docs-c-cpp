@@ -1,0 +1,68 @@
+{
+  "title": "Chuyển Đổi Giữa Số Và Chuỗi",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Các hàm xâu → số trong stdlib.h",
+      "bullets": [
+        "`atoi` → int, `atol` → long, `atoll` → long long, `atof` → double",
+        "`strtol`, `strtoll`, `strtoul`, `strtoull`, `strtod`: có **báo lỗi**",
+        "Thường dùng: `atoi`, `atoll`, `atof`; cần kiểm tra lỗi thì `strtol`, `strtod`"
+      ]
+    },
+    {
+      "title": "atoi(): xâu → int",
+      "bullets": [
+        "Bỏ qua khoảng trắng đầu; gặp ký tự không phải số thì **dừng**",
+        "**Không báo lỗi**: xâu không phải số trả về 0",
+        "Vượt giới hạn int: **hành vi không xác định**"
+      ],
+      "code": "int n1 = atoi(\"282828\");           // 282828\nint n2 = atoi(\"-292828\");          // -292828\nint n3 = atoi(\"2828codelab.dev\");  // 2828"
+    },
+    {
+      "title": "atoll() và atof() / strtod()",
+      "bullets": [
+        "`atoll` cho số lớn kiểu `long long`, in bằng `%lld`",
+        "`atof` trả về **double** dù tên có chữ f"
+      ],
+      "code": "long long a = atoll(\"100000000000000000\");\nlong long b = atoll(\"28282828282828codelab.dev\");\n// b = 28282828282828\n\ndouble x = atof(\"100.123\");\ndouble y = strtod(\"28282.codelab.dev\", NULL);\nprintf(\"%.3f\\n\", y);   // 28282.000"
+    },
+    {
+      "title": "strtol(): chuyển đổi có kiểm tra lỗi",
+      "bullets": [
+        "`end` trỏ tới ký tự **đầu tiên chưa đọc**; `end == s` → không phải số",
+        "Tràn giới hạn: `errno == ERANGE` (`<errno.h>`)",
+        "Tham số `base`: 2–36, hoặc 0 để tự nhận tiền tố `0x`, `0`"
+      ],
+      "code": "char *end;\nerrno = 0;\nlong n = strtol(\"2828codelab.dev\", &end, 10);\nif (end == s)             printf(\"Khong phai so\\n\");\nelse if (errno == ERANGE) printf(\"So qua lon\\n\");\nelse printf(\"%ld, con lai: %s\\n\", n, end);\n// 2828, con lai: codelab.dev\n\nstrtol(\"FF\", NULL, 16);   // 255"
+    },
+    {
+      "title": "sscanf(): đọc số từ một xâu",
+      "bullets": [
+        "Giống `scanf` nhưng đọc từ **xâu** thay vì bàn phím",
+        "Trả về **số biến** đọc thành công → dùng để kiểm tra lỗi"
+      ],
+      "code": "int n;\nif (sscanf(\"  123\", \"%d\", &n) == 1)\n    printf(\"%d\\n\", n);   // 123"
+    },
+    {
+      "title": "Số → xâu: sprintf() / snprintf()",
+      "bullets": [
+        "Giống `printf` nhưng **ghi vào mảng char**",
+        "Dùng mọi đặc tả: `%d`, `%lld`, `%.2f`...",
+        "Nên dùng `snprintf`: nhận kích thước, **không ghi vượt** mảng",
+        "`itoa()` **không phải** hàm chuẩn C"
+      ],
+      "code": "char s[50];\nsnprintf(s, sizeof(s), \"%d\", 28282828);   // \"28282828\"\n\nchar t[50];\nsnprintf(t, sizeof(t), \"%.2f\", 3.14159);  // \"3.14\""
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Xâu → số: `atoi`/`atoll`/`atof` nhanh gọn nhưng **không báo lỗi**",
+        "Cần kiểm tra lỗi: `strtol`/`strtod` với con trỏ `end` và `errno`",
+        "`sscanf` đọc số từ xâu, trả về số biến đọc được",
+        "Số → xâu: dùng `snprintf`, luôn truyền kích thước mảng"
+      ]
+    }
+  ]
+}

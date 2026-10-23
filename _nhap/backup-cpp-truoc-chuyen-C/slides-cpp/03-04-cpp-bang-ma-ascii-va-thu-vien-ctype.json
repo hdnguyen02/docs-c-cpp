@@ -1,0 +1,66 @@
+{
+  "title": "Bảng Mã ASCII Và Thư Viện ctype",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Bảng mã ASCII là gì?",
+      "bullets": [
+        "256 ký tự đánh số **0 đến 255**: chữ cái, chữ số, ký tự đặc biệt",
+        "`char` trong C++ thực chất lưu một **số nguyên** (mã ASCII)",
+        "Ép kiểu `(int)ch` để xem mã ASCII của một ký tự"
+      ]
+    },
+    {
+      "title": "Các mốc ASCII cần nhớ",
+      "caption": "Chỉ cần nhớ 3 mốc này là đủ dùng, không cần thuộc cả bảng",
+      "code": "a - z    : 97  -> 122\nA - Z    : 65  -> 90\n'0'-'9'  : 48  -> 57"
+    },
+    {
+      "title": "char trong phép toán số học",
+      "bullets": [
+        "Khi tính toán, `char` tự động dùng **mã ASCII** của nó",
+        "`++`/`--` trên `char` di chuyển sang ký tự liền trước/sau"
+      ],
+      "code": "char kitu1 = 'A';\ncout << (int)kitu1;      // 65\nint n = kitu1;           // n = 65\ncout << kitu1 + 100;     // 165\n++kitu1;                 // 'A' -> 'B'\ncout << (int)kitu1;      // 66"
+    },
+    {
+      "title": "Kiểm tra loại ký tự thủ công",
+      "bullets": [
+        "So sánh trực tiếp bằng ký tự hoặc bằng số ASCII đều được",
+        "Chữ cái = nằm trong khoảng in hoa **hoặc** in thường",
+        "Chữ số nằm trong khoảng `'0'` đến `'9'`"
+      ],
+      "code": "if(c >= 'a' && c <= 'z')  // in thường\nif(c >= 'A' && c <= 'Z')  // in hoa\nif((c>='A'&&c<='Z') || (c>='a'&&c<='z'))  // chữ cái\nif(c >= '0' && c <= '9')  // chữ số"
+    },
+    {
+      "title": "Chuyển đổi hoa - thường thủ công",
+      "bullets": [
+        "In hoa cách in thường tương ứng đúng **32** đơn vị mã ASCII",
+        "Hoa **→** thường: cộng 32; thường **→** hoa: trừ 32"
+      ],
+      "code": "char c = 'A';\nc += 32;      // 'A' -> 'a'\n\nchar kitu = 'z';\nkitu -= 32;   // 'z' -> 'Z'"
+    },
+    {
+      "title": "Thư viện ctype.h",
+      "bullets": [
+        "Trả về `1` (true) / `0` (false), trừ `tolower`/`toupper`",
+        "`tolower`/`toupper` trả về **mã ASCII** của ký tự đã đổi"
+      ],
+      "code": "islower(c)   // c là chữ in thường?\nisupper(c)   // c là chữ in hoa?\nisalpha(c)   // c là chữ cái?\nisdigit(c)   // c là chữ số?\nisalnum(c)   // c là chữ số hoặc chữ cái?\ntolower(c)   // -> mã ASCII chữ thường\ntoupper(c)   // -> mã ASCII chữ hoa"
+    },
+    {
+      "title": "Ví dụ dùng hàm có sẵn",
+      "code": "if(isupper(c))  cout << \"YES\\n\"; else cout << \"NO\\n\";\nif(islower(d))  cout << \"YES\\n\"; else cout << \"NO\\n\";\n\nc = tolower(c);   // 'A' -> 'a'\nd = toupper(d);   // 'z' -> 'Z'"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`char` lưu số nguyên là mã ASCII, ép kiểu `(int)` để xem",
+        "3 mốc cần nhớ: `a-z`, `A-Z`, `0-9`",
+        "Hoa/thường lệch nhau đúng **32** đơn vị mã ASCII",
+        "`ctype.h` có sẵn hàm kiểm tra/chuyển đổi, nên hiểu bản chất trước khi dùng"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "title": "Xử Lý Trôi Lệnh Khi Nhập Chuỗi",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Hiện tượng trôi lệnh",
+      "bullets": [
+        "Nhập `n` bằng `scanf(\"%d\")`, xong gọi `fgets()` để nhập xâu `s`",
+        "`fgets()` bị **trôi qua**, không dừng lại để chờ nhập",
+        "Kết quả: `s` chỉ chứa `\"\\n\"`, tức một **dòng rỗng**"
+      ],
+      "code": "int n;\nchar s[100];\nscanf(\"%d\", &n);\nfgets(s, sizeof(s), stdin);   // bi troi, s = \"\\n\""
+    },
+    {
+      "title": "Nguyên nhân: ký tự enter còn sót",
+      "bullets": [
+        "`scanf(\"%d\")` chỉ lấy phần **giá trị số**, không lấy ký tự enter cuối",
+        "Ký tự enter đó vẫn nằm lại trong **luồng vào `stdin`**",
+        "`fgets()` đọc tới khi gặp **xuống dòng** → gặp ngay enter sót, dừng liền"
+      ],
+      "code": "// Ban go: 2 5 Enter    bo dem: '2' '5' '\\n'\n// scanf(\"%d\") -> n = 25, bo dem con: '\\n'\n// fgets(...)  -> gap '\\n' ngay -> s = \"\\n\""
+    },
+    {
+      "title": "Khi nào không bị trôi lệnh",
+      "bullets": [
+        "`fgets()` đứng ngay sau một `fgets()` khác thì **không bị trôi**",
+        "Vì `fgets()` lấy luôn enter cuối dòng ra khỏi `stdin`",
+        "Điều kiện: dòng không dài hơn kích thước mảng"
+      ]
+    },
+    {
+      "title": "Khắc phục: đọc bỏ enter thừa",
+      "bullets": [
+        "Gọi `getchar()` **trước** `fgets()` để bỏ 1 ký tự enter còn sót",
+        "An toàn hơn: vòng lặp bỏ **toàn bộ** phần còn lại của dòng"
+      ],
+      "code": "scanf(\"%d\", &n);\ngetchar();                       // bo 1 ky tu '\\n'\n\n// hoac bo sach ca dong:\nint c;\nwhile ((c = getchar()) != '\\n' && c != EOF);\n\nfgets(s, sizeof(s), stdin);"
+    },
+    {
+      "title": "Xoá '\\n' ở cuối xâu",
+      "bullets": [
+        "`fgets()` **giữ lại** ký tự `'\\n'` trong xâu đọc được",
+        "Dùng `strcspn()` của `<string.h>` để thay `'\\n'` bằng `'\\0'`",
+        "An toàn cả khi xâu không chứa `'\\n'`"
+      ],
+      "code": "fgets(s, sizeof(s), stdin);\ns[strcspn(s, \"\\n\")] = '\\0';   // xoa '\\n' cuoi xau"
+    },
+    {
+      "title": "Cách khác: scanf(\" %[^\\n]\")",
+      "bullets": [
+        "Dấu cách đầu định dạng: bỏ qua mọi khoảng trắng, kể cả enter thừa",
+        "`%[^\\n]` đọc mọi ký tự tới khi gặp enter",
+        "Nên giới hạn độ dài; nhược điểm: không đọc được dòng rỗng"
+      ],
+      "code": "char s[100];\nscanf(\" %99[^\\n]\", s);   // toi da 99 ky tu den het dong"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Trôi lệnh xảy ra khi `fgets()` đứng **ngay sau** `scanf()`",
+        "Nguyên nhân: enter của `scanf()` còn sót trong `stdin`",
+        "Khắc phục: `getchar()` / vòng lặp bỏ dòng, hoặc `scanf(\" %[^\\n]\")`",
+        "Nhớ xoá `'\\n'` cuối xâu bằng `strcspn()`",
+        "**Không dùng `gets()`**: dễ tràn mảng, đã bị loại khỏi C11"
+      ]
+    }
+  ]
+}

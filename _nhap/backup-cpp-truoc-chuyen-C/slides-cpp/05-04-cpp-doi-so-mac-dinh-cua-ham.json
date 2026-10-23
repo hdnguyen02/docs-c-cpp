@@ -1,0 +1,51 @@
+{
+  "title": "Đối Số Mặc Định Của Hàm",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Đối số mặc định giải quyết vấn đề gì?",
+      "bullets": [
+        "Cho phép gọi hàm mà **không cần truyền đủ** đối số",
+        "Giá trị mặc định được gán sẵn ngay khi khai báo hàm",
+        "Nếu lời gọi hàm có cung cấp giá trị thì **ghi đè** giá trị mặc định"
+      ]
+    },
+    {
+      "title": "Cú pháp khai báo",
+      "bullets": [
+        "Gán giá trị mặc định ngay sau tên tham số: `int c = 3`",
+        "Hàm 4 tham số, 2 tham số cuối có mặc định",
+        "Có thể gọi hàm với 2, 3 hoặc 4 đối số"
+      ],
+      "code": "int find(int a, int b, int c = 3, int d = 4){\n    return a + b + c + d;\n}"
+    },
+    {
+      "title": "Ba cách gọi cùng một hàm",
+      "bullets": [
+        "`find(1, 2)`: khuyết cả c, d ⇒ dùng mặc định c=3, d=4",
+        "`find(1, 2, 10)`: khuyết d ⇒ c bị ghi đè =10, d vẫn mặc định =4",
+        "`find(1, 2, 10, 20)`: đủ đối số ⇒ c=10, d=20, không dùng mặc định"
+      ],
+      "code": "find(1, 2);        // 1 2 3 4  -> 10\nfind(1, 2, 10);    // 1 2 10 4 -> 17\nfind(1, 2, 10, 20);// 1 2 10 20-> 33"
+    },
+    {
+      "title": "Quy tắc bắt buộc: đối số mặc định phải nằm cuối",
+      "bullets": [
+        "Không được đặt tham số thường **sau** tham số mặc định",
+        "Một khi đã khai 1 đối số mặc định, mọi tham số sau nó cũng phải mặc định",
+        "Vi phạm quy tắc này gây lỗi biên dịch"
+      ],
+      "code": "// SAI: c có mặc định nhưng d thì không\nint find(int a, int b, int c = 3, int d){ ... }\n\n// error: default argument missing for parameter 4"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Đối số mặc định **khác** đối số là hằng số",
+        "Đối số mặc định bị **ghi đè** nếu lời gọi hàm cung cấp giá trị",
+        "Mọi tham số đứng sau 1 đối số mặc định đều phải là đối số mặc định",
+        "Lỗi thường gặp: đặt tham số thường sau tham số mặc định"
+      ]
+    }
+  ]
+}

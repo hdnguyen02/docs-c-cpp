@@ -1,0 +1,58 @@
+{
+  "title": "Chuyển Đổi Chuỗi In Hoa, In Thường",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Chuyển hoa/thường giải quyết vấn đề gì?",
+      "bullets": [
+        "Đổi toàn bộ chuỗi thành **in hoa** hoặc **in thường**",
+        "Dùng `tolower()`, `toupper()` của `ctype.h` cho từng ký tự",
+        "Truyền mảng `char` vào hàm là truyền **con trỏ**: hàm sửa được chuỗi gốc",
+        "C **không có** hàm chuẩn đổi cả chuỗi (`strupr` không chuẩn)"
+      ]
+    },
+    {
+      "title": "Cài đặt bằng tolower()/toupper()",
+      "bullets": [
+        "Khai báo `char s[]` để sửa được, không dùng `char *s = \"...\"`",
+        "Ép `(unsigned char)` trước khi gọi hàm của `ctype.h`"
+      ],
+      "code": "void to_lower(char s[]){\n    for(size_t i = 0; i < strlen(s); i++)\n        s[i] = (char)tolower((unsigned char)s[i]);\n}\n\nchar s[] = \"codelab BLOG\";\nto_lower(s);\nprintf(\"%s\\n\", s);   // codelab blog"
+    },
+    {
+      "title": "Cài đặt bằng offset ASCII",
+      "bullets": [
+        "Chữ hoa và chữ thường lệch nhau **32** trong bảng ASCII",
+        "Hàm C không trả về mảng: ghi kết quả vào **mảng đích** `dst`",
+        "Nhớ đặt `'\\0'` cuối chuỗi đích"
+      ],
+      "code": "void to_lower(const char src[], char dst[]){\n    int i = 0;\n    for(; src[i] != '\\0'; i++){\n        dst[i] = src[i];\n        if(src[i] >= 'A' && src[i] <= 'Z') dst[i] += 32;\n    }\n    dst[i] = '\\0';\n}"
+    },
+    {
+      "title": "Duyệt chuỗi bằng con trỏ",
+      "bullets": [
+        "Con trỏ `p` chạy từ đầu chuỗi tới `'\\0'`",
+        "`*p` là ký tự hiện tại, sửa `*p` là sửa chuỗi"
+      ],
+      "code": "char s[] = \"codelab BLOG strING\";\nfor(char *p = s; *p != '\\0'; p++)\n    *p = (char)tolower((unsigned char)*p);\nprintf(\"Lowercase : %s\\n\", s);  // codelab blog string"
+    },
+    {
+      "title": "Hàm trả về con trỏ tới chuỗi",
+      "bullets": [
+        "Sửa tại chỗ rồi `return s`, giống `strcpy`, `strcat`",
+        "Dùng được ngay trong `printf`; `*p` tương đương `*p != '\\0'`"
+      ],
+      "code": "char *str_upper(char *s){\n    for(char *p = s; *p; p++)\n        *p = (char)toupper((unsigned char)*p);\n    return s;\n}\nprintf(\"%s\\n\", str_upper(s));   // CODELAB BLOG STRING"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Mảng truyền vào hàm là **con trỏ**, sửa trong hàm là sửa chuỗi gốc",
+        "`tolower()`/`toupper()` xử lý **từng ký tự**, ép `(unsigned char)`",
+        "Tự cài được bằng offset **32** nhưng phải kiểm tra đúng là chữ cái",
+        "Không sửa chuỗi hằng `char *s = \"...\"`; luôn kết thúc bằng `'\\0'`"
+      ]
+    }
+  ]
+}

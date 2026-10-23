@@ -1,0 +1,56 @@
+{
+  "title": "Bài Tập Thực Hành Set Trong C++",
+  "course": "STL C++",
+  "source": "",
+  "slides": [
+    {
+      "title": "Bài 1: Đếm số phần tử khác nhau trong mảng",
+      "caption": "Cho mảng A[] gồm N phần tử, đếm số giá trị khác nhau",
+      "bullets": [
+        "Đưa toàn bộ phần tử vào set — set tự loại trùng",
+        "Kết quả = `size()` của set",
+        "Độ phức tạp: O(NlogN)"
+      ],
+      "code": "int a[10] = {1,2,1,2,3,1,2,5,1,8};\nset<int> se;\nfor(int i = 0; i < 10; i++) se.insert(a[i]);\ncout << se.size(); // so gia tri khac nhau"
+    },
+    {
+      "title": "Bài 2: Truy vấn tồn tại phần tử",
+      "caption": "Với Q truy vấn, kiểm tra giá trị X có trong mảng không",
+      "bullets": [
+        "Đưa mảng vào set một lần",
+        "Mỗi truy vấn dùng `find()` của set — O(logN)",
+        "Nhanh hơn tìm kiếm tuyến tính O(N) mỗi lần"
+      ],
+      "code": "set<int> se;\nfor(int i = 0; i < n; i++) se.insert(a[i]);\nfor(int i = 0; i < Q; i++){\n    if(se.find(X[i]) != se.end()) cout << \"TIM THAY\";\n    else cout << \"KHONG TIM THAY\";\n}"
+    },
+    {
+      "title": "Bài 3: Liệt kê giá trị khác nhau theo thứ tự xuất hiện",
+      "caption": "Mỗi giá trị chỉ in 1 lần, giữ đúng thứ tự xuất hiện trong mảng",
+      "bullets": [
+        "Duyệt mảng, set đóng vai trò **tập giá trị đã in**",
+        "Gặp phần tử chưa có trong set: in ra rồi `insert()` vào set",
+        "Độ phức tạp: O(NlogN)"
+      ],
+      "code": "int a[10] = {1,8,2,1,2,3,2,5,5,8};\nset<int> se;\nfor(int i = 0; i < 10; i++){\n    if(se.find(a[i]) == se.end()){\n        cout << a[i] << \" \";\n        se.insert(a[i]);\n    }\n}\n// Output: 1 8 2 3 5"
+    },
+    {
+      "title": "Bài 4: Liệt kê giá trị khác nhau theo thứ tự tăng dần",
+      "caption": "Mỗi giá trị chỉ in 1 lần, theo thứ tự từ nhỏ tới lớn",
+      "bullets": [
+        "Đưa toàn bộ mảng vào set",
+        "Set tự loại trùng **và** tự sắp xếp tăng dần",
+        "Duyệt set để in kết quả — không cần sort thêm"
+      ],
+      "code": "int a[10] = {1,8,2,1,2,3,2,5,5,8};\nset<int> se;\nfor(int i = 0; i < 10; i++) se.insert(a[i]);\nfor(int x : se) cout << x << \" \";\n// Output: 1 2 3 5 8"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Set giải quyết gọn 2 việc: **khử trùng lặp** và **tìm kiếm nhanh**",
+        "Đưa mảng vào set khi cần: đếm phân biệt, kiểm tra tồn tại, sắp xếp không trùng",
+        "Muốn giữ **thứ tự xuất hiện** thì set chỉ dùng để đánh dấu, không duyệt trực tiếp set",
+        "Muốn **thứ tự tăng dần** thì duyệt trực tiếp set là đủ"
+      ]
+    }
+  ]
+}

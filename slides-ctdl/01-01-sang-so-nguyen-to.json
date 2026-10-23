@@ -1,0 +1,80 @@
+{
+  "title": "Sàng Số Nguyên Tố",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Bài toán: đếm số nguyên tố từ 1 tới N",
+      "bullets": [
+        "Liệt kê/đếm số nguyên tố trong đoạn [1, N], với N ≤ 10 triệu",
+        "Cách thường: kiểm tra từng số bằng hàm O(√N) → tổng **O(N√N)**",
+        "Sàng Eratosthenes hiệu quả hơn nhiều: **O(N log log N)**"
+      ]
+    },
+    {
+      "title": "Ý tưởng sàng Eratosthenes",
+      "bullets": [
+        "Bước 1: coi tất cả số từ 0 tới N đều là **số nguyên tố**",
+        "Bước 2: duyệt `i` từ 2 tới √N, nếu `i` còn là nguyên tố thì loại bội của nó",
+        "Mảng đánh dấu cần tối thiểu N + 1 phần tử",
+        "Ví dụ N = 30: chỉ cần nguyên tố 2, 3, 5 (≤ √30) là loại hết hợp số"
+      ]
+    },
+    {
+      "title": "Vì sao chỉ duyệt tới √N và bắt đầu từ i*i",
+      "bullets": [
+        "Nếu N = a * b thì ít nhất một trong a, b phải ≤ √N",
+        "Nên ước nguyên tố nhỏ nhất của hợp số N luôn nằm trong [2, √N]",
+        "Bội của `i` nhỏ hơn `i*i` đã bị loại bởi số nguyên tố nhỏ hơn `i`",
+        "Nên chỉ cần duyệt bội của `i` bắt đầu từ `i*i`, bước nhảy `i`"
+      ]
+    },
+    {
+      "title": "Cài đặt sàng cơ bản",
+      "code": "int prime[10000001]; // N = 10^7\n\nvoid sang(){\n    for(int i = 0; i <= 10000000; i++) prime[i] = 1;\n    prime[0] = prime[1] = 0;\n    for(int i = 2; i <= sqrt(10000000); i++){\n        if(prime[i]){\n            for(int j = i*i; j <= 10000000; j += i)\n                prime[j] = 0;\n        }\n    }\n}\n// prime[i] == 1  ->  i là số nguyên tố"
+    },
+    {
+      "title": "Độ phức tạp",
+      "bullets": [
+        "Sàng Eratosthenes: **O(N log log N)**",
+        "Cách thường (kiểm tra từng số): O(N√N), chậm hơn nhiều với N lớn",
+        "Đánh đổi: cần mảng đánh dấu cỡ N + 1 → giới hạn bởi bộ nhớ (~256MB)"
+      ]
+    },
+    {
+      "title": "Sàng số nguyên tố trên đoạn [L, R]",
+      "bullets": [
+        "L, R có thể rất lớn (long long), không thể cấp mảng cỡ R",
+        "Dùng mảng cỡ **R - L + 1**, chỉ số `i` ứng với giá trị `L + i`",
+        "Ý tưởng sàng giống hệt bản 1→N, chỉ đổi cách quy đổi chỉ số",
+        "Bội đầu tiên cần xét của `i`: max(i*i, bội nhỏ nhất của i mà ≥ L)"
+      ]
+    },
+    {
+      "title": "Cài đặt sàng trên đoạn",
+      "bullets": [
+        "In kết quả bắt đầu từ `max(2, L)` để không tính nhầm 0, 1 là nguyên tố"
+      ],
+      "code": "void sang(ll L, ll R){\n    int prime[R - L + 1];\n    for(ll i = L; i <= R; i++) prime[i - L] = 1;\n    for(ll i = 2; i <= sqrt(R); i++){\n        ll start = max(i*i, (L + i - 1) / i * i);\n        for(ll j = start; j <= R; j += i)\n            prime[j - L] = 0;\n    }\n    for(ll i = max(2ll, L); i <= R; i++)\n        if(prime[i - L]) cout << i << ' ';\n}"
+    },
+    {
+      "title": "Ứng dụng: ước nguyên tố nhỏ nhất & phân tích thừa số",
+      "bullets": [
+        "Sàng biến thể: `prime[i] = i` ban đầu, cập nhật `prime[j] = i` khi j là bội chưa đổi",
+        "Sau sàng, `prime[i]` chính là **ước nguyên tố nhỏ nhất** của i",
+        "Phân tích thừa số nguyên tố của nhiều số: chia liên tiếp cho `prime[i]`",
+        "Hiệu quả khi cần phân tích **nhiều số** trong đoạn, không hợp cho 1 số đơn lẻ"
+      ],
+      "code": "int prime[1000001];\nvoid sang(){\n    for(int i = 1; i <= 1000000; i++) prime[i] = i;\n    for(int i = 2; i*i <= 1000000; i++)\n        if(prime[i] == i)\n            for(int j = i*i; j <= 1000000; j += i)\n                if(prime[j] == j) prime[j] = i;\n}\n// phân tích n: while(n != 1){ p = prime[n]; n /= p; }"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Sàng Eratosthenes: O(N log log N), tối ưu hơn kiểm tra từng số O(N√N)",
+        "Chỉ cần loại bội của số nguyên tố ≤ √N, bắt đầu từ `i*i`",
+        "Sàng trên đoạn [L, R]: dùng mảng cỡ R - L + 1, không cấp mảng cỡ R",
+        "Biến thể sàng lưu ước nguyên tố nhỏ nhất → phân tích thừa số nhanh"
+      ]
+    }
+  ]
+}

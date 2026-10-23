@@ -1,0 +1,88 @@
+{
+  "title": "Truyền Mảng Vào Hàm",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Cú pháp truyền mảng vào hàm",
+      "bullets": [
+        "Tham số: `int a[]` **kèm** số phần tử `int n`",
+        "Gọi hàm chỉ ghi **tên mảng**: `tong(a, n)`",
+        "Cùng 1 hàm dùng được cho mảng có độ dài bất kỳ"
+      ],
+      "code": "int tong(int a[], int n){\n    int s = 0;\n    for(int i = 0; i < n; i++) s += a[i];\n    return s;\n}\n\nint a[5] = {10, 20, 30, 40, 50};\nprintf(\"%d\\n\", tong(a, 5));   // 150"
+    },
+    {
+      "title": "3 cách khai báo tham số tương đương",
+      "bullets": [
+        "Số trong `[]` của tham số bị trình biên dịch **bỏ qua**",
+        "`int a[]` kèm `n` là cách viết rõ ràng nhất"
+      ],
+      "code": "int tong(int a[], int n);\nint tong(int a[100], int n);   // 100 bi bo qua\nint tong(int *a, int n);       // dang con tro"
+    },
+    {
+      "title": "Mảng suy biến thành con trỏ",
+      "bullets": [
+        "Biến `int` truyền **tham trị**: hàm sửa bản sao",
+        "Mảng: C chỉ truyền **địa chỉ phần tử đầu** (array decay)",
+        "Hàm sửa mảng ⇒ **mảng gốc thay đổi** theo",
+        "In `%p` trong `main` và trong hàm: cùng một địa chỉ"
+      ],
+      "code": "void doiBien(int x){ x = 100; }\nvoid doiMang(int a[], int n){\n    for(int i = 0; i < n; i++) a[i] *= 2;\n}\n\nint x = 5, a[4] = {1, 2, 3, 4};\ndoiBien(x);      // x van la 5\ndoiMang(a, 4);   // a = 2 4 6 8"
+    },
+    {
+      "title": "Truyền một phần mảng",
+      "bullets": [
+        "`a + k` là địa chỉ của `a[k]`",
+        "Hàm coi `a + k` như mảng mới bắt đầu từ `a[k]`"
+      ],
+      "code": "tong(a + 1, 3);   // tong a[1], a[2], a[3]"
+    },
+    {
+      "title": "Bẫy sizeof bên trong hàm",
+      "bullets": [
+        "Trong hàm, tham số `a` là **con trỏ**, không phải mảng",
+        "`sizeof(a)` = kích thước con trỏ (8 byte trên máy 64-bit)",
+        "gcc `-Wall` cảnh báo `-Wsizeof-array-argument`",
+        "Chỉ tính `sizeof(a)/sizeof(a[0])` **ở nơi khai báo** rồi truyền `n`"
+      ],
+      "code": "void kiemTra(int a[]){\n    printf(\"%zu\\n\", sizeof(a));   // 8  (SAI y do)\n}\n\nint a[5] = {1, 2, 3, 4, 5};\nprintf(\"%zu\\n\", sizeof(a));       // 20\nint n = sizeof(a) / sizeof(a[0]);  // 5 -> truyen vao ham"
+    },
+    {
+      "title": "Tham số const int a[]",
+      "bullets": [
+        "Hàm chỉ **đọc** mảng ⇒ khai báo `const int a[]`",
+        "Lỡ gán `a[0] = 0;` ⇒ **lỗi biên dịch** read-only location",
+        "Hàm cần sửa (nhập, sắp xếp, đảo) thì dùng `int a[]`"
+      ],
+      "code": "int timMax(const int a[], int n){\n    int res = a[0];\n    for(int i = 1; i < n; i++)\n        if(a[i] > res) res = a[i];\n    return res;\n}"
+    },
+    {
+      "title": "Hàm nhập và xuất mảng",
+      "bullets": [
+        "Hàm nhập đổi cả `n` ⇒ truyền con trỏ `int *n`",
+        "Trong hàm: `scanf(\"%d\", n)` không cần `&`, dùng giá trị qua `*n`",
+        "Hàm xuất chỉ đọc: `const int a[]`, `int n`"
+      ],
+      "code": "void nhapMang(int a[], int *n){\n    scanf(\"%d\", n);\n    for(int i = 0; i < *n; i++) scanf(\"%d\", &a[i]);\n}\nvoid xuatMang(const int a[], int n){\n    for(int i = 0; i < n; i++) printf(\"%d \", a[i]);\n}\n\nint a[1000], n;\nnhapMang(a, &n);\nxuatMang(a, n);"
+    },
+    {
+      "title": "Hàm không trả về được mảng",
+      "bullets": [
+        "C **không** cho hàm trả về một mảng",
+        "Khai báo mảng kết quả ở nơi gọi, truyền vào để hàm ghi lên"
+      ],
+      "code": "void binhPhuong(const int a[], int kq[], int n){\n    for(int i = 0; i < n; i++) kq[i] = a[i] * a[i];\n}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Truyền mảng = truyền **địa chỉ**, hàm sửa trực tiếp mảng gốc",
+        "Luôn truyền kèm `n`; **không** dùng `sizeof` với tham số mảng",
+        "Hàm chỉ đọc dùng `const int a[]`",
+        "Hàm cần đổi số phần tử nhận `int *n`",
+        "Muốn \"trả về\" mảng: truyền mảng kết quả làm tham số"
+      ]
+    }
+  ]
+}

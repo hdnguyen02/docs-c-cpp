@@ -1,0 +1,68 @@
+{
+  "title": "Mảng Đánh Dấu",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Ý tưởng: dùng chỉ số mảng để đánh dấu giá trị",
+      "bullets": [
+        "Bài toán: đếm/liệt kê giá trị **khác nhau** trong mảng",
+        "Thay vì 2 vòng `for` lồng nhau (chậm), dùng 1 mảng phụ `mark[]`",
+        "Chỉ số của `mark[]` chính là **giá trị** cần đánh dấu",
+        "Còn gọi vui là kỹ thuật \"lùa bò vào chuồng\""
+      ]
+    },
+    {
+      "title": "Cách hoạt động",
+      "bullets": [
+        "Khai báo `mark[]` **toàn cục** nên tự khởi tạo toàn 0",
+        "Gặp giá trị `a[i]` trong mảng gốc thì gán `mark[a[i]] = 1`",
+        "Duyệt lại `mark[]`, ô nào = 1 nghĩa là giá trị đó đã xuất hiện",
+        "Đếm giá trị khác nhau = số ô `mark[i] == 1`"
+      ],
+      "code": "int mark[1000001]; // toan cuc -> tu bang 0\n\nint a[8] = {3, 1, 3, 0, 2, 4, 1, 6};\nfor (int i = 0; i < n; i++) {\n    mark[a[i]] = 1;         // danh dau gia tri a[i]\n}\nint dem = 0;\nfor (int i = 0; i <= 1000000; i++) {\n    if (mark[i] == 1) ++dem;\n}\n// So luong phan tu khac nhau: 6"
+    },
+    {
+      "title": "Liệt kê giá trị khác nhau theo thứ tự tăng dần",
+      "bullets": [
+        "Đánh dấu như trên, đồng thời lưu `max_val` để giới hạn vòng duyệt",
+        "Duyệt `mark[]` từ 0 đến `max_val`, in các chỉ số được đánh dấu"
+      ],
+      "code": "int max_val = -1000000000;\nfor (int i = 0; i < n; i++) {\n    mark[a[i]] = 1;\n    if (a[i] > max_val) max_val = a[i];\n}\nfor (int i = 0; i <= max_val; i++) {\n    if (mark[i] == 1) printf(\"%d \", i);\n}\n// 0 1 2 3 4 7 12 14"
+    },
+    {
+      "title": "Liệt kê giá trị khác nhau theo thứ tự xuất hiện",
+      "bullets": [
+        "Duyệt lại **mảng gốc** `a[]` thay vì `mark[]`",
+        "In `a[i]` nếu còn đánh dấu, rồi **bỏ đánh dấu ngay** để tránh in trùng"
+      ],
+      "code": "for (int i = 0; i < n; i++) mark[a[i]] = 1;\n\nfor (int i = 0; i < n; i++) {\n    if (mark[a[i]] == 1) {\n        printf(\"%d \", a[i]);\n        mark[a[i]] = 0; // bo danh dau de khong in trung\n    }\n}\n// Vi du a[] = {3,1,3,0,2,4,1,14,12,7}\n// -> 3 1 0 2 4 14 12 7"
+    },
+    {
+      "title": "Bài toán tần suất: đếm số lần xuất hiện",
+      "bullets": [
+        "Đổi vai trò `mark[]` từ **đánh dấu (0/1)** thành **bộ đếm**",
+        "Cập nhật bằng `mark[a[i]]++` thay vì gán 1"
+      ],
+      "code": "int max_val = -1000000000;\nfor (int i = 0; i < n; i++) {\n    mark[a[i]]++;\n    if (a[i] > max_val) max_val = a[i];\n}\nfor (int i = 0; i <= max_val; i++) {\n    if (mark[i]) printf(\"%d xuat hien %d lan\\n\", i, mark[i]);\n}"
+    },
+    {
+      "title": "Điều kiện áp dụng và giới hạn",
+      "bullets": [
+        "**Không dùng được** với giá trị âm (chỉ số mảng không âm)",
+        "**Không dùng được** nếu giá trị cần đánh dấu vượt kích thước mảng khai báo",
+        "Thường chỉ áp dụng khi phần tử nằm trong đoạn nhỏ, ví dụ [0, 10^7]",
+        "Khai báo `mark[]` đủ lớn để tránh lỗi tràn/truy cập ngoài vùng nhớ"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Mảng đánh dấu dùng **chỉ số làm giá trị**, ô nhớ làm cờ hoặc bộ đếm",
+        "Duyệt `mark[]` để lấy thứ tự tăng dần, duyệt `a[]` để lấy thứ tự xuất hiện",
+        "Đổi `mark[a[i]] = 1` thành `mark[a[i]]++` để chuyển từ đếm khác nhau sang đếm tần suất",
+        "Chỉ dùng được khi miền giá trị không âm và đủ nhỏ để cấp phát mảng"
+      ]
+    }
+  ]
+}

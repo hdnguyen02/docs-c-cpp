@@ -1,0 +1,84 @@
+{
+  "title": "Hằng Số const Và Kiểu bool",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Hằng số literal",
+      "bullets": [
+        "**Literal**: giá trị viết trực tiếp trong code, mỗi literal có kiểu xác định",
+        "Số nguyên: thập phân `28`, bát phân `034`, thập lục phân `0x1C`",
+        "Số thực mặc định **double**, hậu tố `f` cho **float**, viết khoa học `1e9`",
+        "Ký tự `'A'` trong C có kiểu **int**; chuỗi `\"abc\"` kết thúc bằng `'\\0'`"
+      ],
+      "code": "printf(\"%d %d %d\\n\", 28, 034, 0x1C);  // 28 28 28\nprintf(\"%u\\n\", 4000000000U);           // unsigned int\nprintf(\"%lld\\n\", 1000000000000000LL);  // long long\nprintf(\"%f %f\\n\", 3.14, 2.5f);         // double, float\nprintf(\"%c %d\\n\", 'A', 'A');           // A 65"
+    },
+    {
+      "title": "Hậu tố và kích thước literal",
+      "bullets": [
+        "Hậu tố: `U` unsigned, `L` long, `LL` long long, `ULL`",
+        "`sizeof` trả kiểu **size_t**, in bằng `%zu`",
+        "`sizeof('A')` là **4** vì hằng ký tự trong C là `int`"
+      ],
+      "code": "printf(\"%zu\\n\", sizeof(28));     // 4\nprintf(\"%zu\\n\", sizeof(28LL));   // 8\nprintf(\"%zu\\n\", sizeof(3.14));   // 8\nprintf(\"%zu\\n\", sizeof(3.14f));  // 4\nprintf(\"%zu\\n\", sizeof('A'));    // 4"
+    },
+    {
+      "title": "Từ khóa const",
+      "bullets": [
+        "`const` biến biến thành **chỉ đọc**, chỉ gán một lần lúc khai báo",
+        "Cú pháp: `const kiểu tên_hằng = giá_trị;`, quy ước tên **in hoa**",
+        "Gán lại hằng: lỗi `assignment of read-only variable`",
+        "`const int x;` không khởi tạo: C chấp nhận nhưng mang **giá trị rác**"
+      ],
+      "code": "const double PI = 3.14159;\nconst int SO_NGAY_TRONG_TUAN = 7;\ndouble r = 2.0;\nprintf(\"%.2f\\n\", PI * r * r);   // 12.57\n\nconst int MAX = 100;\nMAX = 200;   // Loi bien dich"
+    },
+    {
+      "title": "So sánh #define và const",
+      "bullets": [
+        "`#define`: preprocessor thay văn bản, không kiểu, hiệu lực tới cuối file",
+        "`const`: compiler xử lý, có kiểu, tuân theo scope, debug được",
+        "`#define` là **hằng số biên dịch**: làm kích thước mảng toàn cục, nhãn case",
+        "`const int` trong C **không** làm kích thước mảng toàn cục được"
+      ],
+      "code": "#define N 5\nint a[N];            // Dung\n\nconst int M = 5;\nint b[M];            // Loi: variably modified 'b' at file scope"
+    },
+    {
+      "title": "Khi nào dùng gì",
+      "bullets": [
+        "Dùng **const** cho giá trị có kiểu dùng trong tính toán",
+        "Dùng **#define** hoặc **enum** khi cần hằng số biên dịch",
+        "Đặt tên hằng thay cho con số \"trơ trọi\" (magic number)",
+        "Đổi giá trị chỉ cần sửa **một chỗ** duy nhất"
+      ]
+    },
+    {
+      "title": "Kiểu bool và stdbool.h",
+      "bullets": [
+        "C gốc không có bool: quy ước **0 là sai, khác 0 là đúng**",
+        "Từ C99 có `_Bool`; `stdbool.h` định nghĩa `bool`, `true` (1), `false` (0)",
+        "Không có đặc tả riêng: in bằng `%d`, hoặc dùng toán tử 3 ngôi",
+        "Toán tử so sánh, logic trả về **int** 1 hoặc 0"
+      ],
+      "code": "#include <stdbool.h>\n\nbool a = true, b = false;\nprintf(\"%d %d\\n\", a, b);                // 1 0\nprintf(\"%zu\\n\", sizeof(bool));          // 1\nbool c = 10 > 5;\nprintf(\"%s\\n\", c ? \"true\" : \"false\");  // true"
+    },
+    {
+      "title": "Chuyển giá trị sang bool",
+      "bullets": [
+        "Mọi giá trị **khác 0** (số âm, 0.5...) thành **1**",
+        "Chỉ giá trị **0** thành **0**",
+        "Khác `int`: `int t = 0.5;` cho t bằng 0"
+      ],
+      "code": "bool x = 100;\nbool y = -5;\nbool z = 0;\nbool t = 0.5;\nprintf(\"%d %d %d %d\\n\", x, y, z, t);   // 1 1 0 1"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Literal có kiểu theo cách viết: tiền tố `0`/`0x`, hậu tố `U`/`L`/`LL`/`f`",
+        "`const` tạo biến chỉ đọc, luôn **khởi tạo ngay** khi khai báo",
+        "Kích thước mảng toàn cục, nhãn case: dùng `#define`/`enum`, không dùng `const`",
+        "Dùng `bool`, `true`, `false` phải `#include <stdbool.h>`",
+        "Gán vào bool: khác 0 thành 1, bằng 0 thành 0"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "title": "Biến Và Từ Khóa",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Khai báo biến",
+      "bullets": [
+        "**Biến** (variable) dùng để lưu trữ giá trị cho bài toán",
+        "Cần xác định: kiểu dữ liệu, tên biến, giá trị khởi tạo",
+        "Không khởi tạo thì biến có giá trị **ngẫu nhiên**",
+        "Cú pháp: `[Kiểu dữ liệu] [Tên biến];`"
+      ],
+      "code": "int a = 28;\nlong long b = 282828282828282;\nfloat c = 3.8912;\ndouble d = 10.8912781;\nchar kitu = '@';\nbool check = true;         // cần <stdbool.h>"
+    },
+    {
+      "title": "In giá trị biến bằng printf",
+      "bullets": [
+        "Đặt **đặc tả** đúng kiểu vào chuỗi, truyền biến phía sau",
+        "`%d` int, `%lld` long long, `%f` float/double, `%c` char",
+        "`%f` mặc định in 6 chữ số thập phân; `bool` in ra 1/0"
+      ],
+      "code": "printf(\"Gia tri cua a : %d\\n\", a);       // 28\nprintf(\"Gia tri cua b : %lld\\n\", b);     // 282828282828282\nprintf(\"Gia tri cua d : %f\\n\", d);       // 10.891278\nprintf(\"Gia tri cua kitu : %c\\n\", kitu); // @\nprintf(\"Gia tri cua check : %d\\n\", check); // 1"
+    },
+    {
+      "title": "Khai báo nhiều biến cùng dòng",
+      "bullets": [
+        "Nhiều biến **cùng kiểu dữ liệu** có thể khai báo chung 1 dòng",
+        "Ngăn cách các biến bằng dấu phẩy"
+      ],
+      "code": "int a = 10, b = 20, c = 30;\nchar x = '@', y = '#', z = '$';\nprintf(\"%d %d %d\\n\", a, b, c);   // 10 20 30\nprintf(\"%c %c %c\\n\", x, y, z);   // @ # $"
+    },
+    {
+      "title": "Quy tắc đặt tên biến",
+      "bullets": [
+        "Chỉ gồm chữ cái, chữ số, `_`; không bắt đầu bằng **chữ số**",
+        "Không chứa dấu cách hoặc ký tự đặc biệt",
+        "Không trùng **keyword**: `int`, `for`, `return`...",
+        "Không đặt 2 biến cùng tên trong cùng phạm vi",
+        "**Phân biệt hoa/thường**: `tech28` khác `Tech28`"
+      ]
+    },
+    {
+      "title": "Cách đặt tên biến rõ nghĩa",
+      "bullets": [
+        "Không có quy chuẩn bắt buộc, nên đặt ngắn gọn, có ý nghĩa",
+        "Viết hoa chữ đầu mỗi từ: `BanKinh`, `ChuVi`, `DienTich`",
+        "Kiểu gạch dưới: `ban_kinh`, `chu_vi`, `dien_tich`",
+        "Tránh trùng tên hàm thư viện: `printf`, `scanf`, `sqrt`"
+      ]
+    },
+    {
+      "title": "Keywords (từ khóa) trong C",
+      "bullets": [
+        "Từ khoá định nghĩa sẵn trong C, không dùng làm tên biến",
+        "C11 có 44 từ khoá, ít hơn C++ rất nhiều",
+        "`printf`, `scanf`, `main` là tên hàm, **không phải** từ khoá",
+        "`bool`, `true`, `false` đến từ `<stdbool.h>` (C23 mới là từ khoá)"
+      ],
+      "code": "auto break case char const continue default do double\nelse enum extern float for goto if inline int long\nregister restrict return short signed sizeof static\nstruct switch typedef union unsigned void volatile while\n_Alignas _Alignof _Atomic _Bool _Complex _Generic\n_Imaginary _Noreturn _Static_assert _Thread_local"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Biến cần đủ 3 yếu tố: kiểu dữ liệu, tên, giá trị khởi tạo",
+        "In biến bằng `printf` với đặc tả đúng kiểu: `%d`, `%lld`, `%f`, `%c`",
+        "Tên biến không trùng keyword, không bắt đầu bằng số",
+        "C **phân biệt hoa thường** trong tên biến"
+      ]
+    }
+  ]
+}

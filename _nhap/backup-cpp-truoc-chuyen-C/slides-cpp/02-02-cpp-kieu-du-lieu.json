@@ -1,0 +1,54 @@
+{
+  "title": "Kiểu Dữ Liệu",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Kiểu dữ liệu số nguyên",
+      "bullets": [
+        "Dùng để lưu số nguyên, kích thước byte khác nhau tuỳ kiểu",
+        "Kiểu **có dấu** dùng 1 bit lưu dấu nên phạm vi nhỏ hơn không dấu",
+        "Thường chỉ dùng `int` và `long long`, ít khi dùng `short`"
+      ],
+      "code": "short              2 byte   -32,768 .. 32,767\nunsigned short     2 byte   0 .. 65,535\nint                4 byte   -2,147,483,648 .. 2,147,483,647\nunsigned int       4 byte   0 .. 4,294,967,295\nlong long          8 byte   -9223372036854775808 .. 9223372036854775807\nunsigned long long 8 byte   0 .. 18446744073709551615"
+    },
+    {
+      "title": "Lưu ý khi dùng số nguyên",
+      "bullets": [
+        "Không lưu được **phần thập phân**",
+        "Bị **tràn số** nếu gán giá trị vượt phạm vi",
+        "Số nguyên có dấu K bit: lưu từ -2^(K-1) đến 2^(K-1) - 1",
+        "Số nguyên không dấu K bit: lưu từ 0 đến 2^K - 1",
+        "Trong khoảng ±2.10^9 dùng `int`, ngoài khoảng đó dùng `long long`"
+      ]
+    },
+    {
+      "title": "Kiểu dữ liệu số thực",
+      "bullets": [
+        "3 kiểu: `float`, `double`, `long double`",
+        "Chọn kiểu theo **độ chính xác** cần thiết",
+        "Có sai số, không nên dùng để lưu số nguyên",
+        "Thường dùng `double` khi cần giữ phần thập phân"
+      ],
+      "code": "float        4 byte    6 - 9 chữ số thập phân\ndouble       8 byte    15 - 18 chữ số thập phân\nlong double  16 byte   33 - 36 chữ số thập phân"
+    },
+    {
+      "title": "Kiểu ký tự và kiểu đúng sai",
+      "bullets": [
+        "`char` lưu 1 ký tự, thực chất lưu số nguyên (mã ASCII)",
+        "`unsigned char` lưu ký tự với phạm vi 0 → 255",
+        "`bool` lưu **true/false**, kích thước 1 byte"
+      ],
+      "code": "char           1 byte   Ký tự hoặc số nguyên   -128 .. 127\nunsigned char  1 byte   Ký tự hoặc số nguyên   0 .. 255\nbool           1 byte   true / false"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Chọn kiểu nguyên theo phạm vi giá trị: `int` hay `long long`",
+        "Số thực có sai số, chọn `double` khi cần độ chính xác cao",
+        "`char` vừa lưu ký tự vừa lưu được số nguyên nhỏ",
+        "`bool` chỉ có 2 giá trị true/false, in ra là 1/0"
+      ]
+    }
+  ]
+}

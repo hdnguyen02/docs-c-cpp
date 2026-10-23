@@ -1,0 +1,61 @@
+{
+  "title": "Chương Trình Hello World",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Chương trình Hello World",
+      "bullets": [
+        "Chương trình đơn giản nhất khi học một ngôn ngữ mới",
+        "Giúp hiểu **cấu trúc** cơ bản của chương trình C",
+        "Lưu mã nguồn vào file đuôi `.c`, ví dụ `hello.c`"
+      ],
+      "code": "#include <stdio.h>\n\nint main(){\n    printf(\"Hello World !\\n\");\n    printf(\"codelab tutorial !\\n\");\n    return 0;\n}\n// Hello World !\n// codelab tutorial !"
+    },
+    {
+      "title": "2 phần chính của chương trình",
+      "bullets": [
+        "**Thư viện**: `#include <stdio.h>` nạp công cụ nhập/xuất chuẩn",
+        "Quên `#include` thì báo `implicit declaration of function 'printf'`",
+        "C **không có namespace**, không có `using namespace std;`",
+        "**Hàm main**: nơi chương trình bắt đầu chạy, thiếu là không chạy được"
+      ]
+    },
+    {
+      "title": "printf: in nội dung ra màn hình",
+      "bullets": [
+        "Nội dung đặt trong `\" \"`, bên trong cặp ngoặc tròn",
+        "`printf` **không tự xuống dòng**, phải thêm `\\n`",
+        "Đặc tả `%s` thay bằng đoạn text truyền phía sau"
+      ],
+      "code": "printf(\"Hello\\nWorld !\\n\");\nprintf(\"codelab\\ntutorial !\\nC\\nJava\\n\");\n\nprintf(\"Text1\");\nprintf(\" @ \");\nprintf(\"Text 2\");\nprintf(\"-Text3.codelab!\\n\");\nprintf(\"%s @ %s-%s.%s\\n\", \"Text1\", \"Text 2\", \"Text3\", \"codelab!\");\n// Text1 @ Text 2-Text3.codelab!  (in 2 lần)"
+    },
+    {
+      "title": "puts: in và tự xuống dòng",
+      "bullets": [
+        "`puts` in một đoạn text rồi **tự động xuống dòng**",
+        "Không cần `\\n`, không dùng được đặc tả như `%s`"
+      ],
+      "code": "puts(\"Hello\");\nputs(\"codelab\");\nprintf(\"@\\n\");\nputs(\"C tutorial\");\n// Hello\n// codelab\n// @\n// C tutorial"
+    },
+    {
+      "title": "Câu lệnh return 0",
+      "bullets": [
+        "Đặt cuối hàm `main`, là giá trị trả về khi chạy xong",
+        "`return 0` nghĩa là chương trình chạy đúng, không lỗi",
+        "Chương trình **kết thúc ngay** khi gặp `return` trong `main`",
+        "Giá trị trả về khác 0 thường báo hiệu có lỗi runtime"
+      ],
+      "code": "int main(){\n    printf(\"hello codelab !\\n\");\n    return 0;\n    printf(\"C tutorial !\\n\");  // không bao giờ chạy tới\n    return 0;\n}\n// Output: hello codelab !"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Chương trình C gồm **thư viện** (`#include <stdio.h>`) và **hàm main**",
+        "`printf` không tự xuống dòng, cần `\\n`; `puts` tự xuống dòng",
+        "`return 0;` kết thúc `main` ngay lập tức, code sau bị bỏ qua",
+        "C không có `cout`, `endl`, `namespace` như C++"
+      ]
+    }
+  ]
+}

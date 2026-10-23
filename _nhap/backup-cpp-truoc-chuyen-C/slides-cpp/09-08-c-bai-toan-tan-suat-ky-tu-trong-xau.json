@@ -1,0 +1,54 @@
+{
+  "title": "Bài Toán Tần Suất Ký Tự Trong Xâu",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Đếm tần suất ký tự - 2 cách",
+      "bullets": [
+        "**Mảng đánh dấu**: dùng mã ASCII (0-255) làm chỉ số, **O(N)**",
+        "**map<char,int>**: key là ký tự, value là tần suất, **O(NlogN)**",
+        "Mảng đánh dấu nhanh hơn map"
+      ]
+    },
+    {
+      "title": "Đếm bằng mảng đánh dấu",
+      "code": "int cnt[256] = {0};\nfor(int i = 0; i < s.size(); i++)\n    cnt[s[i]]++;\n// 'a' co ma ASCII 97 -> cnt[97] la tan suat cua 'a'\nfor(int i = 0; i < 256; i++)\n    if(cnt[i] != 0)\n        cout << (char)i << \" xuat hien \" << cnt[i] << \"lan\\n\";"
+    },
+    {
+      "title": "Đếm bằng map<char,int>",
+      "code": "map<char, int> mp;\nfor(int i = 0; i < s.size(); i++)\n    mp[s[i]]++;\nfor(pair<char,int> it : mp)\n    cout << it.first << \" xuat hien \" << it.second << \" lan\\n\";"
+    },
+    {
+      "title": "Bài tập: đếm ký tự khác nhau",
+      "bullets": [
+        "Đánh dấu ký tự xuất hiện = 1, rồi đếm số ô khác 0"
+      ],
+      "code": "int cnt[256] = {0};\nfor(char c : s) cnt[c] = 1;\nint dem = 0;\nfor(int i = 0; i < 256; i++) dem += cnt[i];\n// s = \"codelab codelab aaa\" -> dem = 8"
+    },
+    {
+      "title": "Bài tập: liệt kê theo thứ tự xuất hiện",
+      "bullets": [
+        "Duyệt xâu gốc thay vì duyệt bảng ASCII",
+        "Sau khi in, gán tần suất về **0** để tránh in lại"
+      ],
+      "code": "int cnt[256] = {0};\nfor(char c : s) cnt[c]++;\nfor(char c : s){\n    if(cnt[c] != 0){\n        cout << c << \" xuat hien \" << cnt[c] << \" lan\\n\";\n        cnt[c] = 0;\n    }\n}"
+    },
+    {
+      "title": "Bài tập: kiểm tra xâu pangram",
+      "bullets": [
+        "Pangram: chứa đủ **a-z** không phân biệt hoa thường"
+      ],
+      "code": "int cnt[256] = {0};\nfor(char c : s) cnt[tolower(c)]++;\nbool ok = true;\nfor(int i = 'a'; i <= 'z'; i++)\n    if(cnt[i] == 0){ ok = false; break; }\n// ok == true neu la pangram"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Mảng đánh dấu 256 phần tử dùng **mã ASCII** làm chỉ số",
+        "Mảng đánh dấu **O(N)** nhanh hơn map **O(NlogN)**",
+        "Reset tần suất về 0 sau khi in để tránh lặp lại",
+        "Pangram: kiểm tra đủ 26 chữ cái a-z"
+      ]
+    }
+  ]
+}

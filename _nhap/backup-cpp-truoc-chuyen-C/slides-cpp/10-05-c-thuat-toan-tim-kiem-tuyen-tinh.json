@@ -1,0 +1,44 @@
+{
+  "title": "Thuật Toán Tìm Kiếm Tuyến Tính",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Linear search giải quyết vấn đề gì?",
+      "bullets": [
+        "Tìm kiếm phần tử X có xuất hiện trong mảng A[] không",
+        "Thuật toán tìm kiếm **đơn giản nhất**",
+        "**Không đòi hỏi** mảng phải sắp xếp (khác binary search)"
+      ]
+    },
+    {
+      "title": "Ý tưởng thuật toán",
+      "bullets": [
+        "Duyệt **tuần tự** từng phần tử trong mảng",
+        "Gặp phần tử bằng X → kết luận **tìm thấy**",
+        "Duyệt hết mảng không gặp → kết luận **không tìm thấy**",
+        "Độ phức tạp: **O(N)**"
+      ]
+    },
+    {
+      "title": "Code tìm kiếm tuyến tính",
+      "code": "bool linear_search(int a[], int n, int x){\n    for(int i = 0; i < n; i++)\n        if(a[i] == x) return true;\n    return false;\n}"
+    },
+    {
+      "title": "Biến thể: vị trí đầu tiên của X",
+      "code": "int firstPos(int a[], int n, int x){\n    for(int i = 0; i < n; i++)\n        if(a[i] == x) return i;\n    return -1;   // khong tim thay\n}\n// a={6,1,2,4,3,10,9,3,8,6}, x=3 -> vi tri 4"
+    },
+    {
+      "title": "Biến thể: đếm số lần xuất hiện",
+      "code": "int count(int a[], int n, int x){\n    int res = 0;\n    for(int i = 0; i < n; i++)\n        if(a[i] == x) ++res;\n    return res;\n}\n// a={6,1,2,4,3,10,9,3,8,6}, x=3 -> res = 2"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Linear search không cần mảng đã sắp xếp, độ phức tạp **O(N)**",
+        "Biến thể: vị trí đầu tiên, vị trí cuối cùng, đếm số lần xuất hiện",
+        "Đơn giản nhưng chậm hơn binary search với mảng lớn đã sắp xếp"
+      ]
+    }
+  ]
+}

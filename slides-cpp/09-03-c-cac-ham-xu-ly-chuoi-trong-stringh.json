@@ -1,0 +1,79 @@
+{
+  "title": "Các Hàm Xử Lý Chuỗi Trong string.h",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Xâu trong C và thư viện string.h",
+      "bullets": [
+        "Xâu là **mảng `char`** kết thúc bằng ký tự `'\\0'`",
+        "Các hàm `<string.h>` dựa vào `'\\0'` để biết xâu kết thúc ở đâu",
+        "Hàm **không tự cấp phát**: mảng đích phải đủ lớn"
+      ]
+    },
+    {
+      "title": "strlen(): độ dài xâu",
+      "bullets": [
+        "Trả về số ký tự, **không tính** `'\\0'`; kiểu `size_t`, in bằng `%zu`",
+        "Đếm từng ký tự → O(N): lưu vào biến, đừng gọi trong điều kiện `for`",
+        "Xâu rỗng: `s[0] == '\\0'`; `sizeof` là kích thước **cả mảng**"
+      ],
+      "code": "char s[100] = \"codelab\";\nprintf(\"%zu\\n\", strlen(s));   // 7\nprintf(\"%zu\\n\", sizeof(s));   // 100\ns[0] = '\\0';                   // xau rong"
+    },
+    {
+      "title": "strcpy() / strncpy(): gán và tách xâu",
+      "bullets": [
+        "Không gán xâu bằng `=`; dùng `strcpy(dest, src)`",
+        "`strncpy(dest, src, n)` có thể **không thêm `'\\0'`** → tự thêm",
+        "`s + k` trỏ tới chỉ số k → lấy xâu con từ k tới hết"
+      ],
+      "code": "strcpy(s, \"codelab.dev\");\nstrcpy(sub1, s + 2);        // \"delab.dev\"\nstrncpy(sub2, s, 4);\nsub2[4] = '\\0';             // \"code\""
+    },
+    {
+      "title": "strcat() / strncat(): nối xâu",
+      "bullets": [
+        "`strcat(dest, src)` nối toàn bộ src vào cuối dest",
+        "`strncat(dest, src, n)` nối tối đa n ký tự, luôn thêm `'\\0'`",
+        "Thêm/xoá 1 ký tự cuối: thao tác trực tiếp với `'\\0'`"
+      ],
+      "code": "char s[100] = \"codelab\";\nchar t[] = \"0123456789\";\nstrcat(s, \"blog\");             // codelabblog\nstrncat(s, t + 1, 5);          // codelabblog12345\n\nsize_t n = strlen(s);\ns[n] = '@'; s[n + 1] = '\\0';   // them ky tu\ns[strlen(s) - 1] = '\\0';       // xoa ky tu cuoi"
+    },
+    {
+      "title": "strcmp() / strncmp(): so sánh",
+      "bullets": [
+        "`==` giữa 2 mảng chỉ so sánh **địa chỉ**, không so nội dung",
+        "`strcmp(a, b)`: 0 nếu bằng, âm nếu a đứng trước, dương nếu sau",
+        "`strncmp(a, b, n)` chỉ so n ký tự đầu"
+      ],
+      "code": "if (strcmp(a, b) == 0) printf(\"Bang nhau\\n\");\nif (strncmp(\"codelab.dev\", \"code\", 4) == 0)\n    printf(\"Bat dau bang code\\n\");"
+    },
+    {
+      "title": "strchr() / strrchr() / strstr(): tìm kiếm",
+      "bullets": [
+        "`strchr` tìm ký tự **đầu tiên**, `strrchr` tìm ký tự **cuối cùng**",
+        "`strstr(s, t)` tìm **xâu con** t trong s",
+        "Trả về **con trỏ** hoặc `NULL`; chỉ số = `p - s`"
+      ],
+      "code": "char s[] = \"codelab.dev codelab\";\nchar *p = strchr(s, 'e');       // chi so 3\nchar *q = strrchr(s, 'e');      // chi so 9\nchar *r = strstr(s, \"codelab\"); // chi so 0\nif (r != NULL) r = strstr(r + 1, \"codelab\");   // 12\nif (strchr(s, 'z') == NULL) printf(\"Khong co\\n\");"
+    },
+    {
+      "title": "memset() / memcpy() / memmove()",
+      "bullets": [
+        "Làm việc theo **từng byte**, không quan tâm `'\\0'`",
+        "`memcpy` cấm vùng nhớ chồng nhau; `memmove` thì **an toàn**",
+        "Dùng `memmove` để **chèn** hoặc **xoá** đoạn giữa xâu"
+      ],
+      "code": "memset(a, '*', 5); a[5] = '\\0';          // *****\n\nchar s[100] = \"codelab\";                 // chen \"####\" tai 2\nmemmove(s + 6, s + 2, strlen(s) - 2 + 1);\nmemcpy(s + 2, \"####\", 4);                // co####delab\n\nchar t[100] = \"codelab.dev\";             // xoa 4 ky tu tu 2\nmemmove(t + 2, t + 6, strlen(t) - 6 + 1); // cob.dev\nt[3] = '\\0';                             // cob"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Luôn đảm bảo mảng đích đủ chỗ, kể cả ký tự `'\\0'`",
+        "Gán dùng `strcpy`, so sánh dùng `strcmp` — không dùng `=`, `==`",
+        "Hàm tìm kiếm trả `NULL` khi không thấy: phải kiểm tra",
+        "`strncpy` có thể thiếu `'\\0'`; dịch chuyển chồng nhau dùng `memmove`",
+        "`memset` với mảng số chỉ đúng khi gán 0 (hoặc -1)"
+      ]
+    }
+  ]
+}

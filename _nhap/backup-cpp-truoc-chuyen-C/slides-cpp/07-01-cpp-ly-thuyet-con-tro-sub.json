@@ -1,0 +1,67 @@
+{
+  "title": "Lý Thuyết Con Trỏ",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Con trỏ là gì?",
+      "bullets": [
+        "Con trỏ (**pointer**) là biến, nhưng giá trị nó lưu là **địa chỉ** của biến khác",
+        "Mỗi biến trong chương trình có một địa chỉ vùng nhớ cố định",
+        "Con trỏ kiểu `int` chỉ lưu được địa chỉ của biến `int`"
+      ],
+      "code": "int *ptr;        // con tro kieu int\nlong long *ptr2; // con tro kieu long long\nchar *ptr3;      // con tro kieu char"
+    },
+    {
+      "title": "Phân biệt: địa chỉ, giá trị, `&` và `*`",
+      "bullets": [
+        "`&N` = **địa chỉ** của biến N (toán tử **lấy địa chỉ**)",
+        "`ptr` (khi đã trỏ tới N) = giá trị con trỏ = chính địa chỉ đó",
+        "`*ptr` = **giá trị** tại địa chỉ mà `ptr` trỏ tới (toán tử **giải tham chiếu**)",
+        "Dấu `*` khi **khai báo** khác dấu `*` khi **giải tham chiếu**"
+      ],
+      "code": "int N = 1000;\nint *ptr = &N;   // ptr luu dia chi cua N\n\n// &N   -> dia chi cua N,        vd 0x6ffe1c\n// ptr  -> gia tri cua ptr = dia chi cua N = 0x6ffe1c\n// *ptr -> gia tri tai dia chi do = 1000 (chinh la N)"
+    },
+    {
+      "title": "Giải tham chiếu để đọc và ghi qua con trỏ",
+      "bullets": [
+        "Sau khi `ptr = &N`, thì `N` và `*ptr` là **một**, cùng một ô nhớ",
+        "Đổi `*ptr` cũng chính là đổi `N`, và ngược lại"
+      ],
+      "code": "int N = 1000;\nint *ptr = &N;\ncout << *ptr;   // 1000\n*ptr = 280;     // doi qua con tro\ncout << N;      // 280 (N da doi theo)"
+    },
+    {
+      "title": "Nhiều con trỏ cùng trỏ tới 1 biến",
+      "bullets": [
+        "Một biến có thể được **nhiều con trỏ** cùng trỏ tới",
+        "Đổi giá trị qua bất kỳ con trỏ nào cũng ảnh hưởng biến gốc"
+      ],
+      "code": "int N = 1000;\nint *ptr1 = &N;\nint *ptr2 = &N;\nint *ptr3 = ptr1;  // gan gia tri cua ptr1 (chinh la &N)\n\n*ptr1 = 100; // N = 100\n*ptr2 = 200; // N = 200\n*ptr3 = 300; // N = 300, ca 3 con tro deu tro ve N = 300"
+    },
+    {
+      "title": "Con trỏ làm tham số hàm để đổi giá trị thật",
+      "bullets": [
+        "Truyền giá trị thường (`int x`) chỉ tạo **bản sao**, không đổi biến gốc",
+        "Truyền **địa chỉ** (con trỏ) thì hàm có thể sửa trực tiếp biến gốc qua `*x`"
+      ],
+      "code": "void change(int *x) {\n    *x = 1000; // doi truc tiep bien ma x tro toi\n}\n\nint N = 28;\nchange(&N); // truyen dia chi cua N\ncout << N;  // 1000"
+    },
+    {
+      "title": "Ứng dụng: hoán đổi giá trị 2 biến",
+      "bullets": [
+        "Dùng con trỏ để hàm sửa được cả 2 biến của người gọi",
+        "Đây là cách chuẩn viết hàm `swap` trong C++"
+      ],
+      "code": "void my_swap(int *x, int *y) {\n    int tmp = *x;\n    *x = *y;\n    *y = tmp;\n}\n\nint a = 100, b = 200;\nmy_swap(&a, &b);\n// a = 200, b = 100"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`&bien` → địa chỉ; `*con_tro` → giá trị tại địa chỉ đó",
+        "`*` khi khai báo (`int *ptr`) khác `*` khi giải tham chiếu (`*ptr = ...`)",
+        "Muốn hàm sửa được biến gốc, phải truyền **địa chỉ** (con trỏ)",
+        "Nhiều con trỏ cùng trỏ tới một biến, sửa qua con trỏ nào cũng như nhau"
+      ]
+    }
+  ]
+}

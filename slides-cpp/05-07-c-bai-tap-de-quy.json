@@ -1,0 +1,112 @@
+{
+  "title": "Bài Tập Đệ Quy",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Tổng quan các dạng bài luyện tập",
+      "bullets": [
+        "5 nhóm bài: **số học**, **đổi cơ số**, **chữ số**, **tổng dãy**, **mảng**",
+        "Mỗi bài cần xác định rõ **bài toán cơ sở** và **công thức truy hồi**",
+        "Cùng 1 khuôn đệ quy áp dụng cho nhiều bài khác nhau"
+      ]
+    },
+    {
+      "title": "Bài toán: Số Fibonacci",
+      "caption": "Bài toán cơ sở F(0)=0, F(1)=1; công thức truy hồi Fn = Fn-1 + Fn-2",
+      "bullets": [
+        "Ý tưởng: cộng 2 số Fibonacci liền trước",
+        "F(12) = 144"
+      ],
+      "code": "int F(int n){\n    if(n == 0 || n == 1) return n;\n    return F(n - 1) + F(n - 2);\n}"
+    },
+    {
+      "title": "Bài toán: Tổ hợp chập K của N",
+      "caption": "Bài toán cơ sở C(n,0)=1, C(n,n)=1; công thức C(n,k)=C(n-1,k-1)+C(n-1,k)",
+      "bullets": [
+        "Ý tưởng: chọn hoặc không chọn phần tử thứ n",
+        "C(12, 2) = 66"
+      ],
+      "code": "int C(int n, int k){\n    if(n == k || k == 0) return 1;\n    return C(n - 1, k - 1) + C(n - 1, k);\n}"
+    },
+    {
+      "title": "Bài toán: Đổi thập phân sang nhị phân",
+      "caption": "37 (thập phân) = 100101 (nhị phân)",
+      "bullets": [
+        "Cơ sở: n < 2 thì in luôn n",
+        "Truy hồi: gọi đệ quy với n/2 **trước**, in n%2 **sau** ⇒ số dư ra đúng thứ tự"
+      ],
+      "code": "void dec_to_bin(long long n){\n    if(n < 2){ printf(\"%lld\", n); }\n    else{\n        dec_to_bin(n / 2);\n        printf(\"%lld\", n % 2);\n    }\n}"
+    },
+    {
+      "title": "Bài toán: Đổi thập phân sang thập lục phân (hex)",
+      "caption": "762 (thập phân) = 2FA (hex)",
+      "bullets": [
+        "Cùng khuôn với đổi nhị phân nhưng chia cho 16",
+        "Số dư 10-15 đổi thành ký tự 'A'-'F' bằng `(char)(r + 55)`"
+      ],
+      "code": "void dec_to_hex(long long n){\n    if(n < 16){\n        printf(\"%c\", n < 10 ? (char)('0' + n) : (char)(n + 55));\n    } else {\n        dec_to_hex(n / 16);\n        int r = n % 16;\n        printf(\"%c\", r < 10 ? (char)('0' + r) : (char)(r + 55));\n    }\n}"
+    },
+    {
+      "title": "Bài toán: Đếm chữ số & Tổng chữ số của N",
+      "bullets": [
+        "Đếm chữ số D(N): cơ sở N<10 → 1; truy hồi D(N) = 1 + D(N/10)",
+        "Tổng chữ số S(N): cơ sở N<10 → N; truy hồi S(N) = N%10 + S(N/10)"
+      ],
+      "code": "int D(long long n){ return n < 10 ? 1 : 1 + D(n / 10); }\n\nint S(long long n){ return n < 10 ? n : n % 10 + S(n / 10); }\n// D(28282828)=8   S(28282828)=40"
+    },
+    {
+      "title": "Bài toán: Tổng chữ số chẵn & Chữ số lớn nhất",
+      "bullets": [
+        "Tổng chữ số chẵn: cộng dồn N%10 nếu chẵn, bỏ qua nếu lẻ",
+        "Chữ số lớn nhất: lấy max giữa N%10 và kết quả đệ quy F(N/10)"
+      ],
+      "code": "int SumEven(long long n){\n    if(n < 10) return n % 2 ? 0 : n;\n    return (n % 2 ? 0 : n % 10) + SumEven(n / 10);\n}\n\nint MaxDigit(long long n){\n    if(n < 10) return n;\n    int tmp = MaxDigit(n / 10);\n    return n % 10 > tmp ? n % 10 : tmp;\n}"
+    },
+    {
+      "title": "Bài toán: Tổng các dãy số bằng đệ quy",
+      "bullets": [
+        "Khuôn chung: `S(n) = hạng_tử(n) + S(n-1)`, cơ sở `S(1) = hạng_tử(1)`",
+        "Tổng tự nhiên 1..n: hạng tử là `n`",
+        "Tổng bình phương: hạng tử là `n*n`",
+        "Tổng nghịch đảo: hạng tử là `1.0/n` (ép kiểu double)"
+      ],
+      "code": "int S1(int n){ return n==1 ? 1 : n + S1(n-1); }\nint S2(int n){ return n==1 ? 1 : n*n + S2(n-1); }\ndouble S3(int n){ return n==1 ? 1 : (double)1/n + S3(n-1); }"
+    },
+    {
+      "title": "Bài toán: Tổng các số chẵn trong mảng",
+      "bullets": [
+        "Cơ sở: mảng rỗng (n=0) → tổng = 0",
+        "Truy hồi: cộng `a[n-1]` nếu chẵn, rồi gọi đệ quy với n-1 phần tử còn lại"
+      ],
+      "code": "int even_sum(int a[], int n){\n    if(n == 0) return 0;\n    if(a[n-1] % 2 == 0) return a[n-1] + even_sum(a, n-1);\n    return even_sum(a, n-1);\n}\n// {1,2,3,4,5,6} -> 12"
+    },
+    {
+      "title": "Bài toán: Kiểm tra mảng đối xứng",
+      "bullets": [
+        "Cơ sở: `left > right` → đã xét hết cặp, kết luận đối xứng",
+        "Truy hồi: `a[left]==a[right]` thì xét tiếp cặp `(left+1, right-1)`",
+        "Kiểu `bool` cần `#include <stdbool.h>`"
+      ],
+      "code": "bool doixung(int a[], int left, int right){\n    if(left > right) return true;\n    if(a[left] != a[right]) return false;\n    return doixung(a, left + 1, right - 1);\n}"
+    },
+    {
+      "title": "Bài toán: In mảng theo 2 chiều bằng đệ quy",
+      "bullets": [
+        "Gọi đệ quy **trước** rồi mới in ⇒ in từ **trái qua phải**",
+        "In **trước** rồi mới gọi đệ quy ⇒ in từ **phải qua trái**",
+        "Thứ tự đặt lệnh in quyết định thứ tự xuất hiện trên màn hình"
+      ],
+      "code": "void trai_phai(int a[], int n){\n    if(n > 0){ trai_phai(a, n-1); printf(\"%d \", a[n-1]); }\n}\n\nvoid phai_trai(int a[], int n){\n    if(n > 0){ printf(\"%d \", a[n-1]); phai_trai(a, n-1); }\n}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Mọi bài đệ quy đều quy về: xác định **bài toán cơ sở** + **công thức truy hồi**",
+        "Đệ quy trên mảng thường giảm dần biến `n` (số phần tử) cho tới 0",
+        "Đệ quy trên số thường giảm dần theo `n/10`, `n/2`, `n-1`...",
+        "Thứ tự đặt lệnh trước/sau lời gọi đệ quy quyết định thứ tự thực thi"
+      ]
+    }
+  ]
+}

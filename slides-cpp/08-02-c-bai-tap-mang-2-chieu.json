@@ -1,0 +1,62 @@
+{
+  "title": "Bài Tập Mảng 2 Chiều",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Mảng 2 chiều: ôn nhanh chỉ số",
+      "bullets": [
+        "Phần tử `a[i][j]`: `i` là chỉ số **hàng**, `j` là chỉ số **cột**",
+        "Duyệt toàn bộ mảng cần **for lồng nhau**: ngoài theo hàng, trong theo cột",
+        "Duyệt theo cột: đảo lại, ngoài chạy cột, trong chạy hàng"
+      ],
+      "code": "int a[3][3] = {\n    {1, 2, 3},   // hàng 0\n    {4, 5, 6},   // hàng 1\n    {7, 8, 9}    // hàng 2\n};\n// a[i][j]: i = hàng, j = cột"
+    },
+    {
+      "title": "Dạng 1: Liệt kê / đếm phần tử thỏa điều kiện",
+      "bullets": [
+        "Duyệt **for lồng nhau** qua toàn bộ mảng, kiểm tra từng phần tử",
+        "Ví dụ: tìm min/max, đếm số Fibonacci, đếm số nguyên tố",
+        "Chỉ cần biết duyệt mảng 2 chiều là làm được dạng này"
+      ],
+      "code": "int min_val = 1000000000, max_val = -1000000000;\nfor (int i = 0; i < n; i++)\n    for (int j = 0; j < m; j++) {\n        if (a[i][j] > max_val) max_val = a[i][j];\n        if (a[i][j] < min_val) min_val = a[i][j];\n    }"
+    },
+    {
+      "title": "Dạng 2: Xét theo hàng, theo cột",
+      "bullets": [
+        "Xét **hàng**: for ngoài `i` (hàng), for trong `j` (cột) như bình thường",
+        "Xét **cột**: đảo lại — for ngoài `i` (cột), for trong `j` (hàng), truy cập `a[j][i]`",
+        "Ví dụ: tổng từng hàng/cột, tìm hàng/cột nhiều số nguyên tố nhất"
+      ],
+      "code": "// Tổng từng hàng\nfor (int i = 0; i < n; i++) {\n    int tong = 0;\n    for (int j = 0; j < m; j++) tong += a[i][j];\n}\n\n// Tổng từng cột (đảo vai trò i, j)\nfor (int i = 0; i < m; i++) {\n    int tong = 0;\n    for (int j = 0; j < n; j++) tong += a[j][i];\n}"
+    },
+    {
+      "title": "Dạng 3: Hoán vị hàng, cột",
+      "bullets": [
+        "Hoán vị 2 **hàng** `h1, h2`: duyệt qua từng **cột**",
+        "Hoán vị 2 **cột** `c1, c2`: duyệt qua từng **hàng**",
+        "C không có `swap` sẵn → tự viết hàm nhận **2 con trỏ**"
+      ],
+      "code": "void swap(int *x, int *y) { int t = *x; *x = *y; *y = t; }\n\nfor (int i = 0; i < m; i++)\n    swap(&a[h1][i], &a[h2][i]);   // hoán vị hàng h1, h2\n\nfor (int i = 0; i < n; i++)\n    swap(&a[i][c1], &a[i][c2]);   // hoán vị cột c1, c2"
+    },
+    {
+      "title": "Dạng 4: Sắp xếp ma trận theo hàng",
+      "bullets": [
+        "Mảng 2 chiều thực chất là **mảng của các mảng 1 chiều**",
+        "Mỗi hàng `a[i]` là 1 mảng 1 chiều → gọi `qsort()` riêng cho từng hàng",
+        "`qsort` (stdlib.h) cần: địa chỉ, số phần tử, `sizeof`, hàm so sánh"
+      ],
+      "code": "int cmp(const void *x, const void *y) {\n    int u = *(const int *)x, v = *(const int *)y;\n    return (u > v) - (u < v);\n}\n\nfor (int i = 0; i < n; i++)\n    qsort(a[i], m, sizeof(int), cmp);   // sắp xếp riêng từng hàng"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Mọi dạng bài đều dựa trên **for lồng nhau** duyệt `a[i][j]`",
+        "Duyệt theo cột thì đảo vai trò vòng lặp ngoài/trong so với duyệt hàng",
+        "Hoán vị hàng/cột: duyệt chiều **vuông góc**, `swap` tự viết qua con trỏ",
+        "Sắp xếp theo hàng = `qsort()` từng mảng 1 chiều con `a[i]`",
+        "Dùng `sqrt()` của math.h thì biên dịch gcc thêm `-lm`"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "title": "Define, Typedef Và Using",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Typedef: đặt tên mới cho kiểu dữ liệu",
+      "bullets": [
+        "Tạo bí danh (alias) cho kiểu dữ liệu có sẵn",
+        "Dùng được cả tên mới lẫn tên cũ sau khi định nghĩa",
+        "Cú pháp: `typedef kiểu_dữ_liệu tên_mới;`"
+      ],
+      "code": "typedef int songuyen;\ntypedef long long ll;\ntypedef double sothuc;\ntypedef pair<int, int> ii;\n\nsonguyen a = 1000;\nll b = 2828282828282;\nii p = {100, 200};"
+    },
+    {
+      "title": "Define: 3 chức năng chính",
+      "bullets": [
+        "Định nghĩa tên cho **kiểu dữ liệu** (giống typedef)",
+        "Định nghĩa tên cho **giá trị** (hằng số)",
+        "Định nghĩa tên cho **cấu trúc hoặc câu lệnh**",
+        "Cú pháp: `#define tên_mới giá_trị_hoặc_kiểu`, không có `;`"
+      ]
+    },
+    {
+      "title": "Define đặt tên kiểu và giá trị",
+      "code": "#define songuyen int\n#define ll long long\n#define ii pair<int, int>\n\n#define PI 3.14\n#define INF 1000000000\n#define Tech28 \"codelab.dev\"\n\nsonguyen a = 1000;\ncout << fixed << setprecision(2) << PI;  // 3.14"
+    },
+    {
+      "title": "Define cho cấu trúc/câu lệnh",
+      "bullets": [
+        "Dùng nhiều trong lập trình thi đấu để rút gọn code",
+        "Người mới **chưa nên dùng** kiểu này, khó đọc với người khác",
+        "Chỉ nên dùng khi code một mình, không chia sẻ mã nguồn"
+      ],
+      "code": "#define greet cout << \"codelab.dev\\n\";\n#define FOR(i, a, b) for(int i = a; i <= b; i++)\n#define findMax(a, b) cout << (a > b ? a : b) << endl;\n\ngreet;\nfindMax(10, 20);   // 20\nFOR(i, 1, 5) cout << i << \" \";  // 1 2 3 4 5"
+    },
+    {
+      "title": "Define vs Typedef",
+      "bullets": [
+        "`typedef` chỉ đặt tên cho **kiểu dữ liệu**",
+        "`#define` đặt tên được cho **kiểu, giá trị, cấu trúc, câu lệnh**",
+        "`typedef` kết thúc bằng `;`, `#define` thì không",
+        "`typedef` xử lý bởi **compiler**, `#define` xử lý bởi **preprocessor**"
+      ]
+    },
+    {
+      "title": "Từ khóa using (thay cho typedef)",
+      "bullets": [
+        "Từ chuẩn **C++11** trở lên, `using` có thể thay `typedef`",
+        "Cú pháp: `using tên_mới = kiểu_dữ_liệu;`"
+      ],
+      "code": "using ll = long long;\nusing ii = pair<int, int>;\nusing kitu = char;\n\nll n = 1923919231345;\nii p = {10, 20};\nkitu x = '@';"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`typedef`/`using` chỉ đặt tên cho **kiểu dữ liệu**",
+        "`#define` linh hoạt hơn: kiểu, hằng số, cả câu lệnh",
+        "`#define` được xử lý bởi preprocessor, không cần dấu `;`",
+        "`using` là cách hiện đại (C++11+) thay cho `typedef`",
+        "Tránh dùng `#define` cho cấu trúc/câu lệnh khi mới học"
+      ]
+    }
+  ]
+}

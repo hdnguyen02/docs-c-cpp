@@ -1,0 +1,82 @@
+{
+  "title": "Define, Typedef Và Enum",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Typedef: đặt tên mới cho kiểu dữ liệu",
+      "bullets": [
+        "Tạo bí danh (alias) cho kiểu dữ liệu có sẵn",
+        "Dùng được cả tên mới lẫn tên cũ sau khi định nghĩa",
+        "Cú pháp: `typedef kiểu_dữ_liệu tên_mới;`",
+        "`bool` cần `stdbool.h`, in bằng `%d` ra `1`/`0`"
+      ],
+      "code": "typedef int songuyen;\ntypedef long long ll;\ntypedef double sothuc;\ntypedef bool dungsai;      // can #include <stdbool.h>\n\nsonguyen a = 1000;\nll b = 2828282828282;\nprintf(\"%d %lld\\n\", a, b);  // 1000 2828282828282"
+    },
+    {
+      "title": "Typedef cho struct",
+      "bullets": [
+        "Rất hay dùng để đặt tên ngắn cho kiểu **struct**",
+        "Không có typedef phải viết `struct Diem` mỗi lần khai báo"
+      ],
+      "code": "typedef char kitu;\ntypedef struct {\n    int x;\n    int y;\n} Diem;\n\nkitu c = '@';\nDiem p = {100, 200};\nprintf(\"%d %d\\n\", p.x, p.y);   // 100 200"
+    },
+    {
+      "title": "Define: 3 chức năng chính",
+      "bullets": [
+        "Định nghĩa tên cho **kiểu dữ liệu** (giống typedef)",
+        "Định nghĩa tên cho **giá trị** (hằng số)",
+        "Định nghĩa tên cho **cấu trúc hoặc câu lệnh**",
+        "Cú pháp: `#define tên_mới giá_trị_hoặc_kiểu`, không có `;`"
+      ],
+      "code": "#define songuyen int\n#define ll long long\n\n#define PI 3.14\n#define INF 1000000000\n#define Tech28 \"codelab.dev\"\n\nprintf(\"%.2f\\n\", PI);      // 3.14\nprintf(\"%s\\n\", Tech28);     // codelab.dev"
+    },
+    {
+      "title": "Define cho cấu trúc/câu lệnh",
+      "bullets": [
+        "Dùng nhiều trong lập trình thi đấu để rút gọn code",
+        "Người mới **chưa nên dùng** kiểu này, khó đọc với người khác",
+        "Chỉ nên dùng khi code một mình, không chia sẻ mã nguồn"
+      ],
+      "code": "#define greet printf(\"codelab.dev\\n\");\n#define FOR(i, a, b) for(int i = a; i <= b; i++)\n#define findMax(a, b) printf(\"%d\\n\", (a > b ? a : b));\n\ngreet;\nfindMax(10, 20);                 // 20\nFOR(i, 1, 5) printf(\"%d \", i);   // 1 2 3 4 5"
+    },
+    {
+      "title": "Define vs Typedef",
+      "bullets": [
+        "`typedef` chỉ đặt tên cho **kiểu dữ liệu**",
+        "`#define` đặt tên được cho **kiểu, giá trị, cấu trúc, câu lệnh**",
+        "`typedef` kết thúc bằng `;`, `#define` thì không",
+        "`typedef` xử lý bởi **compiler**, `#define` xử lý bởi **preprocessor**"
+      ]
+    },
+    {
+      "title": "Kiểu liệt kê enum",
+      "bullets": [
+        "Đặt tên cho một **nhóm hằng số nguyên** liên quan",
+        "Mặc định hằng đầu là **0**, các hằng sau tăng dần 1",
+        "Gán giá trị cho một hằng, các hằng sau tăng tiếp từ đó",
+        "Hằng enum có kiểu `int`, in bằng `%d`"
+      ],
+      "code": "enum Mau { DO, XANH, VANG };            // 0 1 2\nenum Thang { THANG1 = 1, THANG2, THANG3 }; // 1 2 3\nenum TrangThai { THANH_CONG = 200, KHONG_TIM_THAY = 404 };\n\nenum Mau m = XANH;\nprintf(\"m = %d\\n\", m);                  // m = 1"
+    },
+    {
+      "title": "Kết hợp typedef và enum",
+      "bullets": [
+        "Khai báo biến enum phải viết cả từ khóa `enum`",
+        "Dùng `typedef` để bỏ từ khóa này cho gọn",
+        "Enum tự đánh số, gom nhóm hằng, do **compiler** xử lý"
+      ],
+      "code": "typedef enum { THU2 = 2, THU3, THU4, THU5,\n               THU6, THU7, CHUNHAT = 8 } Ngay;\n\nNgay hom_nay = THU6;\nif (hom_nay == THU7 || hom_nay == CHUNHAT)\n    printf(\"Cuoi tuan\\n\");\nelse\n    printf(\"Ngay lam viec\\n\");     // Ngay lam viec"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`typedef` chỉ đặt tên cho **kiểu dữ liệu**, hay dùng với struct",
+        "`#define` linh hoạt hơn: kiểu, hằng số, cả câu lệnh",
+        "`#define` được xử lý bởi preprocessor, không cần dấu `;`",
+        "`enum` gom nhóm hằng số nguyên, tự đánh số từ 0",
+        "Tránh dùng `#define` cho cấu trúc/câu lệnh khi mới học"
+      ]
+    }
+  ]
+}

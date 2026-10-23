@@ -1,0 +1,58 @@
+{
+  "title": "Chuẩn Hóa Tên Và Email",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "3 bài toán chuẩn hóa tên",
+      "bullets": [
+        "**Bài 1**: xóa dấu cách thừa, viết hoa chữ đầu mỗi từ",
+        "**Bài 2**: đảo thứ tự, in tên trước rồi tới họ đệm",
+        "**Bài 3**: cấp email tự động từ tên",
+        "Cách làm chung: **tách từ (`strtok`) → xử lý từng từ → gộp lại**"
+      ]
+    },
+    {
+      "title": "Chuẩn hóa: viết hoa đầu từ",
+      "bullets": [
+        "`name` phải là mảng `char[]` vì `strtok` sửa chuỗi",
+        "Chỉ thêm dấu cách **trước** từ thứ 2 trở đi: không thừa cách cuối"
+      ],
+      "code": "char name[] = \"tran  VAn  TeCH28\", res[100] = \"\";\nfor(char *w = strtok(name, \" \"); w; w = strtok(NULL, \" \")){\n    w[0] = (char)toupper((unsigned char)w[0]);\n    for(int j = 1; w[j]; j++)\n        w[j] = (char)tolower((unsigned char)w[j]);\n    if(res[0] != '\\0') strcat(res, \" \");\n    strcat(res, w);\n}\n// res = \"Tran Van Tech28\""
+    },
+    {
+      "title": "Vì sao cần lưu vào mảng?",
+      "bullets": [
+        "Muốn in theo thứ tự **khác** thứ tự nhập thì phải lưu lại",
+        "Danh sách từ: **mảng 2 chiều** `char v[100][50]`",
+        "Biến `n` đếm số từ, tên nằm ở `v[n - 1]`"
+      ]
+    },
+    {
+      "title": "In tên trước, họ đệm sau",
+      "bullets": [
+        "Tách từ, `strcpy` vào `v[n]`, chuẩn hóa rồi tăng `n`",
+        "In `v[n - 1]` trước, sau đó `v[0]` .. `v[n - 2]`"
+      ],
+      "code": "char v[100][50]; int n = 0;\nfor(char *w = strtok(name, \" \"); w; w = strtok(NULL, \" \")){\n    strcpy(v[n], w);\n    convert(v[n]);          // viet hoa chu dau\n    n++;\n}\nprintf(\"%s\", v[n - 1]);          // Tech28\nfor(int i = 0; i < n - 1; i++)\n    printf(\" %s\", v[i]);         // Tran Van"
+    },
+    {
+      "title": "Cấp email theo tên",
+      "bullets": [
+        "Email = **tên** + chữ cái đầu của **họ và đệm**",
+        "Nối **một ký tự**: ghi vào vị trí `len`, đặt lại `'\\0'`",
+        "`strcat` chỉ nối chuỗi với chuỗi"
+      ],
+      "code": "// v = {\"tran\", \"van\", \"long\"} (da doi ve thuong)\nchar email[100];\nstrcpy(email, v[n - 1]);            // ten\nint len = (int)strlen(email);\nfor(int i = 0; i < n - 1; i++)\n    email[len++] = v[i][0];         // chu cai dau ho dem\nemail[len] = '\\0';\nstrcat(email, \"@codelab.dev\");     // longtv@codelab.dev"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Chuẩn hóa chuỗi: **tách từ → xử lý từng từ → gộp lại**",
+        "`strtok` sửa chuỗi gốc: dùng mảng `char[]`, không dùng chuỗi hằng",
+        "Dùng **mảng 2 chiều** khi cần xử lý các từ theo thứ tự khác",
+        "Đổi toàn chuỗi về thường trước khi lấy chữ cái đầu cấp email"
+      ]
+    }
+  ]
+}

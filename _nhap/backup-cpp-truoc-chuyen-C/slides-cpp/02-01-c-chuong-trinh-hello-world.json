@@ -1,0 +1,61 @@
+{
+  "title": "Chương Trình Hello World",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Chương trình Hello World",
+      "bullets": [
+        "Chương trình đơn giản nhất khi học một ngôn ngữ mới",
+        "Giúp hiểu **cấu trúc** cơ bản của chương trình C++"
+      ],
+      "code": "#include \"iostream\"\nusing namespace std;\n\nint main(){\n    cout << \"Hello World !\\n\";\n    cout << \"codelab tutorial !\" << endl;\n    return 0;\n}\n// Hello World !\n// codelab tutorial !"
+    },
+    {
+      "title": "3 phần chính của chương trình",
+      "bullets": [
+        "**Thư viện**: `#include \"iostream\"` nạp công cụ nhập/xuất có sẵn",
+        "**Namespace**: không gian định danh chứa `cout`, `cin`, `endl`...",
+        "`using namespace std;` cho phép dùng `cout` thay vì `std::cout`",
+        "**Hàm main**: nơi chương trình bắt đầu chạy, thiếu là không chạy được"
+      ],
+      "code": "// Không dùng namespace std thì phải viết đầy đủ:\n#include \"iostream\"\nint main(){\n    std::cout << \"Hello codelab !\\n\";\n    std::cout << \"C++ tutorial\" << std::endl;\n    return 0;\n}"
+    },
+    {
+      "title": "Cout: in nội dung ra màn hình",
+      "bullets": [
+        "Đi kèm toán tử chèn `<<`",
+        "Ký tự `\\n` để xuống dòng trong chuỗi",
+        "Một `cout` có thể nối nhiều `<<` để in nhiều đoạn"
+      ],
+      "code": "cout << \"Hello\\nWorld !\\n\";\ncout << \"codelab\\ntutorial !\\nC++\\nJava\\n\";\n\ncout << \"Text1\" << \" @ \" << \"Text 2\" << \"-\" << \"Text3\" << \".\" << \"codelab!\\n\";\n// Text1 @ Text 2-Text3.codelab!"
+    },
+    {
+      "title": "Endl: xuống dòng thay cho \\n",
+      "bullets": [
+        "`endl` kết thúc dòng hiện tại, in tiếp ở dòng mới",
+        "Cần có thư viện `iostream` và namespace `std` để dùng"
+      ],
+      "code": "cout << \"Hello\" << endl << \"codelab\" << endl;\ncout << \"@\" << endl << \"C++ tutorial\" << endl;\n// Hello\n// codelab\n// @\n// C++ tutorial"
+    },
+    {
+      "title": "Câu lệnh return 0",
+      "bullets": [
+        "Đặt cuối hàm `main`, là giá trị trả về khi chạy xong",
+        "`return 0` nghĩa là chương trình chạy đúng, không lỗi",
+        "Chương trình **kết thúc ngay** khi gặp `return`, lệnh sau không chạy",
+        "Giá trị trả về khác 0 thường báo hiệu có lỗi runtime"
+      ],
+      "code": "int main(){\n    cout << \"hello codelab !\\n\";\n    return 0;\n    cout << \"C++ tutorial !\\n\";  // không bao giờ chạy tới\n    return 0;\n}\n// Output: hello codelab !"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Chương trình C++ gồm **thư viện, namespace, hàm main**",
+        "`cout` + `<<` để in, `\\n` hoặc `endl` để xuống dòng",
+        "`return 0;` kết thúc `main` ngay lập tức, code sau bị bỏ qua",
+        "Thiếu hàm `main` thì chương trình không thể chạy"
+      ]
+    }
+  ]
+}

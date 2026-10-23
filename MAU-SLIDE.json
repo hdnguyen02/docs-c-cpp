@@ -1,0 +1,64 @@
+{
+  "title": "Vòng Lặp For",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vòng lặp For giải quyết vấn đề gì?",
+      "bullets": [
+        "Lặp lại một khối lệnh nhiều lần mà không phải viết lại code",
+        "In 1000 dòng chữ: viết 1 lệnh `cout` và cho lặp 1000 lần",
+        "Dùng khi **biết trước số lần lặp**"
+      ],
+      "code": "for (khởi_tạo; điều_kiện; cập_nhật) {\n    // khối lệnh lặp\n}"
+    },
+    {
+      "title": "Ba thành phần và thứ tự chạy",
+      "bullets": [
+        "**Khởi tạo** chạy đúng 1 lần khi bắt đầu",
+        "**Điều kiện** kiểm tra trước mỗi vòng, sai thì dừng",
+        "**Khối lệnh** chạy khi điều kiện đúng",
+        "**Cập nhật** chạy cuối mỗi vòng, rồi quay lại kiểm tra điều kiện"
+      ]
+    },
+    {
+      "title": "Ví dụ: in 4 dòng",
+      "bullets": [
+        "`i` chạy từ 1 đến 4, mỗi vòng in một dòng",
+        "Khi `i = 5` điều kiện sai, vòng lặp kết thúc"
+      ],
+      "code": "for (int i = 1; i <= 4; i++) {\n    cout << \"codelab.dev\\n\";\n}"
+    },
+    {
+      "title": "Đếm xuôi và đếm ngược",
+      "bullets": [
+        "Xuôi: tăng biến đếm bằng `i++`",
+        "Ngược: giảm bằng `i--` và đảo điều kiện"
+      ],
+      "code": "for (int i = 1; i <= n; i++)  cout << i << \" \";   // 1 2 3 ... n\n\nfor (int i = n; i >= 0; i--)  cout << i << \" \";   // n ... 1 0"
+    },
+    {
+      "title": "Ứng dụng: ước số và giai thừa",
+      "caption": "Mẫu chung: duyệt 1 → n, kiểm tra hoặc cộng dồn vào biến tích luỹ",
+      "code": "// các ước của n\nfor (int i = 1; i <= n; i++)\n    if (n % i == 0) cout << i << ' ';\n\n// tổng các ước\nint tong = 0;\nfor (int i = 1; i <= n; i++)\n    if (n % i == 0) tong += i;\n\n// n giai thừa\nint giaithua = 1;\nfor (int i = 1; i <= n; i++) giaithua *= i;"
+    },
+    {
+      "title": "For khuyết thành phần",
+      "bullets": [
+        "Khuyết điều kiện lặp thì lặp vĩnh viễn",
+        "Khuyết cả 3 phần cũng là vòng lặp vô hạn",
+        "Muốn thoát phải dùng `break` bên trong"
+      ],
+      "code": "for (int i = 1; ; i++) { ... }   // vô hạn\n\nfor (; ;) {\n    cin >> n;\n    if (n == 28) break;\n}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "For hợp với bài toán **biết trước số lần lặp**",
+        "Điều kiện luôn được kiểm tra **trước** khi chạy thân vòng lặp",
+        "Biến khai báo trong phần khởi tạo chỉ sống trong vòng lặp",
+        "Quên cập nhật biến đếm là nguyên nhân phổ biến gây lặp vô hạn"
+      ]
+    }
+  ]
+}

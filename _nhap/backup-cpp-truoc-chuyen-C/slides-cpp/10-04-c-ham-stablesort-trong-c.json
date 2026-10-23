@@ -1,0 +1,49 @@
+{
+  "title": "Hàm stable_sort() Trong C++",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Tính ổn định (stable) là gì?",
+      "bullets": [
+        "Các phần tử **cùng giá trị sắp xếp** giữ nguyên **thứ tự xuất hiện ban đầu**"
+      ],
+      "code": "// (111, 9, 3000, 18, 81, 1002, 2002) sap theo tong chu so, on dinh:\n// (111, 3000, 1002, 2002, 9, 18, 81)\n// 111, 3000, 1002 cung tong=3, giu dung thu tu ban dau"
+    },
+    {
+      "title": "Thuật toán ổn định vs không ổn định",
+      "bullets": [
+        "**Không ổn định**: quick sort, heap sort, selection sort",
+        "**Ổn định**: merge sort, insertion sort, tim sort, counting sort",
+        "Java, Python, JS: hàm sort mặc định đã ổn định"
+      ]
+    },
+    {
+      "title": "sort() trong C++ không ổn định",
+      "bullets": [
+        "`sort()` cài bằng **intro-sort** (quick sort + heap sort) → không ổn định",
+        "C++ cung cấp thêm `stable_sort()`, cài bằng **merge sort**",
+        "Cách gọi `stable_sort()` giống hệt `sort()`"
+      ]
+    },
+    {
+      "title": "Dùng stable_sort() khi nào?",
+      "bullets": [
+        "Đề bài yêu cầu giữ nguyên thứ tự xuất hiện khi các phần tử bằng giá trị sắp xếp"
+      ]
+    },
+    {
+      "title": "Ví dụ code stable_sort() theo tổng chữ số",
+      "code": "int tong(int n){ int s=0; while(n){ s+=n%10; n/=10; } return s; }\nbool cmp(int a, int b){ return tong(a) < tong(b); }\n\nint a[] = {10002,19,3000,111,81,45,1002,21,10071,203,401};\nstable_sort(a, a+11, cmp);\n// 10002 3000 111 1002 21 203 401 81 45 10071 19"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`stable_sort()` giữ **thứ tự tương đối** giữa các phần tử bằng nhau",
+        "`sort()` (intro-sort) **không** đảm bảo điều này",
+        "Cách dùng giống hệt `sort()`, chỉ khác thuật toán cài đặt (merge sort)",
+        "Dùng khi đề yêu cầu giữ nguyên thứ tự xuất hiện ban đầu"
+      ]
+    }
+  ]
+}

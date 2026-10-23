@@ -1,0 +1,47 @@
+{
+  "title": "Switch Case",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Switch case giải quyết vấn đề gì?",
+      "bullets": [
+        "Cách khác để kiểm tra **nhiều giá trị** của 1 biến, gọn hơn `else if`",
+        "So sánh `value` lần lượt với từng `case`",
+        "Không khớp `case` nào thì chạy `default` (tương tự `else`)"
+      ]
+    },
+    {
+      "title": "Cú pháp",
+      "code": "switch(value){\n    case c1:\n        // code\n        break;\n    case c2:\n        // code\n        break;\n    default:\n        // code\n}"
+    },
+    {
+      "title": "Luồng chạy và lưu ý break",
+      "bullets": [
+        "Khớp `case` nào thì chạy khối lệnh của `case` đó",
+        "Mỗi `case` cần `break` để **kết thúc** switch",
+        "Thiếu `break`: chạy tiếp các `case` bên dưới dù không khớp (rơi xuyên)",
+        "Nhiều `case` liên tiếp không `break` để dùng chung 1 khối lệnh"
+      ]
+    },
+    {
+      "title": "Có break và thiếu break",
+      "caption": "n = 3 với có break chỉ in THREE; n = 2 thiếu break in từ TWO trở xuống",
+      "code": "switch(n){\n    case 1: cout << \"ONE\\n\"; break;\n    case 2: cout << \"TWO\\n\"; break;\n    case 3: cout << \"THREE\\n\"; break;\n    default: cout << \"DEFAULT\\n\";\n}\n// n=3 -> THREE\n\nswitch(n){\n    case 1: cout << \"ONE\\n\";\n    case 2: cout << \"TWO\\n\";\n    case 3: cout << \"THREE\\n\";\n    default: cout << \"DEFAULT\\n\";\n}\n// n=2 -> TWO THREE DEFAULT"
+    },
+    {
+      "title": "Ví dụ: toán tử và gộp case",
+      "caption": "Nhiều case liên tiếp không break để dùng chung khối lệnh (số ngày trong tháng)",
+      "code": "switch(op){\n    case '+': cout << a + b << endl; break;\n    case '-': cout << a - b << endl; break;\n    case '*': cout << a * b << endl; break;\n    case '/': cout << a / b << endl; break;\n    default: cout << \"INVALID INPUT\" << endl;\n}\n\nswitch(m){\n    case 1: case 3: case 5: case 7: case 8: case 10: case 12:\n        cout << 31 << endl; break;\n    case 4: case 6: case 9: case 11:\n        cout << 30 << endl; break;\n    case 2:\n        cout << (nam_nhuan ? 29 : 28) << endl; break;\n    default:\n        cout << \"Du lieu khong hop le !\\n\";\n}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`switch` so khớp giá trị `value` với từng `case`",
+        "Luôn nhớ `break` ở cuối mỗi `case`, trừ khi cố ý gộp nhánh",
+        "`default` đóng vai trò như `else`, không bắt buộc phải có",
+        "Nhiều `case` liền nhau không `break` = dùng chung 1 xử lý"
+      ]
+    }
+  ]
+}

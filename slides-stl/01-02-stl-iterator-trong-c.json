@@ -1,0 +1,72 @@
+{
+  "title": "Iterator Trong C++",
+  "course": "STL C++",
+  "source": "",
+  "slides": [
+    {
+      "title": "Iterator là gì?",
+      "bullets": [
+        "Đối tượng tương tự **con trỏ**, trỏ đến phần tử trong container STL",
+        "Dùng với `vector`, `set`, `map`...",
+        "Là nền tảng để dùng các hàm/thuật toán của STL",
+        "Truy cập giá trị đang trỏ tới bằng toán tử `*` (giải tham chiếu)"
+      ]
+    },
+    {
+      "title": "4 iterator chính của vector",
+      "bullets": [
+        "`begin()`: trỏ tới phần tử **đầu tiên**",
+        "`end()`: trỏ tới vị trí **sau phần tử cuối cùng** (không tồn tại)",
+        "`rbegin()`: iterator ngược, trỏ tới phần tử **cuối cùng**",
+        "`rend()`: iterator ngược, trỏ tới vị trí **trước phần tử đầu tiên**"
+      ],
+      "code": "vector<data_type>::iterator it;\nvector<data_type>::reverse_iterator rit;\n\nvector<int> v = {28, 100, 30, 20, 15};\nauto it1 = v.begin();   // *it1 = 28\nauto it2 = v.rbegin();  // *it2 = 15"
+    },
+    {
+      "title": "Duyệt vector bằng iterator",
+      "bullets": [
+        "Duyệt xuôi: `begin()` → `end()`, tăng bằng `it++`",
+        "Duyệt ngược: `rbegin()` → `rend()`",
+        "Có thể dùng `auto` thay cho khai báo kiểu iterator dài dòng",
+        "`begin() + x`: iterator trỏ tới phần tử chỉ số `x`"
+      ],
+      "code": "for(auto it = v.begin(); it != v.end(); it++) cout << *it;\nfor(auto it = v.rbegin(); it != v.rend(); it++) cout << *it;\n\nauto it2 = v.begin() + 2;   // tro toi v[2]"
+    },
+    {
+      "title": "Toán tử trên iterator",
+      "bullets": [
+        "Hỗ trợ `++`, `--` và toán tử số học `+=`, `-=` (riêng vector)",
+        "Tính khoảng cách 2 iterator bằng phép trừ hoặc hàm `distance()`",
+        "Kết quả `distance()` chính là chỉ số phần tử đang trỏ tới"
+      ],
+      "code": "auto it = v.begin();\n++it;      // sang phan tu ke\nit += 2;   // di chuyen 2 buoc\n--it;      // lui 1 buoc\n\ncout << it - v.begin();          // khoang cach\ncout << distance(v.begin(), it); // tuong duong"
+    },
+    {
+      "title": "Iterator trong set",
+      "bullets": [
+        "`begin()`/`end()`, `rbegin()`/`rend()` dùng như vector",
+        "`*begin()` là phần tử nhỏ nhất, `*rbegin()` là phần tử lớn nhất",
+        "**Chỉ hỗ trợ** `++`/`--`, KHÔNG hỗ trợ `+=`/`-=` như vector"
+      ],
+      "code": "set<int> se = {1,2,3,4,5};\nauto it1 = se.begin();  // *it1 = 1 (nho nhat)\nauto it2 = se.end(); --it2; // *it2 = 5 (lon nhat)\n\nfor(auto it = se.begin(); it != se.end(); ++it) cout << *it;\nfor(auto it = se.rbegin(); it != se.rend(); it++) cout << *it;"
+    },
+    {
+      "title": "Iterator trong map",
+      "bullets": [
+        "Mỗi phần tử là cặp key-value, truy cập bằng `it->first`/`it->second`",
+        "`begin()`/`rbegin()` trỏ tới phần tử đầu/cuối theo thứ tự key",
+        "Cũng chỉ hỗ trợ `++`/`--`, không có `+=`/`-=`"
+      ],
+      "code": "map<int,int> mp;\nmp[1]=2; mp[2]=3; mp[3]=4; mp[4]=5;\nauto it1 = mp.begin();   // it1->first=1, it1->second=2\nauto it2 = mp.rbegin();  // it2->first=4, it2->second=5\n\nfor(auto it = mp.begin(); it != mp.end(); it++)\n    cout << it->first << \" \" << it->second;"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Iterator = con trỏ tổng quát cho mọi container STL",
+        "`end()`/`rend()` là vị trí **ảo**, không giải tham chiếu được",
+        "Vector cho phép `+=`/`-=`, set/map chỉ cho `++`/`--`",
+        "Nên dùng `auto` để tránh viết kiểu iterator dài"
+      ]
+    }
+  ]
+}

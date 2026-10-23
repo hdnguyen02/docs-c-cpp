@@ -1,0 +1,63 @@
+{
+  "title": "Thêm Node Vào Đầu DSLK Đôi",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vấn đề: thêm node vào đầu DSLK đôi",
+      "bullets": [
+        "DSLK đôi có thêm con trỏ **`prev`** trỏ về node trước",
+        "Thêm node mới vào đầu phải cập nhật **cả `next` và `prev`**",
+        "3 cách cài đặt: con trỏ-tới-con trỏ, hàm trả về `head`, dùng `head`+`tail`"
+      ]
+    },
+    {
+      "title": "Các bước thêm vào đầu (cách 1)",
+      "bullets": [
+        "Cấp phát `newNode`, `next`/`prev` = `NULL`",
+        "Cho `newNode->next = head`",
+        "Nếu `head != NULL`: cho `head->prev = newNode`",
+        "Cập nhật `head = newNode`"
+      ],
+      "code": "Truoc:  1 <-> 2 <-> 3 <-> NULL\nThem node 0 vao dau:\nSau:    0 <-> 1 <-> 2 <-> 3 <-> NULL   // newNode=0, head=0"
+    },
+    {
+      "title": "Cài đặt hàm `themdau` (con trỏ tới con trỏ)",
+      "code": "void themdau(node **head, int x){\n    node *newNode = (node*)malloc(sizeof(node));\n    newNode->data = x;\n    newNode->next = newNode->prev = NULL;\n    newNode->next = (*head);\n    if(*head != NULL)\n        (*head)->prev = newNode;      // tro nguoc lai\n    (*head) = newNode;\n}"
+    },
+    {
+      "title": "Cách 2 và cách 3: điểm khác biệt",
+      "bullets": [
+        "**Cách 2**: hàm `themdau` trả về `node*`, gọi phải gán `head = themdau(...)`",
+        "**Cách 3**: quản lý bằng struct `LIST{head, tail}`",
+        "DSLK rỗng: `head = tail = newNode`",
+        "DSLK có node: nối như cách 1, rồi cập nhật `head`"
+      ]
+    },
+    {
+      "title": "Vì sao phải kiểm tra head != NULL trước khi gán prev?",
+      "bullets": [
+        "Nếu DSLK đang rỗng, `head` là `NULL`",
+        "Gọi `head->prev` trên con trỏ `NULL` gây lỗi truy cập bộ nhớ",
+        "Phải kiểm tra `head != NULL` trước khi gán `head->prev = newNode`"
+      ]
+    },
+    {
+      "title": "Trường hợp đặc biệt",
+      "bullets": [
+        "DSLK rỗng: không có node nào để trỏ `prev` ngược lại",
+        "Cách 3 (head+tail): DSLK rỗng thì `head = tail = newNode`",
+        "Luôn là thêm vào đầu nên không có vị trí không hợp lệ"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Thêm vào đầu DSLK đôi: cập nhật `next` của node mới **và** `prev` của node cũ",
+        "Luôn kiểm tra `head != NULL` trước khi gán `prev` ngược",
+        "3 cách cài đặt (con trỏ kép / tham chiếu / trả về `head`) tương đương",
+        "Dùng `head`+`tail`: xử lý riêng khi DSLK đang rỗng"
+      ]
+    }
+  ]
+}

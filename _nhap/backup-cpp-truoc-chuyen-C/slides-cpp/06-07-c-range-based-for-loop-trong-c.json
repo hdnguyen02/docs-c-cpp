@@ -1,0 +1,65 @@
+{
+  "title": "Range-based for loop trong C++",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Range-based for loop là gì?",
+      "bullets": [
+        "Biến thể **ngắn gọn hơn** của `for` truyền thống",
+        "Duyệt tuần tự phần tử trong mảng hoặc container (`vector`, `set`, `map`...)",
+        "Cần biên dịch chuẩn **C++11** trở lên"
+      ]
+    },
+    {
+      "title": "Cú pháp và các thành phần",
+      "bullets": [
+        "`range_declaration`: biến tạm nhận giá trị mỗi phần tử mỗi vòng lặp",
+        "`range_expression`: mảng/container cần duyệt",
+        "`code`: thân lệnh chạy mỗi lần lặp"
+      ],
+      "code": "for (range_declaration : range_expression) {\n    // code\n}"
+    },
+    {
+      "title": "Duyệt mảng bằng range-based for",
+      "bullets": [
+        "Dùng được với mảng kiểu cơ bản (`int`, `char`) hoặc kiểu phức tạp (`pair`)",
+        "Không cần quản lý chỉ số như `for` truyền thống"
+      ],
+      "code": "int a[5] = {10, 20, 30, 40, 50};\nfor (int x : a) cout << x << \" \";\n// 10 20 30 40 50\n\npair<int, int> c[3] = {{1, 2}, {2, 3}, {3, 4}};\nfor (pair<int, int> it : c) {\n    cout << it.first << \" \" << it.second << endl;\n}"
+    },
+    {
+      "title": "Duyệt container bằng range-based for",
+      "bullets": [
+        "Áp dụng tương tự cho `vector` và các container khác",
+        "Cú pháp không đổi dù kiểu dữ liệu chứa bên trong khác nhau"
+      ],
+      "code": "vector<int> v1 = {1, 2, 3, 4, 5};\nfor (int x : v1) cout << x << \" \";\n// 1 2 3 4 5"
+    },
+    {
+      "title": "Biến tạm chỉ là bản sao",
+      "bullets": [
+        "Biến trong `range_declaration` là **bản sao** của phần tử mỗi vòng lặp",
+        "Sửa biến tạm **không** làm thay đổi phần tử gốc trong mảng"
+      ],
+      "code": "char a[6] = {'2','8','t','e','c','h'};\nfor (char x : a) {\n    x = '@';   // chi doi ban sao x\n}\n// mang a khong doi: 2 8 t e c h"
+    },
+    {
+      "title": "Dùng tham chiếu để sửa được phần tử gốc",
+      "bullets": [
+        "Thêm `&` trước biến tạm để nó **tham chiếu** tới phần tử thật",
+        "Khi đó thay đổi biến tạm sẽ thay đổi luôn phần tử trong mảng"
+      ],
+      "code": "char a[6] = {'2','8','t','e','c','h'};\nfor (char &x : a) {\n    x = '@';   // sua truc tiep phan tu that\n}\n// mang a doi thanh: @ @ @ @ @ @"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Range-based for gọn hơn `for` thường nhưng cần C++11+",
+        "Không có biến `&x` thì chỉ **đọc**, không **sửa** được phần tử",
+        "Thêm `&` trước biến tạm khi cần thay đổi phần tử gốc",
+        "Cũng dùng được cho `string`, `map`, `set`... theo cùng cú pháp"
+      ]
+    }
+  ]
+}

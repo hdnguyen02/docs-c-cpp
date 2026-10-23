@@ -1,0 +1,50 @@
+{
+  "title": "Lý Thuyết Số Và Toán Học",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vì sao cần lý thuyết số khi học lập trình?",
+      "bullets": [
+        "Toán học giúp nâng cao **tư duy logic** và khả năng suy luận",
+        "Bài này là **mục lục tổng hợp** các chủ đề số học cần nắm",
+        "Mỗi chủ đề được học chi tiết ở một bài riêng"
+      ]
+    },
+    {
+      "title": "Nhóm chủ đề: tính chất đặc biệt của số",
+      "bullets": [
+        "**Số nguyên tố**",
+        "**Số chính phương**",
+        "**Số thuận nghịch** (đối xứng)",
+        "**Số hoàn hảo** (hoàn thiện)",
+        "**Số Fibonacci**"
+      ]
+    },
+    {
+      "title": "Nhóm chủ đề: ước, bội và phân tích số",
+      "bullets": [
+        "Đếm (tính tổng) **ước của số nguyên**",
+        "**Ước chung lớn nhất** - Bội chung nhỏ nhất",
+        "**Phân tích thừa số nguyên tố**",
+        "**Sàng số nguyên tố Eratosthenes**"
+      ]
+    },
+    {
+      "title": "Nhóm chủ đề nâng cao",
+      "bullets": [
+        "**Lý thuyết đồng dư**",
+        "**Công thức Legendre** (bậc thừa số nguyên tố trong giai thừa)",
+        "**Lũy thừa nhị phân**"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Đây là bài **mục lục**, không đi sâu chi tiết thuật toán",
+        "Nên học từng chủ đề nhỏ theo đúng bài riêng của nó",
+        "Các chủ đề này là nền tảng cho nhiều bài tập đệ quy và mảng sau này"
+      ]
+    }
+  ]
+}

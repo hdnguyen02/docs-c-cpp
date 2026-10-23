@@ -1,0 +1,81 @@
+{
+  "title": "Tách Chuỗi Với strtok Và sscanf",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Hai công cụ tách chuỗi trong C",
+      "bullets": [
+        "`strtok` (`string.h`): tách chuỗi thành các **từ** theo ký tự phân cách",
+        "`sscanf` (`stdio.h`): đọc **số, dữ liệu có định dạng** từ chuỗi",
+        "Ứng dụng: đếm từ, chuẩn hóa chuỗi, tính tổng các số trong chuỗi"
+      ]
+    },
+    {
+      "title": "Tách từ bằng strtok",
+      "bullets": [
+        "Lần đầu truyền chuỗi, các lần sau truyền `NULL`",
+        "Trả về `NULL` khi hết từ; nhiều dấu cách liền nhau bị bỏ qua"
+      ],
+      "code": "char s[] = \"codelab    hoc  lap trinh\";\nchar *word = strtok(s, \" \");\nwhile(word != NULL){\n    printf(\"%s\\n\", word);\n    word = strtok(NULL, \" \");\n}\n// codelab / hoc / lap / trinh"
+    },
+    {
+      "title": "Lưu ý khi dùng strtok",
+      "bullets": [
+        "**Sửa chuỗi gốc**: thay dấu phân cách bằng `'\\0'`",
+        "Phải dùng mảng `char s[]`, không dùng chuỗi hằng `char *s = \"...\"`",
+        "Cần giữ chuỗi gốc thì `strcpy` ra bản sao trước khi tách",
+        "Chỉ nhớ **một** vị trí tách: không lồng hai vòng `strtok`"
+      ]
+    },
+    {
+      "title": "Tách theo nhiều ký tự phân cách",
+      "bullets": [
+        "Mọi ký tự trong `delim` đều là dấu phân cách",
+        "Tách theo `-` chỉ cần `strtok(s, \"-\")`"
+      ],
+      "code": "char s[] = \"codelab,hoc.lap!!trinh???C dsa\";\nconst char *delim = \" .,?!\";\nfor(char *w = strtok(s, delim); w; w = strtok(NULL, delim))\n    printf(\"%s \", w);\n// codelab hoc lap trinh C dsa"
+    },
+    {
+      "title": "Đọc dữ liệu từ chuỗi với sscanf",
+      "bullets": [
+        "Giống `scanf` nhưng đọc từ chuỗi, **không** sửa chuỗi",
+        "Trả về **số biến đọc được**: dùng để kiểm tra định dạng",
+        "`%49s` chống tràn mảng, `%lf` cho `double`"
+      ],
+      "code": "char ten[50]; int tuoi; double diem;\nint n = sscanf(\"An 20 8.5\", \"%49s %d %lf\", ten, &tuoi, &diem);\n// n = 3\nint d, m, y;\nif(sscanf(\"17/09/2026\", \"%d/%d/%d\", &d, &m, &y) == 3) { ... }"
+    },
+    {
+      "title": "Đọc lần lượt nhiều số với %n",
+      "bullets": [
+        "`%n` ghi **số ký tự đã xử lý**, không tính vào giá trị trả về",
+        "Cộng con trỏ để nhảy qua phần đã đọc"
+      ],
+      "code": "char s[] = \"10 20   30 -5 100\";\nchar *p = s;\nint x, dadoc;\nlong long tong = 0;\nwhile(sscanf(p, \"%d%n\", &x, &dadoc) == 1){\n    tong += x;\n    p += dadoc;\n}\n// tong = 155"
+    },
+    {
+      "title": "Bài tập: đếm từ và chuẩn hóa",
+      "bullets": [
+        "Đếm từ: đếm số lần `strtok` trả về khác `NULL`",
+        "Chuẩn hóa: sửa từng từ rồi `strcat` vào chuỗi kết quả"
+      ],
+      "code": "char s[] = \"   NgUYeN   vAN   tECH28  \", res[100] = \"\";\nfor(char *w = strtok(s, \" \"); w; w = strtok(NULL, \" \")){\n    w[0] = (char)toupper((unsigned char)w[0]);\n    for(int j = 1; w[j]; j++)\n        w[j] = (char)tolower((unsigned char)w[j]);\n    if(res[0] != '\\0') strcat(res, \" \");\n    strcat(res, w);\n}\n// res = \"Nguyen Van Tech28\""
+    },
+    {
+      "title": "Bài tập: tổng các số trong chuỗi",
+      "bullets": [
+        "Gặp chữ số thì `sscanf` đọc cả số, ký tự khác thì bỏ qua"
+      ],
+      "code": "char s[] = \"a12bc 5 -- 3x\";\nchar *p = s; long long tong = 0;\nwhile(*p){\n    int x, dadoc;\n    if(isdigit((unsigned char)*p) &&\n       sscanf(p, \"%d%n\", &x, &dadoc) == 1){ tong += x; p += dadoc; }\n    else p++;\n}\n// tong = 20"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`strtok(s, delim)` lần đầu, `strtok(NULL, delim)` các lần sau",
+        "`strtok` **sửa chuỗi gốc**, không dùng với chuỗi hằng, không lồng nhau",
+        "`sscanf` trả về số biến đọc được: luôn kiểm tra giá trị này",
+        "`%n` giúp đọc tiếp từ vị trí đã dừng trong chuỗi"
+      ]
+    }
+  ]
+}

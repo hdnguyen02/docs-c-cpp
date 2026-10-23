@@ -1,0 +1,70 @@
+{
+  "title": "Xóa Node Cuối Trong DSLK Đôi",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vấn đề: xóa node cuối trong DSLK đôi",
+      "bullets": [
+        "Vẫn phải duyệt tới **node thứ 2 từ cuối** như DSLK đơn",
+        "Cách cài đặt này **chưa tận dụng `prev`** để nhảy thẳng tới cuối",
+        "Node có `prev` nhưng vẫn duyệt bằng `tmp->next->next`"
+      ]
+    },
+    {
+      "title": "Các bước xóa node cuối (quản lý bằng head)",
+      "bullets": [
+        "Duyệt tới node thứ 2 từ cuối (`tmp`)",
+        "Lưu lại node cuối: `delNode = tmp->next`",
+        "Cho `tmp->next = NULL`",
+        "Giải phóng `delNode`"
+      ],
+      "code": "Truoc:  8 <-> 9 <-> 10 <-> NULL\nSau:    8 <-> 9 <-> NULL   // tmp=9, giai phong 10"
+    },
+    {
+      "title": "Cài đặt hàm `xoacuoi`",
+      "code": "void xoacuoi(node **head){\n    if(*head == NULL) return;          // rong\n    if((*head)->next == NULL){         // 1 node\n        free(*head); *head = NULL;\n    } else {\n        node *tmp = *head;\n        while(tmp->next->next != NULL)\n            tmp = tmp->next;           // toi node thu 2 tu cuoi\n        node *delNode = tmp->next;\n        tmp->next = NULL;\n        free(delNode);\n    }\n}"
+    },
+    {
+      "title": "Vì sao phải xử lý DSLK 1 node riêng?",
+      "bullets": [
+        "Điều kiện `tmp->next->next != NULL` cần **2 bước next**",
+        "DSLK chỉ có 1 node: `head->next` đã là `NULL`",
+        "Truy cập tiếp `->next` trên `NULL` gây lỗi bộ nhớ"
+      ]
+    },
+    {
+      "title": "Quản lý bằng head và tail: điểm khác biệt",
+      "bullets": [
+        "Vẫn duyệt tới node thứ 2 từ cuối như cách 1",
+        "Sau khi cắt, phải **cập nhật `tail = tmp`**",
+        "DSLK còn 1 node: xóa xong `head = tail = NULL`"
+      ]
+    },
+    {
+      "title": "Trường hợp đặc biệt",
+      "bullets": [
+        "DSLK rỗng (`head == NULL`): return ngay",
+        "DSLK 1 node: xóa `head`, gán `head = NULL` (và `tail = NULL`)",
+        "DSLK ≥2 node: duyệt tới node thứ 2 từ cuối rồi cắt"
+      ]
+    },
+    {
+      "title": "Giải phóng bộ nhớ",
+      "bullets": [
+        "Node cuối bị tách ra, không còn ai trỏ tới",
+        "Phải `free`/`delete` để tránh rò rỉ bộ nhớ",
+        "Giải phóng **sau khi** đã cắt `tmp->next = NULL`"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Xóa cuối DSLK đôi trong bài này **vẫn phải duyệt**, chưa tận dụng `prev`",
+        "Luôn tách 3 trường hợp: rỗng → 1 node → ≥2 node",
+        "Dùng `tail`: cập nhật `tail` sau khi cắt",
+        "Giải phóng node đã tách bằng `delete`/`free`"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "title": "Vector Trong C++",
+  "course": "STL C++",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vector là gì?",
+      "bullets": [
+        "**Container** kiểu mảng động, tự thay đổi kích thước",
+        "Truy cập phần tử qua chỉ số như mảng 1 chiều",
+        "Lưu được `int`, `float`, `char`, `pair`, thậm chí vector khác",
+        "Cần thêm thư viện `vector` để dùng"
+      ],
+      "code": "vector<data_type> vector_name;"
+    },
+    {
+      "title": "Các cách khai báo vector",
+      "bullets": [
+        "Khai báo rỗng rồi thêm dần phần tử",
+        "Khai báo kèm danh sách phần tử khởi tạo",
+        "Khai báo sẵn `n` phần tử (giá trị mặc định)",
+        "Khai báo sẵn `n` phần tử cùng giá trị `val`"
+      ],
+      "code": "vector<int> v1;                 // rong\nvector<int> v2 = {1,2,3,4,5};   // co san phan tu\nvector<int> v3(n);              // n phan tu mac dinh\nvector<int> v4(n, val);         // n phan tu gia tri val"
+    },
+    {
+      "title": "Thêm, xóa, duyệt cơ bản",
+      "bullets": [
+        "`size()`/`length()`: số phần tử — O(1)",
+        "`push_back()`: thêm cuối vector — O(1)",
+        "`pop_back()`: xóa phần tử cuối — O(1)",
+        "Duyệt bằng chỉ số hoặc range-based `for`"
+      ],
+      "code": "vector<int> v;\nv.push_back(1); v.push_back(2); v.push_back(3);\ncout << v.size();           // 3\nfor(int i = 0; i < v.size(); i++) cout << v[i];\nfor(int x : v) cout << x;   // ranged-based for"
+    },
+    {
+      "title": "Vector thay thế mảng 1 chiều",
+      "bullets": [
+        "Cách 1: vector rỗng, `push_back()` từng phần tử nhập vào",
+        "Cách 2: khai báo sẵn `n` phần tử rồi gán qua chỉ số `v[i]`"
+      ],
+      "code": "// Cach 1\nvector<int> v;\nfor(int i = 0; i < n; i++){ cin >> tmp; v.push_back(tmp); }\n\n// Cach 2\nvector<int> v(n);\nfor(int i = 0; i < n; i++) cin >> v[i];"
+    },
+    {
+      "title": "Vector thay thế mảng 2 chiều",
+      "bullets": [
+        "Mảng 2 chiều = **vector của vector**",
+        "Cách 1: tạo từng `row` (vector 1 chiều) rồi `push_back` vào vector chính",
+        "Cách 2: khai báo sẵn kích thước `vector<vector<int>> v(n, vector<int>(m))`"
+      ],
+      "code": "// Cach 1: tung dong la 1 vector\nvector<vector<int>> v;\nfor(int i = 0; i < n; i++){\n    vector<int> row;\n    for(int j = 0; j < m; j++){ cin >> tmp; row.push_back(tmp); }\n    v.push_back(row);\n}\n\n// Cach 2: khai bao san kich thuoc\nvector<vector<int>> v(n, vector<int>(m));\nfor(int i = 0; i < n; i++)\n    for(int j = 0; j < m; j++) cin >> v[i][j];"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Vector = mảng động, hỗ trợ truy cập chỉ số như mảng thường",
+        "`push_back()`/`pop_back()` ở cuối đều là O(1)",
+        "Vector của vector dùng để mô phỏng mảng 2 chiều",
+        "Nên dùng vector thay mảng tĩnh khi chưa biết trước số lượng phần tử"
+      ]
+    }
+  ]
+}

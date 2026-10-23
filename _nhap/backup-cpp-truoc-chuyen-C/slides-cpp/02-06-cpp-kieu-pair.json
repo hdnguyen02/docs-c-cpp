@@ -1,0 +1,56 @@
+{
+  "title": "Kiểu Pair",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Pair là gì?",
+      "bullets": [
+        "`pair` nằm trong thư viện `utility`, lưu **2 giá trị** trong 1 biến",
+        "Dùng cho dữ liệu theo cặp: toạ độ Oxy, thời gian bắt đầu/kết thúc",
+        "Phần tử 1 gọi là `first`, phần tử 2 gọi là `second`",
+        "Truy cập bằng toán tử dấu chấm: `.first`, `.second`"
+      ]
+    },
+    {
+      "title": "4 cách khai báo pair",
+      "bullets": [
+        "Khai báo mặc định, hoặc gán giá trị ngay khi khai báo",
+        "`first`/`second` có thể là kiểu bất kỳ: int, char, string..."
+      ],
+      "code": "pair<int, int> a = make_pair(28, 100);\npair<char, int> b = {'@', 28};\npair<char, char> c('#', '$');\ncout << a.first << ' ' << a.second;  // 28 100"
+    },
+    {
+      "title": "Pair lồng nhau",
+      "bullets": [
+        "`first`/`second` có thể chính là một **pair khác**",
+        "Truy cập qua nhiều lớp `.first`/`.second` liên tiếp"
+      ],
+      "code": "pair<int, pair<char, int>> p1 = make_pair(28, make_pair('@', 100));\ncout << p1.first << endl;                    // 28\ncout << p1.second.first << ' ' << p1.second.second; // @ 100\n\npair<pair<int,int>, pair<int,int>> p2 = {{10, 20}, {30, 40}};\ncout << p2.first.first << ' ' << p2.second.second;   // 10 40"
+    },
+    {
+      "title": "Gán và so sánh pair",
+      "bullets": [
+        "**Gán**: `p1 = p` copy cả `first` và `second`",
+        "**So sánh**: so `first` trước, bằng nhau mới so `second`"
+      ],
+      "code": "pair<int, int> p1 = {10, 20}, p2 = {10, 21}, p3 = {5, 35};\ncout << (p1 == p2) << (p1 != p2) << (p1 < p2) << (p1 > p3);\n// false true true true"
+    },
+    {
+      "title": "Swap 2 pair",
+      "bullets": [
+        "`p1.swap(p2)` hoán đổi toàn bộ giá trị của 2 pair cho nhau"
+      ],
+      "code": "pair<int, int> p1 = {10, 20}, p2 = {30, 40};\np1.swap(p2);\n// p1 = {30, 40}\n// p2 = {10, 20}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`pair<T1, T2>` gộp 2 giá trị vào 1 biến duy nhất",
+        "Truy cập bằng `.first` và `.second`",
+        "So sánh pair ưu tiên `first`, bằng nhau mới xét `second`",
+        "Có thể lồng pair trong pair để lưu dữ liệu phức tạp hơn"
+      ]
+    }
+  ]
+}

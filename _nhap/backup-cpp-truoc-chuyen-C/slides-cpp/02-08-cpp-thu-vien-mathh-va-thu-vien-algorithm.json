@@ -1,0 +1,57 @@
+{
+  "title": "Thư Viện Math.h Và Thư Viện Algorithm",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Các hàm toán học phổ biến",
+      "bullets": [
+        "Thư viện `math.h` chứa các hàm nhận tham số **double**, trả về **double**",
+        "Không cần nhớ hết, chỉ cần vài hàm dùng thường xuyên"
+      ],
+      "code": "pow(x, y)   // x^y\nsqrt(x)     // can bac 2\ncbrt(x)     // can bac 3\nceil(x)     // lam tron len\nfloor(x)    // lam tron xuong\nround(x)    // lam tron gan nhat\nfabs(x)     // tri tuyet doi\nfmod(x, y)  // so du khi chia x cho y\nlog(x)      // logarit tu nhien\nlog10(x)    // logarit thap phan\nsin/cos/tan(x)  // ham luong giac, x tinh bang radian"
+    },
+    {
+      "title": "pow và sqrt",
+      "bullets": [
+        "`pow(x, y)` trả `double`, cần ép kiểu nếu muốn số nguyên",
+        "`sqrt(x)` tính căn bậc 2"
+      ],
+      "code": "int a = 2, b = 10;\ncout << (int)pow(a, b);           // 1024\ndouble res = pow(100, 1.0/5);     // can bac 5 cua 100 = 2.512\n\nint n = 100;\ncout << (int)sqrt(n);             // 10\ncout << fixed << setprecision(2) << sqrt(1000); // 31.62"
+    },
+    {
+      "title": "ceil, floor, round",
+      "bullets": [
+        "`ceil(x)`: làm tròn **lên**, số nguyên nhỏ nhất ≥ x",
+        "`floor(x)`: làm tròn **xuống**, số nguyên lớn nhất ≤ x",
+        "`round(x)`: làm tròn theo quy tắc **≥ 0.5 thì lên**"
+      ],
+      "code": "double a = 3.14, b = 3.8;\ncout << (int)ceil(a) << \" \" << (int)ceil(b);   // 4 4\ncout << (int)floor(a) << \" \" << (int)floor(b); // 3 3\ncout << (int)round(a) << \" \" << (int)round(b); // 3 4"
+    },
+    {
+      "title": "abs: trị tuyệt đối",
+      "bullets": [
+        "`abs(x)` trả trị tuyệt đối của `x`",
+        "Hàm này nằm trong thư viện `stdlib.h`"
+      ],
+      "code": "cout << abs(10) << \" \" << abs(-100);  // 10 100"
+    },
+    {
+      "title": "Thư viện Algorithm: swap, min, max",
+      "bullets": [
+        "`swap(a, b)` hoán đổi giá trị 2 biến, không cần tự viết code",
+        "`min`/`max` với 2 hoặc nhiều giá trị (nhiều giá trị cần `{}`)"
+      ],
+      "code": "int a = 100, b = 200;\nswap(a, b);              // a=200, b=100\n\ncout << min(a, b);                 // so nho hon\ncout << min({10, 20, 15, 4});      // 4\ncout << max({10, 20, 15, 4});      // 20"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`math.h` cung cấp hàm toán học: `pow`, `sqrt`, `ceil`, `floor`, `round`...",
+        "Các hàm này nhận/trả **double**, cần ép kiểu khi muốn số nguyên",
+        "`algorithm` cung cấp `swap`, `min`, `max` dùng sẵn",
+        "`min`/`max` nhiều hơn 2 giá trị phải bọc trong `{}`"
+      ]
+    }
+  ]
+}

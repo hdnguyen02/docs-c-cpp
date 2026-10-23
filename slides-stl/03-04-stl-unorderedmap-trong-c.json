@@ -1,0 +1,43 @@
+{
+  "title": "Unordered_map Trong C++",
+  "course": "STL C++",
+  "source": "",
+  "slides": [
+    {
+      "title": "Unordered_map khác map ở đâu?",
+      "bullets": [
+        "Cài đặt bằng **bảng băm (hash table)** thay vì cây đỏ đen như map",
+        "Key vẫn **riêng biệt** (không trùng)",
+        "Các phần tử **không có thứ tự** nào",
+        "Cần thư viện `unordered_map`"
+      ],
+      "code": "#include \"unordered_map\"\nunordered_map<string,string> mp;\nmp[\"codelab\"] = \"codelab.dev\";\nmp[\"USA\"] = \"Trump\";\nmp[\"Russia\"] = \"Putin\";\nfor(pair<string,string> it : mp) cout << it.first << \" \" << it.second;\n// thu tu in ra khong theo quy luat"
+    },
+    {
+      "title": "Độ phức tạp find(), count(), erase(), insert()",
+      "bullets": [
+        "Ở **map**: các hàm này đều **O(logN)** (cây đỏ đen)",
+        "Ở **unordered_map**: trung bình **O(1)** nhờ hash table",
+        "Trường hợp tệ nhất (đụng độ hash) vẫn có thể là **O(N)**"
+      ],
+      "code": "unordered_map<string,string> mp;\nmp[\"codelab\"] = \"codelab.dev\"; mp[\"USA\"] = \"Trump\";\nmp.erase(\"USA\");\nfor(pair<string,string> it : mp) cout << it.first << \" \" << it.second;"
+    },
+    {
+      "title": "Khi nào dùng unordered_map?",
+      "bullets": [
+        "Chỉ cần tra cứu key-value nhanh, **không cần thứ tự**",
+        "Ưu tiên tốc độ trung bình O(1) hơn map (O(logN))",
+        "Cần duyệt theo key tăng dần thì vẫn phải dùng `map`"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "unordered_map = map nhưng dùng **hash table**, không sắp xếp key",
+        "find/count/erase/insert trung bình O(1), worst case O(N)",
+        "Chọn map khi cần thứ tự key, unordered_map khi chỉ cần tốc độ",
+        "Cả hai đều đảm bảo key **duy nhất**"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "title": "Xây Dựng Hàm So Sánh Cho qsort",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Hàm so sánh quyết định thứ tự",
+      "bullets": [
+        "Là tham số thứ 4 của `qsort`, tên tự đặt, thường là `cmp`",
+        "Kiểu trả về **int**, 2 tham số **`const void *`** trỏ tới 2 phần tử",
+        "Bước 1: **ép kiểu** về con trỏ đúng kiểu phần tử, rồi mới đọc giá trị",
+        "Trả **âm**: x trước y; **dương**: x sau y; **0**: tương đương"
+      ],
+      "code": "int cmp(const void *a, const void *b){\n    const data_type *x = (const data_type *)a;\n    const data_type *y = (const data_type *)b;\n    // logic so sanh *x va *y\n}"
+    },
+    {
+      "title": "Ví dụ: giảm dần, tổng chữ số, trị tuyệt đối",
+      "code": "int cmpGiam(const void *a, const void *b){\n    int x = *(const int *)a, y = *(const int *)b;\n    if(x > y) return -1;          // lon hon dung truoc\n    if(x < y) return 1;\n    return 0;\n}\n// Tong chu so tang: so sanh tong(x), tong(y)\n// {1000000,212,40,9,10001,30,449} -> 1000000 10001 30 40 212 9 449\n// Tri tuyet doi giam: so sanh abs(x), abs(y)  (stdlib.h)\n// {3,-5,-1,4,-2,6,-7} -> -7 6 -5 4 3 -2 -1",
+      "caption": "Hàm so sánh phải nhất quán: cmp(x, y) âm thì cmp(y, x) dương"
+    },
+    {
+      "title": "Bẫy tràn số: return a - b",
+      "bullets": [
+        "`x - y` **tràn số** khi x, y lớn và trái dấu → sai dấu",
+        "Tràn số nguyên có dấu là **hành vi không xác định**",
+        "An toàn: `(x > y) - (x < y)` chỉ ra -1, 0, 1",
+        "double, long long, size_t cũng **không** dùng `x - y`"
+      ],
+      "code": "return *(const int *)a - *(const int *)b;   // NGUY HIEM\n// 2000000000 - (-2000000000) tran thanh so am -> sap sai\n\nint x = *(const int *)a, y = *(const int *)b;\nreturn (x > y) - (x < y);                    // AN TOAN"
+    },
+    {
+      "title": "Nhiều tiêu chí",
+      "bullets": [
+        "Xét lần lượt từ tiêu chí **ưu tiên nhất** tới cuối",
+        "Tiêu chí trước **khác nhau** thì trả về ngay, bằng mới xét tiếp",
+        "Đảo chiều tiêu chí: đổi 2 vế `(x < y) - (x > y)`"
+      ],
+      "code": "int cmp(const void *a, const void *b){\n    int x = *(const int *)a, y = *(const int *)b;\n    int tx = tong(x), ty = tong(y);\n    if(tx != ty) return (tx > ty) - (tx < ty);  // tong tang\n    return (x < y) - (x > y);                   // so lon truoc\n}\n// Chan truoc le: chan giam, le tang -> 10 8 6 4 2 1 3 5 7 9"
+    },
+    {
+      "title": "Sắp mảng struct",
+      "bullets": [
+        "Ép về `const Point *`, truy cập trường bằng `->`",
+        "Tên là chuỗi: so bằng `strcmp`, trả thẳng kết quả",
+        "`size` là `sizeof(ds[0])`: qsort đổi chỗ **cả struct**"
+      ],
+      "code": "typedef struct { char ten[30]; double gpa; } SinhVien;\n\nint cmp(const void *a, const void *b){\n    const SinhVien *s1 = (const SinhVien *)a;\n    const SinhVien *s2 = (const SinhVien *)b;\n    if(s1->gpa != s2->gpa)\n        return (s1->gpa < s2->gpa) - (s1->gpa > s2->gpa); // gpa giam\n    return strcmp(s1->ten, s2->ten);                      // ten A-Z\n}"
+    },
+    {
+      "title": "Sắp mảng chuỗi: 2 cách ép kiểu",
+      "bullets": [
+        "`char a[n][MAX]`: void* trỏ thẳng vào chuỗi → `(const char *)a`",
+        "`char *a[n]`: void* trỏ tới **con trỏ** → `*(const char * const *)a`",
+        "Ép nhầm: `strcmp` đọc byte của **địa chỉ** → sắp sai"
+      ],
+      "code": "int cmp2Chieu(const void *a, const void *b){\n    return strcmp((const char *)a, (const char *)b);\n}\nint cmpConTro(const void *a, const void *b){\n    return strcmp(*(const char * const *)a,\n                  *(const char * const *)b);\n}\n// {\"lan\",\"hoa\",\"cuc\",\"mai\",\"dao\"} -> cuc dao hoa lan mai"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Luôn **ép kiểu** `const void *` về đúng kiểu phần tử trước",
+        "Trả **âm / 0 / dương**; không trả kiểu đúng/sai 0-1",
+        "Tránh `return x - y`; dùng `(x > y) - (x < y)`",
+        "Nhiều tiêu chí: khác thì trả ngay, bằng mới xét tiếp",
+        "Mảng con trỏ chuỗi phải ép `*(const char * const *)`"
+      ]
+    }
+  ]
+}

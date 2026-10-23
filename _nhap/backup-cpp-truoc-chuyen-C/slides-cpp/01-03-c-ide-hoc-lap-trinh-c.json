@@ -1,0 +1,48 @@
+{
+  "title": "IDE Học Lập Trình C++",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "IDE là gì?",
+      "bullets": [
+        "**IDE** = Integrated Development Environment (môi trường phát triển tích hợp)",
+        "Gồm soạn thảo code, biên dịch, gỡ lỗi, kiểm thử",
+        "2 phần chính: **Text Editor** (soạn thảo) và **Compiler** (biên dịch)"
+      ]
+    },
+    {
+      "title": "Vì sao cần biên dịch?",
+      "bullets": [
+        "C++ là ngôn ngữ bậc cao, máy tính không chạy trực tiếp được",
+        "**Compiler** dịch mã nguồn sang mã máy (file .exe) để thực thi",
+        "Bước biên dịch là bắt buộc trước khi chạy chương trình"
+      ]
+    },
+    {
+      "title": "Các IDE và Text Editor phổ biến",
+      "bullets": [
+        "DevC++, Codeblock, Visual Studio Code, XCode (MacOS), Sublime Text, VIM",
+        "Newbie nên chọn công cụ dễ cài, dễ làm quen trước",
+        "Kỹ năng code quan trọng hơn IDE đang dùng"
+      ]
+    },
+    {
+      "title": "Lựa chọn cho người mới",
+      "bullets": [
+        "**DevC++** phù hợp newbie: miễn phí, dễ cài, gọn nhẹ",
+        "Đã tích hợp sẵn Text Editor và Compiler",
+        "Thành thạo rồi có thể chuyển sang VSCode, Sublime Text",
+        "Máy Mac: dùng **XCode** hoặc VSCode/Sublime (DevC++ chỉ có Windows)"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "IDE chỉ là công cụ hỗ trợ, không quyết định trình độ lập trình",
+        "Chọn công cụ dễ cài đặt, đủ dùng là được",
+        "DevC++ cho người mới trên Windows, XCode/VSCode cho macOS"
+      ]
+    }
+  ]
+}

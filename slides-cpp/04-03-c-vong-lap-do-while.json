@@ -1,0 +1,46 @@
+{
+  "title": "Vòng Lặp Do-While",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Do-while giải quyết vấn đề gì?",
+      "bullets": [
+        "Giống `while` nhưng chạy thân vòng lặp **trước**, kiểm tra điều kiện **sau**",
+        "Đảm bảo khối lệnh luôn chạy **ít nhất 1 lần**",
+        "Hợp khi cần làm trước rồi mới kiểm tra (VD: nhập lại nếu sai)"
+      ]
+    },
+    {
+      "title": "Cú pháp",
+      "code": "do{\n    // code\n}while(condition);"
+    },
+    {
+      "title": "Luồng chạy — khác biệt với while",
+      "bullets": [
+        "**While**: kiểm tra điều kiện **trước**, có thể không chạy lần nào",
+        "**Do-while**: chạy thân vòng lặp **trước**, rồi mới kiểm tra điều kiện",
+        "Điều kiện đúng thì lặp lại, sai thì dừng",
+        "Do-while luôn chạy **tối thiểu 1 lần** dù điều kiện sai ngay từ đầu"
+      ]
+    },
+    {
+      "title": "Ví dụ: in số từ 1 đến n",
+      "code": "int i = 1, n = 4;\ndo{\n    printf(\"%d \", i);\n    ++i;\n}while(i <= n);\n// 1 2 3 4"
+    },
+    {
+      "title": "Ví dụ: nhập lại khi số âm",
+      "caption": "Dạng bài toán kinh điển của do-while: cần chạy 1 lần để có dữ liệu trước khi kiểm tra",
+      "code": "int n;\ndo{\n    printf(\"Nhap n : \");\n    scanf(\"%d\", &n);\n}while(n < 0);"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Do-while chạy thân **trước**, kiểm tra điều kiện **sau** — ngược với `while`",
+        "Luôn thực hiện ít nhất 1 lần dù điều kiện sai ngay từ đầu",
+        "Thường dùng cho việc **nhập liệu cần kiểm tra hợp lệ**",
+        "Đừng quên dấu `;` sau `while(condition)`"
+      ]
+    }
+  ]
+}

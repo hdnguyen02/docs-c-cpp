@@ -1,0 +1,90 @@
+{
+  "title": "Toán Tử - Operator",
+  "course": "C++ Cơ Bản · 28Tech",
+  "source": "https://blog.28tech.com.vn/cpp-toan-tu-operator",
+  "slides": [
+    {
+      "title": "Toán tử gán",
+      "bullets": [
+        "Cú pháp `X = Y`: gán giá trị của `Y` cho `X`",
+        "Gán chỉ copy giá trị tại thời điểm gán, không liên kết 2 biến"
+      ],
+      "code": "int n = 28;\nint m = n;      // m = 28\nint p = m;\np = 56;         // p doi thanh 56, m van la 28"
+    },
+    {
+      "title": "Toán tử toán học",
+      "bullets": [
+        "`+ - * / %`: cộng, trừ, nhân, chia, chia dư",
+        "Ưu tiên: nhân/chia/dư trước, cộng/trừ sau, trái qua phải",
+        "Dùng ngoặc `()` để đảm bảo thứ tự tính đúng mong muốn"
+      ],
+      "code": "int n1 = 100 + 200;  // 300\nint n2 = 200 - 100;  // 100\nint n3 = 28 * 2;     // 56\nint n4 = 50 / 2;     // 25\nint n5 = 20 % 3;     // 2\n\n// += -= *= /= %= : ket hop gan voi toan hoc, vd a += b tuong duong a = a + b"
+    },
+    {
+      "title": "Ví dụ: chu vi, diện tích",
+      "code": "int dai, rong;\ncin >> dai >> rong;\nint chuvi = 2 * (dai + rong);\nint dientich = dai * rong;\n\ndouble R;\ncin >> R;\ndouble cv = 2 * 3.14 * R;\ndouble dt = 3.14 * R * R;\ncout << fixed << setprecision(2) << cv << \" \" << dt;"
+    },
+    {
+      "title": "Chú ý: chia nguyên và chia thập phân",
+      "bullets": [
+        "2 số **nguyên** chia nhau → phần thập phân **bị loại bỏ**",
+        "Có ít nhất 1 số **thực** thì kết quả mới giữ phần thập phân",
+        "Cách ép: `(float)a / b` hoặc nhân `1.0 * a / b`"
+      ],
+      "code": "int a = 10, b = 3;\nint thuong1 = a / b;          // 3 (chia nguyen truoc)\nfloat thuong2 = a / b;        // 3.00 (van la 3 roi moi ep kieu)\n\nfloat thuong3 = (float)a / b; // 3.33\nfloat thuong4 = 1.0 * a / b;  // 3.33"
+    },
+    {
+      "title": "Chú ý: tràn số khi nhân 2 số int",
+      "bullets": [
+        "2 số `int` nhân nhau có thể **vượt giới hạn** của `int`",
+        "Khắc phục: ép 1 trong 2 số sang `long long` trước khi nhân"
+      ],
+      "code": "int a = 1000000, b = 1000000;\nlong long tich1 = a * b;             // -727379968 (tran so)\nlong long tich2 = (long long)a * b;  // 1000000000000 (dung)\nlong long tich3 = 1ll * a * b;       // 1000000000000 (dung)"
+    },
+    {
+      "title": "Toán tử so sánh",
+      "bullets": [
+        "`> >= < <= != ==` trả về **đúng (true)** hoặc **sai (false)**",
+        "Dùng để kiểm tra điều kiện trong chương trình"
+      ],
+      "code": "cout << boolalpha << (10 > 50);   // false\ncout << boolalpha << (20 <= 30);  // true\ncout << boolalpha << (10 == 10);  // true"
+    },
+    {
+      "title": "Toán tử logic",
+      "bullets": [
+        "`&&` (AND): đúng khi **mọi** toán hạng đúng",
+        "`||` (OR): sai khi **mọi** toán hạng sai",
+        "`!` (NOT): phủ định đúng thành sai và ngược lại",
+        "Trong C++, mọi giá trị khác 0 được coi là **đúng**"
+      ],
+      "code": "bool res1 = (10 < 20) && (20 >= 20);            // true\nbool res3 = (10 > 20) || (20 < 10) || (5 == 5); // true\nbool res4 = !(10 < 20);                          // false"
+    },
+    {
+      "title": "Toán tử tăng giảm",
+      "bullets": [
+        "`++a` **tăng trước**, dùng giá trị mới ngay",
+        "`a++` **tăng sau**, dùng giá trị cũ rồi mới tăng",
+        "Tương tự với `--a` và `a--`"
+      ],
+      "code": "int n = 100;\ncout << n++ << endl;  // in 100, sau do n = 101\ncout << n << endl;    // 101\ncout << ++n << endl;  // tang truoc thanh 102, in 102\ncout << n << endl;    // 102"
+    },
+    {
+      "title": "Toán tử điều kiện (3 ngôi)",
+      "bullets": [
+        "Cú pháp: `[điều_kiện] ? [giá_trị_1] : [giá_trị_2]`",
+        "Điều kiện đúng → trả `giá_trị_1`, sai → trả `giá_trị_2`"
+      ],
+      "code": "int n = 10 < 20 ? 28 : 82;   // 28, vi 10 < 20 dung\nn = (50 < 50) && (10 > 3) ? 28 : 82;  // 82, vi dieu kien sai"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Ưu tiên toán tử: `()` > `* / %` > `+ -`",
+        "Chia 2 số nguyên bị mất phần thập phân, cần ép kiểu để giữ lại",
+        "Nhân 2 số `int` lớn dễ **tràn số**, ép sang `long long`",
+        "`&&`/`||`/`!` xử lý logic, mọi giá trị khác 0 là đúng",
+        "`a++` dùng giá trị trước rồi mới tăng, `++a` tăng rồi mới dùng"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "title": "Hàm qsort Trong C",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "qsort() là gì?",
+      "bullets": [
+        "Hàm sắp xếp có sẵn trong **`<stdlib.h>`**, không cần tự cài đặt",
+        "Độ phức tạp trung bình **O(NlogN)**, nhanh hơn nhiều thuật toán O(N²)",
+        "Sắp được **mọi kiểu**: int, double, char, chuỗi, struct",
+        "Chuẩn C không quy định thuật toán cụ thể và **không đảm bảo ổn định**"
+      ]
+    },
+    {
+      "title": "Nguyên mẫu và 4 tham số",
+      "bullets": [
+        "`base`: địa chỉ phần tử đầu, thường là tên mảng `a`",
+        "`nmemb`: số phần tử cần sắp",
+        "`size`: số byte của **một** phần tử, dùng `sizeof(a[0])`",
+        "`compar`: hàm so sánh tự viết, quyết định thứ tự"
+      ],
+      "code": "void qsort(void *base, size_t nmemb, size_t size,\n           int (*compar)(const void *, const void *));"
+    },
+    {
+      "title": "Cú pháp gọi qsort",
+      "code": "// Sap toan bo mang a co n phan tu\nqsort(a, n, sizeof(a[0]), cmp);\n\n// Sap doan tu chi so x toi y\nqsort(a + x, y - x + 1, sizeof(a[0]), cmp);",
+      "caption": "Tham số thứ hai là số phần tử của đoạn, không phải chỉ số cuối"
+    },
+    {
+      "title": "Hàm so sánh: quy ước trả về",
+      "bullets": [
+        "Nhận 2 **con trỏ void** tới 2 phần tử, phải **ép kiểu** trước khi đọc",
+        "Trả **số âm**: a đứng trước b",
+        "Trả **số dương**: a đứng sau b; trả **0**: bằng nhau"
+      ],
+      "code": "int cmpTang(const void *a, const void *b){\n    int x = *(const int *)a;\n    int y = *(const int *)b;\n    if(x < y) return -1;\n    if(x > y) return 1;\n    return 0;\n}\n// Giam dan: doi cho tham so\nint cmpGiam(const void *a, const void *b){ return cmpTang(b, a); }"
+    },
+    {
+      "title": "Sắp mảng int tăng / giảm",
+      "code": "int a[] = {3, 1, 2, 5, 6, 4, 8, 9, 10, 7};\nint n = 10;\nqsort(a, n, sizeof(a[0]), cmpTang);  // 1 2 3 ... 10\nqsort(a, n, sizeof(a[0]), cmpGiam);  // 10 9 8 ... 1\nfor(int i = 0; i < n; i++) printf(\"%d \", a[i]);"
+    },
+    {
+      "title": "Sắp mảng char và double",
+      "bullets": [
+        "char sắp theo **mã ASCII**: chữ số < chữ hoa < chữ thường",
+        "Sắp chuỗi: số phần tử là `strlen(s)`, không sắp `'\\0'`",
+        "double: ép về `const double *`, **không** `return x - y` (bị cắt về int)"
+      ],
+      "code": "// char: {'2','8','t','e','c','h','a','z'} -> 2 8 a c e h t z\nchar s[] = \"codelab\";\nqsort(s, strlen(s), sizeof(s[0]), cmpChar);  // \"abcdelo\"\n\nint cmpDouble(const void *a, const void *b){\n    double x = *(const double *)a, y = *(const double *)b;\n    if(x < y) return -1;\n    if(x > y) return 1;\n    return 0;\n}"
+    },
+    {
+      "title": "Ứng dụng: sắp trước, xử lý sau",
+      "bullets": [
+        "Sau khi sắp, giá trị **giống nhau** và **gần nhau** đứng cạnh nhau",
+        "Đếm giá trị khác nhau: đếm chỗ `a[i] != a[i-1]`",
+        "Chênh lệch nhỏ nhất: chỉ xét cặp kề nhau, O(NlogN) thay O(N²)",
+        "Tần suất: đếm độ dài từng đoạn giá trị bằng nhau"
+      ],
+      "code": "qsort(a, n, sizeof(a[0]), cmpTang);\nint dem = 1;                       // a[0]\nfor(int i = 1; i < n; i++)\n    if(a[i] != a[i - 1]) ++dem;    // so gia tri khac nhau"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`qsort(a, n, sizeof(a[0]), cmp)` — nhớ `#include <stdlib.h>`",
+        "cmp trả **âm / 0 / dương**; âm nghĩa là a đứng trước",
+        "Kiểu ép trong cmp và `size` phải **khớp** kiểu phần tử mảng",
+        "Tránh `return x - y`: tràn số với int, sai với double",
+        "qsort **không ổn định**: phần tử bằng nhau có thể đổi chỗ"
+      ]
+    }
+  ]
+}

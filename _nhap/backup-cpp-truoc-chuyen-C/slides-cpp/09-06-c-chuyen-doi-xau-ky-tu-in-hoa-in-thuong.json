@@ -1,0 +1,52 @@
+{
+  "title": "Chuyển Đổi Xâu Ký Tự In Hoa, In Thường",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Chuyển hoa/thường giải quyết vấn đề gì?",
+      "bullets": [
+        "Đổi toàn bộ xâu thành **in hoa** hoặc **in thường**",
+        "Dùng hàm `tolower()`, `toupper()` cho từng ký tự",
+        "Muốn hàm **sửa trực tiếp** string phải truyền **tham chiếu** (`&`)"
+      ]
+    },
+    {
+      "title": "Cài đặt bằng tolower()/toupper()",
+      "code": "void to_lower(string &s){\n    for(int i = 0; i < s.size(); i++)\n        s[i] = tolower(s[i]);\n}\nvoid to_upper(string &s){\n    for(int i = 0; i < s.size(); i++)\n        s[i] = toupper(s[i]);\n}\n// s = \"codelab BLOG\" -> to_lower(s) -> \"codelab blog\""
+    },
+    {
+      "title": "Cài đặt bằng offset ASCII",
+      "bullets": [
+        "Chữ hoa và chữ thường lệch nhau **32** trong bảng ASCII",
+        "Hàm trả về `string` mới thay vì sửa tại chỗ"
+      ],
+      "code": "string to_lower(string s){\n    for(int i = 0; i < s.size(); i++)\n        if(s[i]>='A' && s[i]<='Z') s[i] += 32;\n    return s;\n}\nstring to_upper(string s){\n    for(int i = 0; i < s.size(); i++)\n        if(s[i]>='a' && s[i]<='z') s[i] -= 32;\n    return s;\n}"
+    },
+    {
+      "title": "Dùng hàm `transform()`",
+      "bullets": [
+        "`transform()` thuộc thư viện `algorithm`",
+        "Cú pháp dài, ít khi dùng trực tiếp trong thực tế"
+      ],
+      "code": "transform(s.begin(), s.end(), s.begin(), ::tolower);\ntransform(s.begin(), s.end(), s.begin(), ::toupper);"
+    },
+    {
+      "title": "Cách gọn hơn: range-based for",
+      "bullets": [
+        "Duyệt từng ký tự bằng tham chiếu `char &x`",
+        "Ngắn gọn và dễ nhớ hơn `transform()`"
+      ],
+      "code": "for(char &x : s) x = tolower(x);\nfor(char &x : s) x = toupper(x);"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Đổi tại chỗ cần **tham chiếu** (`string&`)",
+        "`tolower()`/`toupper()` hoạt động trên **từng ký tự**",
+        "Có thể tự cài bằng offset **32** trong ASCII",
+        "`range-based for` + tham chiếu là cách gọn nhất"
+      ]
+    }
+  ]
+}

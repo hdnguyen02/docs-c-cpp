@@ -1,0 +1,56 @@
+{
+  "title": "Tham Chiếu Và Tham Trị",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Tham trị và tham chiếu giải quyết vấn đề gì?",
+      "bullets": [
+        "Khi gọi hàm, **đối số** gán giá trị cho **tham số**",
+        "Câu hỏi: thay đổi tham số có ảnh hưởng đối số gốc không?",
+        "C++ có 2 cách xây dựng tham số: **tham trị** và **tham chiếu**"
+      ]
+    },
+    {
+      "title": "Truyền tham trị (pass by value)",
+      "bullets": [
+        "Tham số là **biến độc lập**, có địa chỉ riêng trong bộ nhớ",
+        "Đối số chỉ gán giá trị cho tham số, không chia sẻ ô nhớ",
+        "Thay đổi tham số trong hàm **không** ảnh hưởng đối số"
+      ],
+      "code": "void thaydoi(int n){\n    n += 100;\n}\n\nint main(){\n    int m = 1000;\n    thaydoi(m);\n    cout << m;   // vẫn là 1000\n}"
+    },
+    {
+      "title": "Truyền tham chiếu (pass by reference)",
+      "bullets": [
+        "Thêm `&` trước tên tham số khi khai báo hàm",
+        "Tham số và đối số dùng chung **1 ô nhớ** (cùng địa chỉ)",
+        "Thay đổi tham số trong hàm ⇒ đối số cũng đổi theo"
+      ],
+      "code": "void thaydoi(int &n){\n    n += 100;\n}\n\nint main(){\n    int m = 1000;\n    thaydoi(m);\n    cout << m;   // thành 1100\n}"
+    },
+    {
+      "title": "So sánh nhanh",
+      "bullets": [
+        "Tham trị: 2 biến riêng biệt, đối số luôn an toàn",
+        "Tham chiếu: chung địa chỉ, đối số bị thay đổi thật",
+        "Tham chiếu **không nhận hằng số** làm đối số, ví dụ `thaydoi(1000)` là sai",
+        "Ngôn ngữ C không có tham chiếu, phải dùng con trỏ thay thế"
+      ]
+    },
+    {
+      "title": "Ví dụ: hoán đổi 2 biến qua hàm",
+      "caption": "swap1 dùng tham trị nên không đổi được x, y; swap2 dùng tham chiếu nên đổi thật",
+      "code": "void swap1(int a, int b){ int t=a; a=b; b=t; }\nvoid swap2(int &a, int &b){ int t=a; a=b; b=t; }\n\nint x=100, y=200;\nswap1(x, y); // x=100 y=200 (không đổi)\nswap2(x, y); // x=200 y=100 (đổi thật)"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "**Tham trị**: đối số và tham số là 2 biến khác nhau, an toàn nhưng không sửa được đối số",
+        "**Tham chiếu**: tham số dùng chung địa chỉ với đối số, sửa tham số = sửa đối số",
+        "Muốn hàm thay đổi được giá trị gốc (như swap) thì dùng tham chiếu",
+        "Không truyền hằng số cho tham số kiểu tham chiếu"
+      ]
+    }
+  ]
+}

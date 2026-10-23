@@ -1,0 +1,80 @@
+{
+  "title": "Lý Thuyết Đồng Dư",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vấn đề: kết quả quá lớn, dễ tràn số",
+      "bullets": [
+        "Nhiều bài toán có kết quả tăng rất nhanh: giai thừa, Fibonacci, lũy thừa",
+        "C/C++ không hỗ trợ số nguyên lớn, `long long` dễ bị **tràn**",
+        "Giải pháp: chia dư kết quả cho một số C định trước (ví dụ 10^9 + 7)"
+      ]
+    },
+    {
+      "title": "Bốn công thức đồng dư cơ bản",
+      "bullets": [
+        "(A + B) % C = ((A % C) + (B % C)) % C",
+        "(A - B) % C = ((A % C) - (B % C)) % C",
+        "(A * B) % C = ((A % C) * (B % C)) % C",
+        "(A / B) % C cần **nghịch đảo mô đun** của B, phức tạp hơn 3 công thức trên"
+      ]
+    },
+    {
+      "title": "Sai lầm thường gặp: chia dư sau cùng",
+      "bullets": [
+        "Tính hết a^b rồi mới `% 10` → biến tích lũy `res` bị **tràn long long**",
+        "Ví dụ `powMod(2, 1000000)` cho kết quả sai (đúng ra tận cùng là 6)"
+      ],
+      "code": "int powMod(int a, int b){\n    ll res = 1;\n    for(int i = 1; i <= b; i++){\n        res *= a;   // res tràn khi b lớn\n    }\n    return res % 10;\n}"
+    },
+    {
+      "title": "Cách đúng: chia dư sau mỗi bước nhân",
+      "bullets": [
+        "Nhân `(a % 10)` vào kết quả thay vì nhân nguyên `a`",
+        "Chia dư `res %= 10` ngay sau mỗi lần nhân — bước quan trọng nhất",
+        "Nhờ vậy `res` luôn nhỏ, không bao giờ tràn dữ liệu"
+      ],
+      "code": "int powMod(int a, int b){\n    ll res = 1;\n    for(int i = 1; i <= b; i++){\n        res *= (a % 10);\n        res %= 10;   // quan trọng\n    }\n    return res;\n}"
+    },
+    {
+      "title": "Vì sao chia dư giữa chừng không đổi kết quả",
+      "bullets": [
+        "Ví dụ (13*11*8*7) % 5: nhân hết rồi chia dư = 3",
+        "Nhân 3 số đầu, chia dư luôn, rồi nhân tiếp: vẫn ra 3",
+        "Coi cụm (13*11*8) là A, 7 là B: chỉ cần dư của A nhân dư của B",
+        "A cũng có thể chia nhỏ tiếp — chia dư ở bất kỳ bước nào đều đúng"
+      ]
+    },
+    {
+      "title": "Ứng dụng 1: Fibonacci thứ N mod 10^9+7",
+      "bullets": [
+        "Quy hoạch động: `F[i] = F[i-1] + F[i-2]`, chia dư sau mỗi bước cộng"
+      ],
+      "code": "#define mod 1000000007\nll F[1000001];\n\nF[0] = 0; F[1] = 1;\nfor(int i = 2; i <= 1000000; i++){\n    F[i] = F[i - 1] + F[i - 2];\n    F[i] %= mod;\n}"
+    },
+    {
+      "title": "Ứng dụng 2: lũy thừa a^b mod c",
+      "bullets": [
+        "Kết hợp đồng dư với **lũy thừa nhị phân** (binpow) để tính nhanh"
+      ],
+      "code": "ll powMod(ll a, ll b, ll c){\n    ll res = 1;\n    while(b){\n        if(b % 2 == 1){ res *= a; res %= c; }\n        a *= a; a %= c;\n        b /= 2;\n    }\n    return res;\n}"
+    },
+    {
+      "title": "Ứng dụng 3: tổ hợp chập K của N mod 10^9+7",
+      "bullets": [
+        "Dùng tam giác Pascal: C[i][j] = C[i-1][j-1] + C[i-1][j], chia dư mỗi bước"
+      ],
+      "code": "#define mod 1000000007\nll C[1005][1005];\n\nfor(int i = 0; i <= n; i++)\n    for(int j = 0; j <= i; j++){\n        if(i == j || j == 0) C[i][j] = 1;\n        else C[i][j] = (C[i-1][j-1] + C[i-1][j]) % mod;\n    }\n// kết quả: C[n][k]"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Đồng dư dùng khi kết quả quá lớn, cần chia dư cho một số C cho trước",
+        "3 công thức +, -, * đều chia dư an toàn ở bất kỳ bước tính toán nào",
+        "**Luôn chia dư ngay sau mỗi phép nhân/cộng**, đừng đợi tính xong mới chia",
+        "Công thức chia (A/B) % C cần nghịch đảo mô đun, phức tạp hơn hẳn"
+      ]
+    }
+  ]
+}

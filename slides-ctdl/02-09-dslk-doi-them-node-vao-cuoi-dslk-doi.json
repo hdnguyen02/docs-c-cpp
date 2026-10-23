@@ -1,0 +1,63 @@
+{
+  "title": "Thêm Node Vào Cuối DSLK Đôi",
+  "course": "CTDL & Giải Thuật",
+  "source": "",
+  "slides": [
+    {
+      "title": "Vấn đề: thêm node vào cuối DSLK đôi",
+      "bullets": [
+        "Phải duyệt tới **node cuối cùng** rồi nối node mới vào sau",
+        "Cập nhật **cả `next` của node cuối cũ và `prev` của node mới**",
+        "DSLK rỗng là trường hợp đặc biệt: chưa có node cuối để nối"
+      ]
+    },
+    {
+      "title": "Các bước thêm vào cuối (cách 1)",
+      "bullets": [
+        "Cấp phát `newNode`",
+        "Nếu DSLK rỗng: `*head = newNode`, kết thúc luôn",
+        "Duyệt `tmp` tới node cuối (`tmp->next == NULL`)",
+        "Nối `tmp->next = newNode` và `newNode->prev = tmp`"
+      ],
+      "code": "Truoc:  1 <-> 2 <-> 3 <-> NULL\nThem node 4 vao cuoi:\nSau:    1 <-> 2 <-> 3 <-> 4 <-> NULL   // tmp=3, newNode=4"
+    },
+    {
+      "title": "Cài đặt hàm `themcuoi`",
+      "code": "void themcuoi(node **head, int x){\n    node *newNode = (node*)malloc(sizeof(node));\n    newNode->data = x;\n    newNode->next = newNode->prev = NULL;\n    if(*head == NULL){ *head = newNode; return; }  // DSLK rong\n    node *tmp = *head;\n    while(tmp->next != NULL)\n        tmp = tmp->next;              // toi node cuoi\n    tmp->next = newNode;\n    newNode->prev = tmp;\n}"
+    },
+    {
+      "title": "Cách 2 và cách 3: điểm khác biệt",
+      "bullets": [
+        "**Cách 2**: hàm trả về `head`, DSLK rỗng thì trả thẳng `newNode`",
+        "**Cách 3** (head+tail): **không cần duyệt**, nối thẳng vào `tail`",
+        "DSLK rỗng: `head = tail = newNode`",
+        "Có node: `tail->next = newNode`, `newNode->prev = tail`, rồi **cập nhật `tail`**"
+      ]
+    },
+    {
+      "title": "Vì sao quản lý bằng tail lại nhanh hơn?",
+      "bullets": [
+        "Cách 1 và 2 phải duyệt từ đầu tới cuối mỗi lần thêm — O(n)",
+        "Cách 3 giữ sẵn con trỏ `tail`, thêm cuối chỉ mất **O(1)**",
+        "Đổi lại phải luôn nhớ cập nhật `tail` sau mỗi lần thêm"
+      ]
+    },
+    {
+      "title": "Trường hợp đặc biệt",
+      "bullets": [
+        "DSLK rỗng: gán thẳng `head = newNode` (và `tail = newNode`)",
+        "DSLK 1 node: node đó vừa là `head` vừa là `tail`",
+        "DSLK nhiều node: duyệt hết hoặc dùng `tail` có sẵn"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Thêm cuối DSLK đôi: nối `next` của node cuối cũ, `prev` của node mới",
+        "DSLK rỗng phải xử lý riêng vì chưa có node cuối",
+        "Dùng `tail`: thêm cuối chỉ O(1), nhưng phải cập nhật `tail` sau khi thêm",
+        "3 cách cài đặt cho cùng một kết quả"
+      ]
+    }
+  ]
+}

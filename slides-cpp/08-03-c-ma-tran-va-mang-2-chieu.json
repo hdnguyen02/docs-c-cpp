@@ -1,0 +1,57 @@
+{
+  "title": "Ma Trận Và Mảng 2 Chiều",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Ma trận là gì?",
+      "bullets": [
+        "Bảng số gồm **hàng** và **cột**, ký hiệu ma trận cỡ n×m là A(n×m)",
+        "Lưu trong C bằng **mảng 2 chiều**",
+        "Ma trận **vuông**: số hàng bằng số cột"
+      ],
+      "code": "int a[3][3] = {\n    {1, 2, 3},\n    {4, 5, 6},\n    {7, 8, 9}\n};\n// a[i][j]: i = hàng (0..2), j = cột (0..2)"
+    },
+    {
+      "title": "Đường chéo chính",
+      "bullets": [
+        "Gồm các phần tử có **chỉ số hàng = chỉ số cột**: `a[i][i]`",
+        "Chỉ xét được trên ma trận **vuông**"
+      ],
+      "code": "int a[3][3] = {\n    {1, 2, 3},\n    {4, 5, 6},   // 5 nằm trên đường chéo chính\n    {7, 8, 9}\n};\n// đường chéo chính: a[0][0]=1  a[1][1]=5  a[2][2]=9\n\nfor (int i = 0; i < n; i++)\n    if (nt(a[i][i])) printf(\"%d \", a[i][i]);   // lọc số nguyên tố"
+    },
+    {
+      "title": "Đường chéo phụ",
+      "bullets": [
+        "Gồm các phần tử `a[i][n-i-1]` — hàng `i`, cột đối xứng qua tâm",
+        "Với n = 3: đó là `a[0][2]`, `a[1][1]`, `a[2][0]`"
+      ],
+      "code": "int a[3][3] = {\n    {1, 2, 3},   // 3 nằm trên đường chéo phụ\n    {4, 5, 6},   // 5 nằm trên đường chéo phụ\n    {7, 8, 9}    // 7 nằm trên đường chéo phụ\n};\n\nfor (int i = 0; i < n; i++)\n    if (nt(a[i][n - i - 1])) printf(\"%d \", a[i][n - i - 1]);"
+    },
+    {
+      "title": "Tam giác dưới, tam giác trên",
+      "bullets": [
+        "**Tam giác dưới**: từ đường chéo chính đổ xuống, điều kiện `j <= i`",
+        "**Tam giác trên**: từ đường chéo chính đổ lên, điều kiện `j >= i`"
+      ],
+      "code": "// Tam giác dưới: j chạy từ 0 đến i\nfor (int i = 0; i < n; i++)\n    for (int j = 0; j <= i; j++) tong += a[i][j];\n\n// Tam giác trên: j chạy từ i đến n-1\nfor (int i = 0; i < n; i++)\n    for (int j = i; j < n; j++) tong += a[i][j];"
+    },
+    {
+      "title": "Ma trận chuyển vị",
+      "bullets": [
+        "Ma trận A(n×m) → chuyển vị AT(m×n)",
+        "Hàng của A trở thành cột của AT: `b[i][j] = a[j][i]`"
+      ],
+      "code": "int a[3][4] = { ... };   // n=3 hàng, m=4 cột\nint b[4][3];\nfor (int i = 0; i < m; i++)\n    for (int j = 0; j < n; j++)\n        b[i][j] = a[j][i];"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Ma trận = mảng 2 chiều; ma trận **vuông** có số hàng = số cột",
+        "Đường chéo chính: `a[i][i]`; đường chéo phụ: `a[i][n-i-1]`",
+        "Tam giác dưới `j <= i`, tam giác trên `j >= i`",
+        "Chuyển vị: đổi vai trò hàng-cột, kích thước mảng kết quả cũng đổi theo"
+      ]
+    }
+  ]
+}

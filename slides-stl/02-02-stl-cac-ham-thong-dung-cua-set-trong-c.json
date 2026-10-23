@@ -1,0 +1,45 @@
+{
+  "title": "Các Hàm Thông Dụng Của Set Trong C++",
+  "course": "STL C++",
+  "source": "",
+  "slides": [
+    {
+      "title": "Nhóm hàm tìm kiếm: find(), count()",
+      "bullets": [
+        "`find(x)`: trả về iterator tới `x` nếu tìm thấy, ngược lại trả `end()`",
+        "`count(x)`: trả về 1 nếu có, 0 nếu không (thay thế được `find()`)",
+        "Cả hai đều **O(logN)**"
+      ],
+      "code": "set<int> se = {1,2,3,4,5,6};\nif(se.find(3) != se.end()) cout << \"3 co trong set\";\nif(se.count(28) != 0) cout << \"28 co\"; else cout << \"28 khong co\";"
+    },
+    {
+      "title": "Hàm xóa: erase()",
+      "bullets": [
+        "Xóa theo **giá trị**: `se.erase(x)`",
+        "Xóa theo **iterator**: `se.erase(it)`",
+        "Độ phức tạp O(logN)",
+        "**Lưu ý**: xóa phần tử không tồn tại sẽ gây lỗi"
+      ],
+      "code": "set<int> se = {1,2,3,4,5,6};\nse.erase(3);              // xoa qua gia tri\n\nauto it = se.find(5);\nif(it != se.end()) se.erase(it); // xoa qua iterator"
+    },
+    {
+      "title": "Nhóm hàm biên: lower_bound(), upper_bound()",
+      "bullets": [
+        "`lower_bound(x)`: iterator tới phần tử nhỏ nhất **≥ x**",
+        "`upper_bound(x)`: iterator tới phần tử nhỏ nhất **> x**",
+        "Không tồn tại phần tử thỏa thì trả về `end()`",
+        "Cả hai đều O(logN)"
+      ],
+      "code": "set<int> se = {1,2,3,5,7,9,10};\nauto it1 = se.lower_bound(6); // -> 7 (nho nhat >= 6)\nauto it2 = se.upper_bound(5); // -> 7 (nho nhat > 5)\nauto it3 = se.lower_bound(28); // -> end(), khong co phan tu"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`find()`/`count()`/`erase()`/`lower_bound()`/`upper_bound()` đều **O(logN)**",
+        "`count()` đơn giản hơn `find()` khi chỉ cần kiểm tra tồn tại",
+        "Xóa phần tử không tồn tại trong set sẽ gây lỗi runtime",
+        "`lower_bound` lấy `>=`, `upper_bound` lấy `>`"
+      ]
+    }
+  ]
+}

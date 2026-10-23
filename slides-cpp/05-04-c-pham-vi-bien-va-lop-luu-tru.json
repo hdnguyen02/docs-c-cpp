@@ -1,0 +1,79 @@
+{
+  "title": "Phạm Vi Biến Và Lớp Lưu Trữ",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Hai câu hỏi về một biến",
+      "bullets": [
+        "**Phạm vi** (scope): tên biến dùng được ở đâu trong code?",
+        "**Thời gian tồn tại**: biến sống bao lâu khi chạy?",
+        "**Lớp lưu trữ** (storage class): `auto`, `register`, `static`, `extern`"
+      ]
+    },
+    {
+      "title": "Khối lệnh và phạm vi",
+      "bullets": [
+        "Khối lệnh là code trong cặp `{ }`",
+        "Biến trong khối chỉ dùng được tới dấu `}` đóng khối",
+        "Biến khai báo trong `for` chỉ tồn tại trong vòng lặp",
+        "Biến khối con trùng tên sẽ **che khuất** biến khối cha"
+      ],
+      "code": "int x = 1;\n{\n    int b = 20;\n    int x = 2;     // che khuất x bên ngoài\n    x += 10;       // 12\n}\n// b không tồn tại ở đây\nprintf(\"%d\\n\", x);  // 1"
+    },
+    {
+      "title": "Biến cục bộ và biến toàn cục",
+      "bullets": [
+        "**Cục bộ**: trong hàm/khối, tạo mới mỗi lần gọi, chưa khởi tạo là **rác**",
+        "**Toàn cục**: ngoài mọi hàm, sống suốt chương trình, mặc định **0**",
+        "Hạn chế biến toàn cục: hàm nào cũng sửa được, khó kiểm soát"
+      ],
+      "code": "int dem = 0;          // toàn cục\n\nvoid tang(void){\n    int k = 5;        // cục bộ của tang\n    dem++;\n}\n\nint main(void){\n    int k = 100;      // k khác, không liên quan\n    tang(); tang();\n    printf(\"%d %d\\n\", dem, k);   // 2 100\n}"
+    },
+    {
+      "title": "auto và register",
+      "bullets": [
+        "`auto`: lớp mặc định của biến cục bộ, hầu như không ai viết",
+        "Trong C, `auto` **không** suy luận kiểu dữ liệu",
+        "`register`: gợi ý lưu trong thanh ghi, **không lấy được địa chỉ**"
+      ],
+      "code": "auto int y = 10;     // giống hệt int y = 10;\n\nregister int i = 0;\n// &i  -> lỗi: address of register variable requested"
+    },
+    {
+      "title": "Biến static trong hàm",
+      "bullets": [
+        "Khởi tạo **một lần duy nhất**, giữ giá trị giữa các lần gọi",
+        "Phạm vi vẫn chỉ trong hàm, mặc định bằng 0",
+        "Giá trị khởi tạo phải là **hằng số**"
+      ],
+      "code": "void thuong(void){ int dem = 0; dem++; printf(\"%d \", dem); }\nvoid tinh(void){ static int dem = 0; dem++; printf(\"%d \", dem); }\n\n// gọi 3 lần mỗi hàm:\n// thuong: 1 1 1\n// tinh  : 1 2 3"
+    },
+    {
+      "title": "static toàn cục và extern",
+      "bullets": [
+        "`static` trước biến/hàm toàn cục: **chỉ dùng trong file đó**",
+        "`extern`: khai báo biến toàn cục **định nghĩa ở file khác**",
+        "Định nghĩa đúng 1 lần, khai báo `extern` bao nhiêu lần cũng được"
+      ],
+      "code": "// dem.c\nint tongSo = 0;             // định nghĩa\nvoid cong(int x){ tongSo += x; }\n\n// main.c\nextern int tongSo;          // khai báo\nvoid cong(int x);\n// cong(10); cong(18); -> tongSo = 28\n// gcc -std=c11 main.c dem.c -o main"
+    },
+    {
+      "title": "Tổng kết các loại biến",
+      "bullets": [
+        "Cục bộ: trong khối, sống tới hết khối, mặc định rác",
+        "Cục bộ `static`: trong khối, sống suốt chương trình, mặc định 0",
+        "Toàn cục: cả file (+ file khác qua `extern`), mặc định 0",
+        "Toàn cục `static`: chỉ trong file, sống suốt chương trình, mặc định 0"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Biến chỉ dùng được trong khối `{ }` khai báo nó",
+        "Luôn khởi tạo biến cục bộ, tránh giá trị rác",
+        "`static` trong hàm giữ giá trị giữa các lần gọi",
+        "Ưu tiên tham số/giá trị trả về thay vì biến toàn cục"
+      ]
+    }
+  ]
+}

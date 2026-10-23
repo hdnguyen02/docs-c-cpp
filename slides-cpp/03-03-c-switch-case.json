@@ -1,0 +1,53 @@
+{
+  "title": "Switch Case",
+  "course": "C Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Switch case giải quyết vấn đề gì?",
+      "bullets": [
+        "Cách khác để kiểm tra **nhiều giá trị** của 1 biến, gọn hơn `else if`",
+        "So sánh `value` lần lượt với từng `case`",
+        "Không khớp `case` nào thì chạy `default` (tương tự `else`)",
+        "`value` phải là **số nguyên** (`int`, `char`...), `case` là **hằng số**"
+      ]
+    },
+    {
+      "title": "Cú pháp",
+      "code": "switch(value){\n    case c1:\n        // code\n        break;\n    case c2:\n        // code\n        break;\n    default:\n        // code\n}"
+    },
+    {
+      "title": "Luồng chạy và lưu ý break",
+      "bullets": [
+        "Khớp `case` nào thì chạy khối lệnh của `case` đó",
+        "Mỗi `case` cần `break` để **kết thúc** switch",
+        "Thiếu `break`: chạy tiếp các `case` bên dưới dù không khớp (rơi xuyên)",
+        "Nhiều `case` liên tiếp không `break` để dùng chung 1 khối lệnh"
+      ]
+    },
+    {
+      "title": "Có break và thiếu break",
+      "caption": "n = 3 với có break chỉ in THREE; n = 2 thiếu break in từ TWO trở xuống",
+      "code": "switch(n){                       // n = 3 -> THREE\n    case 1: printf(\"ONE\\n\"); break;\n    case 2: printf(\"TWO\\n\"); break;\n    case 3: printf(\"THREE\\n\"); break;\n    default: printf(\"DEFAULT\\n\");\n}\n\nswitch(n){                       // n = 2 -> TWO THREE DEFAULT\n    case 1: printf(\"ONE\\n\");\n    case 2: printf(\"TWO\\n\");\n    case 3: printf(\"THREE\\n\");\n    default: printf(\"DEFAULT\\n\");\n}"
+    },
+    {
+      "title": "Ví dụ: máy tính theo toán tử",
+      "caption": "Đọc ký tự toán tử bằng scanf(\" %c\"), mỗi case một phép tính",
+      "code": "char op;\nscanf(\" %c\", &op);\nswitch(op){\n    case '+': printf(\"%d\\n\", a + b); break;\n    case '-': printf(\"%d\\n\", a - b); break;\n    case '*': printf(\"%d\\n\", a * b); break;\n    case '/': printf(\"%d\\n\", a / b); break;\n    default: printf(\"INVALID INPUT\\n\");\n}"
+    },
+    {
+      "title": "Ví dụ: gộp case (số ngày trong tháng)",
+      "caption": "Nhiều case liên tiếp không break dùng chung khối lệnh",
+      "code": "switch(m){\n    case 1: case 3: case 5: case 7: case 8: case 10: case 12:\n        printf(\"31\\n\"); break;\n    case 4: case 6: case 9: case 11:\n        printf(\"30\\n\"); break;\n    case 2:\n        if((y % 400 == 0) || (y % 4 == 0 && y % 100 != 0))\n            printf(\"29\\n\");\n        else printf(\"28\\n\");\n        break;\n    default:\n        printf(\"Du lieu khong hop le !\\n\");\n}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`switch` so khớp giá trị `value` với từng `case` hằng số nguyên",
+        "Luôn nhớ `break` ở cuối mỗi `case`, trừ khi cố ý gộp nhánh",
+        "`default` đóng vai trò như `else`, không bắt buộc phải có",
+        "Nhiều `case` liền nhau không `break` = dùng chung 1 xử lý"
+      ]
+    }
+  ]
+}

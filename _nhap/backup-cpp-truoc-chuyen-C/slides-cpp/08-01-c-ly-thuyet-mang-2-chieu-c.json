@@ -1,0 +1,66 @@
+{
+  "title": "Lý Thuyết Mảng 2 Chiều C++",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Mảng 2 chiều là gì?",
+      "bullets": [
+        "Cấu trúc phù hợp cho bài toán **ma trận** hoặc **bảng số**",
+        "Bản chất là **mảng của các mảng 1 chiều** (hàng và cột)",
+        "Chỉ số hàng và cột đều đánh số từ **0**"
+      ],
+      "code": "Data_type array_name[rows][cols];\n// Data_type: kieu du lieu phan tu\n// rows: so hang, cols: so cot"
+    },
+    {
+      "title": "Khai báo và truy cập phần tử",
+      "bullets": [
+        "Luôn truy cập theo thứ tự: **chỉ số hàng trước, chỉ số cột sau**",
+        "Có thể khởi tạo giá trị ngay khi khai báo bằng danh sách lồng nhau"
+      ],
+      "code": "int a[3][4] = {\n    {1, 2, 3, 1},\n    {4, 1, 5, 2},\n    {3, 7, 9, 0}\n};\ncout << a[0][2]; // 3\ncout << a[1][3]; // 2"
+    },
+    {
+      "title": "Lưu ý chỉ số hàng/cột hợp lệ",
+      "bullets": [
+        "Không truy cập chỉ số hàng/cột **ngoài phạm vi** đã khai báo",
+        "Dùng chỉ số từ 1 vẫn được, miễn mảng khai báo **đủ lớn** để hợp lệ",
+        "Cần biết rõ quy ước chỉ số để khai báo kích thước mảng phù hợp"
+      ]
+    },
+    {
+      "title": "Nhập/xuất bằng 2 vòng lặp lồng nhau",
+      "bullets": [
+        "Vòng lặp **ngoài** duyệt qua hàng, vòng lặp **trong** duyệt qua cột",
+        "Cách 1: khai báo mảng kích thước cố định đủ lớn (vd 205x205)",
+        "Cách 2: khai báo mảng theo đúng số hàng/cột nhập vào (`a[n][m]`)"
+      ],
+      "code": "int n, m;\ncin >> n >> m;\nint a[205][205];  // hoac int a[n][m]; neu khai bao dong theo de bai\n\nfor (int i = 0; i < n; i++)\n    for (int j = 0; j < m; j++)\n        cin >> a[i][j];\n\nfor (int i = 0; i < n; i++) {\n    for (int j = 0; j < m; j++) cout << a[i][j] << \" \";\n    cout << endl;\n}"
+    },
+    {
+      "title": "Mảng 2 chiều làm tham số hàm",
+      "bullets": [
+        "Khi khai báo tham số hàm, **bắt buộc chỉ định số cột** (vd `a[][205]`)",
+        "Đối số truyền vào khi gọi hàm phải có **số cột khớp** với tham số"
+      ],
+      "code": "void nhap(int a[][205], int n, int m) {\n    for (int i = 0; i < n; i++)\n        for (int j = 0; j < m; j++)\n            cin >> a[i][j];\n}\n\nvoid xuat(int a[][205], int n, int m) {\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < m; j++) cout << a[i][j] << \" \";\n        cout << endl;\n    }\n}"
+    },
+    {
+      "title": "Ứng dụng: đếm số nguyên tố trong mảng 2 chiều",
+      "bullets": [
+        "Viết hàm kiểm tra nguyên tố `nt()` riêng, tái dùng cho từng phần tử",
+        "Duyệt toàn bộ hàng-cột bằng 2 vòng lặp lồng nhau bên trong hàm đếm"
+      ],
+      "code": "int dem(int a[][205], int n, int m) {\n    int ans = 0;\n    for (int i = 0; i < n; i++)\n        for (int j = 0; j < m; j++)\n            if (nt(a[i][j])) ++ans;\n    return ans;\n}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Mảng 2 chiều = mảng các mảng 1 chiều, chỉ số **hàng trước, cột sau**",
+        "Nhập/xuất/xử lý đều dùng **2 vòng lặp lồng nhau**",
+        "Truyền mảng 2 chiều vào hàm phải khai báo rõ **số cột**",
+        "Khai báo kích thước mảng đủ lớn để tránh truy cập ngoài phạm vi"
+      ]
+    }
+  ]
+}

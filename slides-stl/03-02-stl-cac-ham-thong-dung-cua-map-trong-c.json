@@ -1,0 +1,45 @@
+{
+  "title": "Các Hàm Thông Dụng Của Map Trong C++",
+  "course": "STL C++",
+  "source": "",
+  "slides": [
+    {
+      "title": "Nhóm hàm tìm kiếm: find(), count()",
+      "bullets": [
+        "`find(key)`: trả iterator tới cặp có key đó, không có thì `end()`",
+        "`count(key)`: trả **1** nếu key tồn tại, **0** nếu không",
+        "Cả hai đều **O(logN)**, `count()` dễ dùng hơn để kiểm tra tồn tại"
+      ],
+      "code": "map<int,int> mp;\nmp.insert(make_pair(1,2)); mp.insert(make_pair(2,3)); mp.insert(make_pair(3,5));\n\nauto it = mp.find(2);\nif(it != mp.end()) cout << \"FOUND\"; else cout << \"NOT FOUND\";\n\nif(mp.count(4) == 1) cout << \"FOUND\"; else cout << \"NOT FOUND\";"
+    },
+    {
+      "title": "Hàm xóa: erase()",
+      "bullets": [
+        "Xóa theo **key**: `mp.erase(key)`",
+        "Xóa theo **iterator**: `mp.erase(it)`",
+        "Độ phức tạp O(logN)",
+        "Xóa key không tồn tại sẽ gây lỗi — nên `count()` trước"
+      ],
+      "code": "if(mp.count(2)) mp.erase(2);  // xoa theo key\n\nauto it = mp.find(2);\nif(it != mp.end()) mp.erase(it); // xoa theo iterator"
+    },
+    {
+      "title": "Nhóm hàm biên: lower_bound(), upper_bound()",
+      "bullets": [
+        "`lower_bound(x)`: iterator tới key nhỏ nhất **≥ x**",
+        "`upper_bound(x)`: iterator tới key nhỏ nhất **> x**",
+        "Không có key thỏa điều kiện thì trả `end()`",
+        "Cả hai O(logN), áp dụng được cho cả set và map"
+      ],
+      "code": "// key: {1, 3, 5, 6, 10}\nauto it1 = mp.lower_bound(4); // -> key 5 (nho nhat >= 4)\nauto it2 = mp.upper_bound(5); // -> key 6 (nho nhat > 5)\nauto it3 = mp.lower_bound(14); // -> end(), khong co key"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "`find`/`count`/`erase`/`lower_bound`/`upper_bound` đều **O(logN)**",
+        "`count()` thay `find()` được khi chỉ cần biết tồn tại hay không",
+        "`erase()` theo key không tồn tại sẽ lỗi, cần kiểm tra trước",
+        "`lower_bound` lấy `>=`, `upper_bound` lấy `>` — dùng chung logic với set"
+      ]
+    }
+  ]
+}

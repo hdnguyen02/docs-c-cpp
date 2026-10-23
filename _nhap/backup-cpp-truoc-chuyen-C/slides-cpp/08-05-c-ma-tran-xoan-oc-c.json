@@ -1,0 +1,63 @@
+{
+  "title": "Ma Trận Xoắn Ốc C++",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Ma trận xoắn ốc là gì?",
+      "bullets": [
+        "Ma trận vuông N×N (hoặc N×M), điền số theo hình **xoắn ốc** từ 1 tới N²",
+        "Xây dựng **từng vòng xoắn ốc**, mỗi vòng gồm 4 cạnh",
+        "Xong 1 vòng thì thu hẹp biên để xây vòng tiếp theo"
+      ]
+    },
+    {
+      "title": "4 biến biên và 4 hướng duyệt",
+      "bullets": [
+        "`h1`: hàng **trên**, `h2`: hàng **dưới**, `c1`: cột **trái**, `c2`: cột **phải**",
+        "Cạnh trên: đi từ `c1 → c2` trên hàng `h1`",
+        "Cạnh phải: đi từ `h1 → h2` trên cột `c2`",
+        "Cạnh dưới: đi từ `c2 → c1` trên hàng `h2`",
+        "Cạnh trái: đi từ `h2 → h1` trên cột `c1`"
+      ]
+    },
+    {
+      "title": "Sau mỗi cạnh: thu hẹp biên",
+      "bullets": [
+        "Xong cạnh trên → tăng `h1`; xong cạnh phải → giảm `c2`",
+        "Xong cạnh dưới → giảm `h2`; xong cạnh trái → tăng `c1`",
+        "Lặp lại vòng mới khi vẫn còn `h1 <= h2 && c1 <= c2`"
+      ]
+    },
+    {
+      "title": "Code dựng ma trận xoắn ốc",
+      "code": "int h1 = 0, h2 = n - 1, c1 = 0, c2 = n - 1, dem = 1;\nwhile (h1 <= h2 && c1 <= c2) {\n    for (int i = c1; i <= c2; i++) a[h1][i] = dem++;   // cạnh trên\n    h1++;\n    for (int i = h1; i <= h2; i++) a[i][c2] = dem++;   // cạnh phải\n    c2--;\n    for (int i = c2; i >= c1; i--) a[h2][i] = dem++;   // cạnh dưới\n    h2--;\n    for (int i = h2; i >= h1; i--) a[i][c1] = dem++;   // cạnh trái\n    c1++;\n}\n// n=5, hàng 0: 1 2 3 4 5; hàng 1: 16 17 18 19 6 ..."
+    },
+    {
+      "title": "Biến thể: xoắn ốc nguyên tố",
+      "bullets": [
+        "Chuẩn bị trước **mảng số nguyên tố** đủ N² phần tử",
+        "Logic vòng lặp duyệt xoắn ốc **giữ nguyên** như bản gốc",
+        "Chỉ đổi: gán `a[...] = X[dem]` (số nguyên tố) thay vì gán `dem` trực tiếp"
+      ],
+      "code": "int X[10000], idx = 0, i = 0;\nwhile (idx < n * n) {\n    if (nt(i)) X[idx++] = i;   // gom số nguyên tố vào X\n    i++;\n}\n// sau đó dùng đúng vòng lặp xoắn ốc, thay dem bằng X[dem]"
+    },
+    {
+      "title": "Biến thể: xoắn ốc Fibonacci",
+      "bullets": [
+        "Chuẩn bị trước **mảng số Fibonacci** đủ N² phần tử",
+        "Gán vào ma trận theo đúng thứ tự xoắn ốc, thay `dem` bằng `F[dem]`",
+        "Số Fibonacci tăng rất nhanh nên cần khai báo kiểu `long long`"
+      ]
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Cốt lõi là **4 biến biên** `h1, h2, c1, c2` và vòng lặp thu hẹp dần",
+        "Điều kiện dừng: `h1 <= h2 && c1 <= c2`",
+        "Xoắn ốc nguyên tố/Fibonacci chỉ đổi **nguồn giá trị gán**, giữ nguyên logic duyệt",
+        "Dùng `long long` khi giá trị gán (như Fibonacci) có thể vượt quá int"
+      ]
+    }
+  ]
+}

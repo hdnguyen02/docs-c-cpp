@@ -1,0 +1,80 @@
+{
+  "title": "Hàm",
+  "course": "C++ Cơ Bản",
+  "source": "",
+  "slides": [
+    {
+      "title": "Hàm giải quyết vấn đề gì?",
+      "bullets": [
+        "Khối lệnh thực hiện **1 chức năng cụ thể**, dùng lại được nhiều lần",
+        "Tránh code lặp lại, chương trình dễ quản lý hơn khi lớn",
+        "Gọi hàm nhiều lần thay vì viết lại toàn bộ logic"
+      ]
+    },
+    {
+      "title": "Cú pháp khai báo hàm",
+      "bullets": [
+        "`data_type`: kiểu trả về (`int`, `void`, `long long`,...)",
+        "`function_name`: đặt tên theo quy tắc như tên biến",
+        "`parameter`: đầu vào của hàm, số lượng và kiểu tùy ý"
+      ],
+      "code": "data_type function_name(type1 param1, type2 param2){\n    // code\n}\n\nint tong(int a, int b, int c){\n    return a + b + c;\n}"
+    },
+    {
+      "title": "Lời gọi hàm — luồng chạy",
+      "bullets": [
+        "Gọi hàm trong `main` (hoặc hàm khác) để nó thực thi",
+        "Chương trình **nhảy vào** thân hàm, chạy hết lệnh rồi **quay lại**",
+        "Mỗi lần gọi, các câu lệnh trong hàm chạy lại từ đầu"
+      ],
+      "code": "void greet(){\n    cout << \"Hello codelab C++!\\n\";\n}\n\nint main(){\n    cout << \"Before\\n\";\n    greet();          // nhảy vào thân hàm\n    cout << \"After\\n\";\n}\n// Before / Hello codelab C++! / After"
+    },
+    {
+      "title": "Tham số và đối số",
+      "bullets": [
+        "**Tham số** (parameter): khai báo trong định nghĩa hàm",
+        "**Đối số** (argument): giá trị truyền vào khi gọi hàm",
+        "Đối số gán cho tham số theo **đúng thứ tự** khai báo",
+        "Kiểu đối số nên trùng hoặc nhỏ hơn kiểu tham số, tránh mất dữ liệu"
+      ]
+    },
+    {
+      "title": "Tham số truyền theo giá trị",
+      "bullets": [
+        "Thay đổi tham số **bên trong hàm không ảnh hưởng** đối số bên ngoài"
+      ],
+      "code": "void thaydoi(int n){\n    n += 28;\n    cout << n << endl;      // 128\n}\n\nint main(){\n    int a = 100;\n    thaydoi(a);\n    cout << a << endl;      // vẫn là 100\n}"
+    },
+    {
+      "title": "Câu lệnh return",
+      "bullets": [
+        "Trả **giá trị** cho nơi gọi hàm, hàm kết thúc **ngay khi gặp return**",
+        "Kiểu giá trị `return` nên khớp kiểu trả về của hàm",
+        "Hàm `void` dùng `return;` (không kèm giá trị) để thoát sớm"
+      ],
+      "code": "int tong(int a, int b){\n    return 28;      // kết thúc, trả 28 ngay\n    return a + b;   // không bao giờ chạy tới\n}\n\nvoid greet(int n){\n    cout << n << endl;\n    return;         // thoát sớm khỏi hàm void\n    cout << \"khong chay toi day\\n\";\n}"
+    },
+    {
+      "title": "Ví dụ: hàm có return",
+      "code": "int tong(int a, int b, int c){\n    return a + b + c;\n}\n\nlong long factorial(int n){\n    long long gt = 1;\n    for(int i = 1; i <= n; i++) gt *= i;\n    return gt;\n}"
+    },
+    {
+      "title": "Xây dựng hàm tổng quát",
+      "bullets": [
+        "Hàm chỉ nên làm **1 nhiệm vụ rõ ràng**, tránh gộp nhập/tính/xuất",
+        "Nhập, xuất nên để ở `main`; hàm chỉ xử lý và `return` kết quả",
+        "Hàm tổng quát tái sử dụng được cho nhiều bài toán khác nhau"
+      ],
+      "code": "// chưa tổng quát: gộp cả nhập và xuất vào hàm\nvoid xuly(){\n    int n; cin >> n;\n    int tong = 0;\n    for(int i=1;i<=n;i++) if(n%i==0) tong+=i;\n    cout << tong << endl;\n}\n\n// tổng quát: chỉ tính và trả kết quả\nint tonguoc(int n){\n    int tong = 0;\n    for(int i=1;i<=n;i++) if(n%i==0) tong+=i;\n    return tong;\n}"
+    },
+    {
+      "title": "Ghi nhớ",
+      "bullets": [
+        "Hàm giúp tái sử dụng code, chương trình dễ quản lý hơn",
+        "Tham số truyền theo giá trị: sửa trong hàm không đổi đối số ngoài",
+        "`return` giá trị kết thúc hàm ngay lập tức",
+        "Hàm nên tổng quát, tách biệt nhập/xuất khỏi phần xử lý"
+      ]
+    }
+  ]
+}
